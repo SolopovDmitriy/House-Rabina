@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Будинок Рабина — будинок-музей (Полтава)</title>
+
+  <style>
+    :root{
+      --paper: #f6f0e3;
+      --paper-2: #efe4cf;
+      --ink: #2a2320;
+      --ink-soft: rgba(42,35,32,.78);
+      --gold: #b08a3a;
+      --gold-2:#e6c97a;
+      --shadow: rgba(0,0,0,.18);
+      --shadow-2: rgba(0,0,0,.28);
+      --frame: #2b1f14;
+      --line: rgba(43,31,20,.18);
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color: var(--ink);
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.65;
+
+      /* ФОН: старовинна Полтавська губернія (підстав свій файл/посилання) */
+      background-image:
+        linear-gradient(rgba(246,240,227,.92), rgba(246,240,227,.92)),
+        url("poltava-gubernia-map.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* легка “зернистість” та віньєтка */
+    body::before{
+      content:"";
+      position: fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(1200px 900px at 50% 120%, rgba(0,0,0,.12), transparent 55%),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.03), rgba(0,0,0,.03) 1px, transparent 1px, transparent 3px);
+      mix-blend-mode: multiply;
+      opacity: .45;
+    }
+
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+      position: relative;
+    }
+
+    header{
+      background: linear-gradient(180deg, rgba(239,228,207,.92), rgba(246,240,227,.92));
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 45px var(--shadow);
+      border-radius: 18px;
+      padding: 26px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background: radial-gradient(circle at 20% 20%, rgba(176,138,58,.18), transparent 45%),
+                  radial-gradient(circle at 85% 35%, rgba(176,138,58,.12), transparent 50%);
+      transform: rotate(-2deg);
+      pointer-events:none;
+    }
+
+    .kicker{
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .85rem;
+      color: var(--ink-soft);
+      margin: 0 0 6px;
+      position: relative;
+      z-index:1;
+    }
+
+    h1{
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      position: relative;
+      z-index:1;
+    }
+
+    .subtitle{
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      position: relative;
+      z-index:1;
+      max-width: 70ch;
+    }
+
+    .divider{
+      height: 10px;
+      margin: 22px 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(176,138,58,.45), transparent);
+      border-radius: 999px;
+    }
+
+    main{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 920px){
+      main{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      background: linear-gradient(180deg, rgba(246,240,227,.92), rgba(239,228,207,.9));
+      border: 1px solid rgba(43,31,20,.14);
+      box-shadow: 0 16px 38px var(--shadow);
+      border-radius: 18px;
+      padding: 18px 18px 14px;
+    }
+
+    .panel h2{
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      letter-spacing: .02em;
+    }
+
+    .panel h3{
+      margin: 14px 0 10px;
+      font-size: 1.1rem;
+      letter-spacing: .02em;
+    }
+
+    .panel p{ margin: 0 0 12px; }
+
+    /* “Експозиція” (галерея) */
+    .gallery{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0 8px;
+    }
+
+    @media (max-width: 680px){
+      .gallery{ grid-template-columns: 1fr; }
+    }
+
+    figure{
+      margin:0;
+      background: rgba(255,255,255,.35);
+      border: 1px solid rgba(43,31,20,.18);
+      border-radius: 16px;
+      overflow:hidden;
+      box-shadow: 0 14px 30px var(--shadow);
+      position: relative;
+    }
+
+    /* рамка “як у музеї” */
+    .frame{
+      padding: 10px;
+      background:
+        linear-gradient(180deg, rgba(43,31,20,.86), rgba(43,31,20,.76));
+      position: relative;
+    }
+
+    .frame img{
+      display:block;
+      width:100%;
+      height: 330px;             /* однакова “музейна” висота */
+      object-fit: cover;         /* НЕ спотворює, а акуратно обрізає */
+      border-radius: 10px;
+      filter: contrast(1.02) saturate(.96) sepia(.12);
+      cursor: zoom-in;
+      transition: transform .25s ease, filter .25s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+
+    figure:hover .frame img{
+      transform: scale(1.02);
+      filter: contrast(1.05) saturate(1.0) sepia(.08);
+    }
+
+    figcaption{
+      padding: 12px 12px 14px;
+      background: linear-gradient(180deg, rgba(246,240,227,.92), rgba(239,228,207,.92));
+    }
+
+    .cap-title{
+      margin: 0 0 4px;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+
+    .cap-meta{
+      margin:0;
+      color: var(--ink-soft);
+      font-size: .95rem;
+    }
+
+    /* Номер експоната (табличка) */
+    .exhibit-number{
+      position:absolute;
+      top:14px;
+      left:14px;
+      width:36px;
+      height:36px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:16px;
+      color:#2a2320;
+      background: linear-gradient(180deg,var(--gold-2),var(--gold));
+      border:2px solid rgba(43,31,20,.5);
+      border-radius:10px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+      z-index:5;
+      user-select: none;
+    }
+
+    /* Блок “довідка” */
+    .fact{
+      border-left: 4px solid rgba(176,138,58,.75);
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.25);
+      margin: 10px 0 12px;
+    }
+
+    .fact b{ color: #1f1815; }
+
+    /* Таймлайн */
+    .timeline{
+      margin-top: 8px;
+      padding-left: 0;
+      list-style: none;
+      position: relative;
+    }
+
+    .timeline::before{
+      content:"";
+      position:absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 16px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(176,138,58,.55), rgba(43,31,20,.18));
+      border-radius: 999px;
+    }
+
+    .t-item{
+      position: relative;
+      padding: 0 0 12px 44px;
+      margin: 0 0 10px;
+    }
+
+    .t-dot{
+      position:absolute;
+      left: 8px;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 8px;
+      background: linear-gradient(180deg,var(--gold-2),var(--gold));
+      border: 2px solid rgba(43,31,20,.45);
+      box-shadow: 0 8px 18px rgba(0,0,0,.20);
+    }
+
+    .t-card{
+      border: 1px solid rgba(43,31,20,.18);
+      background: rgba(255,255,255,.26);
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+    }
+
+    .t-title{
+      margin: 0 0 4px;
+      font-weight: 700;
+    }
+
+    .t-meta{
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: .95rem;
+    }
+
+    /* Схема кварталу */
+    .map-wrap{
+      margin-top: 10px;
+      border: 1px solid rgba(43,31,20,.18);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 14px 30px rgba(0,0,0,.12);
+    }
+
+    .map-head{
+      padding: 10px 12px;
+      background: linear-gradient(180deg, rgba(239,228,207,.92), rgba(246,240,227,.92));
+      border-bottom: 1px solid rgba(43,31,20,.14);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .map-head small{
+      color: var(--ink-soft);
+    }
+
+    .map-body{
+      padding: 12px;
+    }
+
+    .map-svg{
+      width: 100%;
+      height: auto;
+      display:block;
+      background:
+        radial-gradient(900px 400px at 20% 10%, rgba(176,138,58,.08), transparent 60%),
+        radial-gradient(900px 600px at 80% 110%, rgba(0,0,0,.06), transparent 55%);
+      border-radius: 14px;
+      border: 1px dashed rgba(43,31,20,.18);
+    }
+
+    .map-legend{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 10px;
+      color: var(--ink-soft);
+      font-size: .95rem;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.20);
+      border: 1px solid rgba(43,31,20,.12);
+    }
+
+    .badge{
+      flex: 0 0 auto;
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      background: linear-gradient(180deg,var(--gold-2),var(--gold));
+      border: 2px solid rgba(43,31,20,.45);
+      color: #2a2320;
+    }
+
+    /* Цікаві факти з іконками */
+    .facts-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (max-width: 680px){
+      .facts-grid{ grid-template-columns: 1fr; }
+    }
+
+    .icon-card{
+      border-radius: 16px;
+      border: 1px solid rgba(43,31,20,.16);
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 12px 26px rgba(0,0,0,.10);
+      padding: 12px 12px 12px;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+
+    .icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(230,201,122,.55), rgba(176,138,58,.35));
+      border: 1px solid rgba(43,31,20,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+      box-shadow: 0 10px 22px rgba(0,0,0,.12);
+    }
+
+    .icon svg{
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: rgba(43,31,20,.88);
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-card h4{
+      margin: 0 0 4px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .icon-card p{
+      margin:0;
+      color: var(--ink-soft);
+      font-size: .95rem;
+    }
+
+    /* Контакти */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .contact .row{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(43,31,20,.14);
+      background: rgba(255,255,255,.20);
+    }
+
+    .contact .row b{ white-space: nowrap; }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      color: var(--ink-soft);
+      font-size: .95rem;
+      text-align: center;
+      opacity: .9;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 999;
+    }
+    .lightbox.open{ display:flex; }
+
+    .lightbox-card{
+      max-width: 1100px;
+      width: min(1100px, 96vw);
+      background: var(--paper);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 30px 80px var(--shadow-2);
+      border: 1px solid rgba(255,255,255,.18);
+      position: relative;
+    }
+
+    .lightbox-img{
+      width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      display:block;
+      background: #1d1612;
+    }
+
+    .lightbox-bar{
+      padding: 12px 14px;
+      background: linear-gradient(180deg, rgba(239,228,207,.95), rgba(246,240,227,.95));
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(43,31,20,.25);
+      background: rgba(255,255,255,.45);
+      padding: 8px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--ink);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.6); }
+
+    .lb-caption{
+      margin:0;
+      color: var(--ink-soft);
+      font-size: .98rem;
+      max-width: 70ch;
+    }
+
+    .muted{
+      color: var(--ink-soft);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <p class="kicker">Полтава • Історичний квартал вул. Гоголя</p>
+      <h1>Будинок Рабина — будинок-музей</h1>
+      <p class="subtitle">
+        Камерний музейний об’єкт у середмісті Полтави, поруч із комплексом колишніх синагог.
+        Сторінка оформлена як “експозиція”: світлини подані як експонати, а маршрут — як коротка екскурсія кварталом.
+      </p>
+
+      <div class="divider"></div>
+
+      <p style="margin:0; position:relative; z-index:1;">
+        Маршрут експозиції: <b>Міснагдім → Філармонія → Будинок Рабина → Гоголя, 6</b>.
+      </p>
+    </header>
+
+    <main>
+      <!-- Основний текст -->
+      <section class="panel">
+        <h2>Експозиційна довідка</h2>
+
+        <p>
+          <b>Будинок Рабина (Полтава, вул. Гоголя, 8)</b> — частина історичного кварталу, де у XIX — на початку XX століття
+          формувався комплекс єврейських культових і громадських споруд. Поруч розташовані будівлі колишніх синагог,
+          що сьогодні мають інші міські функції.
+        </p>
+
+        <div class="fact">
+          <b>Музейний акцент:</b> “Будинок Рабина” — це не лише архітектура, а центр оповіді про місто:
+          як змінювалися вулиці, громади, призначення будівель і культурне життя Полтави.
+        </div>
+
+        <p>
+          У ХХ столітті квартал зазнавав трансформацій: частину приміщень націоналізували, перебудовували, пристосовували
+          під установи, навчальні та культурні потреби. Сьогодні ці об’єкти — “кам’яна пам’ять міста”, що дозволяє
+          створити <b>локальний будинок-музей</b> з мапами, фотографіями, документами та аудіогідом.
+        </p>
+
+        <h2 style="margin-top:14px;">Фотоколекція кварталу</h2>
+
+        <div class="gallery">
+          <!-- 1. Міснагдім -->
+          <figure>
+            <div class="frame">
+              <span class="exhibit-number">1</span>
+              <img
+                src="misnahdim.jpg"
+                alt="Синагога Міснагдім"
+                data-caption="Синагога Міснагдім — одна зі збережених споруд історичного кварталу."
+              />
+            </div>
+            <figcaption>
+              <p class="cap-title">Синагога Міснагдім</p>
+              <p class="cap-meta">Одна з ключових споруд історичного кварталу на вул. Гоголя.</p>
+            </figcaption>
+          </figure>
+
+          <!-- 2. Філармонія -->
+          <figure>
+            <div class="frame">
+              <span class="exhibit-number">2</span>
+              <img
+                src="philarmonia-now.jpg"
+                alt="Полтава, вул. Гоголя, 10А — обласна філармонія"
+                data-caption="Полтава, вул. Гоголя, 10А — обласна філармонія (колишня Велика хоральна синагога)."
+              />
+            </div>
+            <figcaption>
+              <p class="cap-title">Гоголя, 10А — Обласна філармонія</p>
+              <p class="cap-meta">Колишня Велика хоральна синагога; нині концертний простір.</p>
+            </figcaption>
+          </figure>
+
+          <!-- 3. Будинок Рабина -->
+          <figure>
+            <div class="frame">
+              <span class="exhibit-number">3</span>
+              <img
+                src="rabin-house.jpg"
+                alt="Будинок Рабина, Полтава, вул. Гоголя, 8"
+                data-caption="Будинок Рабина, вул. Гоголя, 8 — музейний об’єкт та центр оповіді."
+              />
+            </div>
+            <figcaption>
+              <p class="cap-title">Будинок Рабина — Гоголя, 8</p>
+              <p class="cap-meta">Музейний об’єкт / центр історичної оповіді кварталу.</p>
+            </figcaption>
+          </figure>
+
+          <!-- 4. Медичне училище -->
+          <figure>
+            <div class="frame">
+              <span class="exhibit-number">4</span>
+              <img
+                src="medical-school.jpg"
+                alt="Полтава, вул. Гоголя, 6 — медичне училище"
+                data-caption="Полтава, вул. Гоголя, 6 — історична будівля, нині відділення медичного училища."
+              />
+            </div>
+            <figcaption>
+              <p class="cap-title">Гоголя, 6 — Медичне училище</p>
+              <p class="cap-meta">Історична будівля (нині — навчальний заклад).</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <h2 style="margin-top:14px;">Хронологія кварталу</h2>
+        <ul class="timeline">
+          <li class="t-item">
+            <span class="t-dot"></span>
+            <div class="t-card">
+              <p class="t-title">XIX століття</p>
+              <p class="t-meta">Формування кварталу: поява громадських і культових споруд, кам’яна забудова вулиці.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <span class="t-dot"></span>
+            <div class="t-card">
+              <p class="t-title">Початок XX століття</p>
+              <p class="t-meta">Розквіт міського життя та архітектури; ансамбль отримує “парадний” вигляд.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <span class="t-dot"></span>
+            <div class="t-card">
+              <p class="t-title">XX століття</p>
+              <p class="t-meta">Зміна функцій будівель: пристосування під установи, навчальні та культурні потреби.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <span class="t-dot"></span>
+            <div class="t-card">
+              <p class="t-title">Сьогодення</p>
+              <p class="t-meta">Квартал читається як “кам’яний архів” Полтави; потенціал для локального музею та екскурсій.</p>
+            </div>
+          </li>
+        </ul>
+
+        <h2 style="margin-top:14px;">Схема кварталу</h2>
+        <p class="muted" style="margin-top:-2px;">
+          Умовна схема маршруту експозиції (для сайту-музею). За потреби можу замінити на реальну мапу/план кварталу.
+        </p>
+
+        <div class="map-wrap">
+          <div class="map-head">
+            <b>Маршрут: 1 → 2 → 3 → 4</b>
+            <small>вул. Гоголя • Полтава</small>
+          </div>
+          <div class="map-body">
+            <!-- Умовна SVG-схема (без геоприв’язки) -->
+            <svg class="map-svg" viewBox="0 0 900 360" role="img" aria-label="Схема кварталу на вулиці Гоголя">
+              <!-- “вулиця” -->
+              <path d="M60 250 C 240 120, 420 120, 600 210 C 680 250, 760 270, 840 230"
+                    fill="none"
+                    stroke="rgba(43,31,20,.35)"
+                    stroke-width="10"
+                    stroke-linecap="round"
+                    opacity="0.35"/>
+              <path d="M60 250 C 240 120, 420 120, 600 210 C 680 250, 760 270, 840 230"
+                    fill="none"
+                    stroke="rgba(176,138,58,.65)"
+                    stroke-width="3"
+                    stroke-dasharray="8 10"
+                    stroke-linecap="round"/>
+
+              <!-- Точки -->
+              <!-- 1 -->
+              <g transform="translate(160 170)">
+                <rect x="-18" y="-18" width="36" height="36" rx="10"
+                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
+                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">1</text>
+                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)">Міснагдім</text>
+              </g>
+
+              <!-- 2 -->
+              <g transform="translate(360 135)">
+                <rect x="-18" y="-18" width="36" height="36" rx="10"
+                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
+                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">2</text>
+                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)">Філармонія</text>
+              </g>
+
+              <!-- 3 -->
+              <g transform="translate(560 200)">
+                <rect x="-18" y="-18" width="36" height="36" rx="10"
+                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
+                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">3</text>
+                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)">Будинок Рабина</text>
+              </g>
+
+              <!-- 4 -->
+              <g transform="translate(760 245)">
+                <rect x="-18" y="-18" width="36" height="36" rx="10"
+                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
+                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">4</text>
+                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)">Гоголя, 6</text>
+              </g>
+
+              <!-- Декор “компас” -->
+              <g transform="translate(70 70)" opacity="0.85">
+                <circle cx="0" cy="0" r="36" fill="rgba(255,255,255,.18)" stroke="rgba(43,31,20,.25)"/>
+                <path d="M0 -26 L8 0 L0 26 L-8 0 Z" fill="rgba(176,138,58,.35)" stroke="rgba(43,31,20,.35)"/>
+                <text x="0" y="-44" text-anchor="middle" font-size="12" fill="rgba(42,35,32,.8)">Пн</text>
+              </g>
+
+              <defs>
+                <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#e6c97a"/>
+                  <stop offset="1" stop-color="#b08a3a"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <div class="map-legend">
+              <div class="legend-item"><span class="badge">1</span> Синагога Міснагдім</div>
+              <div class="legend-item"><span class="badge">2</span> Полтава, вул. Гоголя, 10А — обласна філармонія (колишня хоральна синагога)</div>
+              <div class="legend-item"><span class="badge">3</span> Полтава, вул. Гоголя, 8 — Будинок Рабина (музейний об’єкт / центр оповіді)</div>
+              <div class="legend-item"><span class="badge">4</span> Полтава, вул. Гоголя, 6 — історична будівля (нині медичне училище)</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:14px;">Цікаві факти</h2>
+        <div class="facts-grid">
+          <div class="icon-card">
+            <div class="icon" aria-hidden="true">
+              <!-- Іконка “будівля” -->
+              <svg viewBox="0 0 24 24">
+                <path d="M3 21h18"/>
+                <path d="M5 21V7l7-4 7 4v14"/>
+                <path d="M9 21v-6h6v6"/>
+                <path d="M9 11h.01M12 11h.01M15 11h.01"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Ансамбль, що “читається” як історія</h4>
+              <p>Квартал поєднує камерні та монументальні споруди, які відображають різні рівні міського життя.</p>
+            </div>
+          </div>
+
+          <div class="icon-card">
+            <div class="icon" aria-hidden="true">
+              <!-- Іконка “музика” -->
+              <svg viewBox="0 0 24 24">
+                <path d="M9 18V6l12-2v12"/>
+                <path d="M9 6l12-2"/>
+                <path d="M7 21a3 3 0 1 0 0-6a3 3 0 0 0 0 6z"/>
+                <path d="M19 19a3 3 0 1 0 0-6a3 3 0 0 0 0 6z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Зміна функцій у ХХ столітті</h4>
+              <p>Будівлі набували нових ролей: від молитовних домів до культурних та освітніх установ.</p>
+            </div>
+          </div>
+
+          <div class="icon-card">
+            <div class="icon" aria-hidden="true">
+              <!-- Іконка “мапа/маршрут” -->
+              <svg viewBox="0 0 24 24">
+                <path d="M10 6l-7 3v12l7-3 7 3 7-3V6l-7 3-7-3z"/>
+                <path d="M10 6v12"/>
+                <path d="M17 9v12"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Маршрут екскурсії — 4 зупинки</h4>
+              <p>Експозиція зібрана як прогулянка: 1 → 2 → 3 → 4, з логікою “від кварталу — до центру оповіді”.</p>
+            </div>
+          </div>
+
+          <div class="icon-card">
+            <div class="icon" aria-hidden="true">
+              <!-- Іконка “книга/архів” -->
+              <svg viewBox="0 0 24 24">
+                <path d="M4 19a2 2 0 0 0 2 2h14"/>
+                <path d="M6 3h12a2 2 0 0 1 2 2v16H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
+                <path d="M8 7h8"/>
+                <path d="M8 11h8"/>
+                <path d="M8 15h6"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Будинок-музей як “точка пам’яті”</h4>
+              <p>Будинок Рабина може стати місцем карт, фото, документів, усних історій та локального аудіогіда.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Бічна колонка -->
+      <aside class="panel">
+        <h2>Паспорт музейного об’єкта</h2>
+
+        <div class="fact">
+          <b>Об’єкт:</b> Будинок Рабина<br/>
+          <b>Адреса:</b> Полтава, вул. Гоголя, 8<br/>
+          <b>Контактний телефон:</b> +380977098469
+        </div>
+
+        <p>
+          <b>Центр оповіді:</b> “Будинок Рабина” — логічне ядро експозиції, де можна зібрати історію кварталу:
+          контекст синагог, трансформації будівель у ХХ столітті, міські сюжети та фотоархів.
+        </p>
+
+        <h3>Екскурсійний маршрут</h3>
+        <div class="fact" style="margin-top:0;">
+          <b>1)</b> Синагога Міснагдім<br/>
+          <b>2)</b> Гоголя, 10А — обласна філармонія (колишня хоральна синагога)<br/>
+          <b>3)</b> Гоголя, 8 — Будинок Рабина (музейний об’єкт)<br/>
+          <b>4)</b> Гоголя, 6 — історична будівля (нині медичне училище)
+        </div>
+
+        <h3>Контакти</h3>
+        <div class="contact">
+          <div class="row">
+            <b>Адреса:</b>
+            <span>Полтава, вул. Гоголя, 8</span>
+          </div>
+          <div class="row">
+            <b>Телефон:</b>
+            <span>+380977098469</span>
+          </div>
+        </div>
+
+       
+        <!-- <p style="margin-bottom:0;">
+          <img
+                src="poltava-gubernia-map.jpg"
+                alt=""
+                data-caption=""
+              />
+        </p> -->
+      </aside>
+    </main>
+
+    <footer>
+      © Локальна історія Полтави • Музейна веб-сторінка (демо-оформлення)
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-card" role="dialog" aria-modal="true" aria-label="Перегляд фото">
+      <img class="lightbox-img" id="lightboxImg" alt="" />
+      <div class="lightbox-bar">
+        <p class="lb-caption" id="lightboxCaption"></p>
+        <button class="btn" id="lightboxClose" type="button">Закрити ✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightboxImg");
+      const lbCap = document.getElementById("lightboxCaption");
+      const lbClose = document.getElementById("lightboxClose");
+
+      function openLightbox(src, alt, caption){
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
+        lbImg.src = src;
+        lbImg.alt = alt || "";
+        lbCap.textContent = caption || "";
+      }
+
+      function closeLightbox(){
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
+        lbImg.src = "";
+        lbImg.alt = "";
+        lbCap.textContent = "";
+      }
+
+      document.querySelectorAll(".frame img").forEach(img => {
+        img.addEventListener("click", () => {
+          openLightbox(img.src, img.alt, img.dataset.caption);
+        });
+      });
+
+      lbClose.addEventListener("click", closeLightbox);
+      lb.addEventListener("click", (e) => { if(e.target === lb) closeLightbox(); });
+      document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeLightbox(); });
+    })();
+  </script>
+</body>
+</html>
