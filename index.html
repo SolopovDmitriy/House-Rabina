@@ -19,7 +19,7 @@
     }
 
     *{ box-sizing: border-box; }
-    html,body{ height:100%; }
+    html,body{ height:100%; scroll-behavior:smooth; }
     body{
       margin:0;
       color: var(--ink);
@@ -50,7 +50,7 @@
     .wrap{
       max-width: 1100px;
       margin: 0 auto;
-      padding: 28px 18px 56px;
+      padding: 20px 18px 56px;
       position: relative;
     }
 
@@ -59,7 +59,7 @@
       border: 1px solid var(--line);
       box-shadow: 0 18px 45px var(--shadow);
       border-radius: 18px;
-      padding: 26px 22px;
+      padding: 22px 22px 12px;
       position: relative;
       overflow: hidden;
     }
@@ -112,18 +112,137 @@
 
     .divider{
       height: 10px;
-      margin: 22px 0;
+      margin: 18px 0 14px;
       background: linear-gradient(90deg, transparent, rgba(176,138,58,.45), transparent);
       border-radius: 999px;
     }
 
+    /* ---------- Language dropdown ---------- */
+    .lang-switch{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lang-label{
+      font-size:.9rem;
+      color: var(--ink-soft);
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .lang-select{
+      appearance:none;
+      border: 1px solid rgba(43,31,20,.25);
+      background: rgba(255,255,255,.55);
+      padding: 10px 36px 10px 12px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+    }
+
+    .lang-switch::after{
+      content:"▾";
+      position:absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events:none;
+      color: rgba(43,31,20,.7);
+      font-weight: 900;
+    }
+
+    html[dir="rtl"] .lang-switch::after{
+      right:auto;
+      left: 12px;
+    }
+    html[dir="rtl"] .lang-select{
+      padding: 10px 12px 10px 36px;
+    }
+
+    /* ---------- Menu (sticky) ---------- */
+    .nav{
+      margin-top: 12px;
+      position: sticky;
+      top: 10px;
+      z-index: 50;
+    }
+
+    .nav-inner{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items:center;
+      justify-content: space-between;
+      padding: 10px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(43,31,20,.14);
+      background: linear-gradient(180deg, rgba(246,240,227,.92), rgba(239,228,207,.90));
+      box-shadow: 0 14px 30px rgba(0,0,0,.12);
+      backdrop-filter: blur(3px);
+    }
+
+    .nav-left{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items:center;
+    }
+
+    .nav a{
+      text-decoration:none;
+      color: var(--ink);
+      border: 1px solid rgba(43,31,20,.20);
+      background: rgba(255,255,255,.40);
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: .95rem;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.62);
+    }
+    .nav a.active{
+      background: linear-gradient(180deg,var(--gold-2),var(--gold));
+      border-color: rgba(43,31,20,.35);
+    }
+
+    .nav-right{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(43,31,20,.25);
+      background: rgba(255,255,255,.45);
+      padding: 8px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--ink);
+      transition: transform .15s ease, background .15s ease;
+      user-select:none;
+      font-weight: 700;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.6); }
+
+    /* ---------- Layout panels ---------- */
     main{
       margin-top: 18px;
       display: grid;
       grid-template-columns: 1.25fr .75fr;
       gap: 18px;
     }
-
     @media (max-width: 920px){
       main{ grid-template-columns: 1fr; }
     }
@@ -140,6 +259,7 @@
       margin: 0 0 10px;
       font-size: 1.35rem;
       letter-spacing: .02em;
+      scroll-margin-top: 98px;
     }
 
     .panel h3{
@@ -150,13 +270,26 @@
 
     .panel p{ margin: 0 0 12px; }
 
+    .section{
+      padding-top: 4px;
+    }
+
+    .fact{
+      border-left: 4px solid rgba(176,138,58,.75);
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.25);
+      margin: 10px 0 12px;
+    }
+    html[dir="rtl"] .fact{ border-left:none; border-right:4px solid rgba(176,138,58,.75); }
+
+    /* Gallery */
     .gallery{
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
       margin: 14px 0 8px;
     }
-
     @media (max-width: 680px){
       .gallery{ grid-template-columns: 1fr; }
     }
@@ -199,17 +332,8 @@
       background: linear-gradient(180deg, rgba(246,240,227,.92), rgba(239,228,207,.92));
     }
 
-    .cap-title{
-      margin: 0 0 4px;
-      font-weight: 700;
-      letter-spacing: .01em;
-    }
-
-    .cap-meta{
-      margin:0;
-      color: var(--ink-soft);
-      font-size: .95rem;
-    }
+    .cap-title{ margin: 0 0 4px; font-weight: 700; }
+    .cap-meta{ margin:0; color: var(--ink-soft); font-size: .95rem; }
 
     .exhibit-number{
       position:absolute;
@@ -230,255 +354,15 @@
       z-index:5;
       user-select: none;
     }
+    html[dir="rtl"] .exhibit-number{ left:auto; right:14px; }
 
-    .fact{
-      border-left: 4px solid rgba(176,138,58,.75);
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: rgba(255,255,255,.25);
-      margin: 10px 0 12px;
-    }
-
-    .fact b{ color: #1f1815; }
-
-    .timeline{
-      margin-top: 8px;
-      padding-left: 0;
-      list-style: none;
-      position: relative;
-    }
-
-    .timeline::before{
-      content:"";
-      position:absolute;
-      top: 6px;
-      bottom: 6px;
-      left: 16px;
-      width: 2px;
-      background: linear-gradient(180deg, rgba(176,138,58,.55), rgba(43,31,20,.18));
-      border-radius: 999px;
-    }
-
-    .t-item{
-      position: relative;
-      padding: 0 0 12px 44px;
-      margin: 0 0 10px;
-    }
-
-    .t-dot{
-      position:absolute;
-      left: 8px;
-      top: 6px;
-      width: 18px;
-      height: 18px;
-      border-radius: 8px;
-      background: linear-gradient(180deg,var(--gold-2),var(--gold));
-      border: 2px solid rgba(43,31,20,.45);
-      box-shadow: 0 8px 18px rgba(0,0,0,.20);
-    }
-
-    .t-card{
-      border: 1px solid rgba(43,31,20,.18);
-      background: rgba(255,255,255,.26);
-      border-radius: 14px;
-      padding: 10px 12px;
-      box-shadow: 0 10px 22px rgba(0,0,0,.10);
-    }
-
-    .t-title{
-      margin: 0 0 4px;
-      font-weight: 700;
-    }
-
-    .t-meta{
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: .95rem;
-    }
-
-    .map-wrap{
-      margin-top: 10px;
-      border: 1px solid rgba(43,31,20,.18);
-      border-radius: 16px;
-      overflow: hidden;
-      background: rgba(255,255,255,.22);
-      box-shadow: 0 14px 30px rgba(0,0,0,.12);
-    }
-
-    .map-head{
-      padding: 10px 12px;
-      background: linear-gradient(180deg, rgba(239,228,207,.92), rgba(246,240,227,.92));
-      border-bottom: 1px solid rgba(43,31,20,.14);
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .map-head small{
-      color: var(--ink-soft);
-    }
-
-    .map-body{
-      padding: 12px;
-    }
-
-    .map-svg{
-      width: 100%;
-      height: auto;
-      display:block;
-      background:
-        radial-gradient(900px 400px at 20% 10%, rgba(176,138,58,.08), transparent 60%),
-        radial-gradient(900px 600px at 80% 110%, rgba(0,0,0,.06), transparent 55%);
-      border-radius: 14px;
-      border: 1px dashed rgba(43,31,20,.18);
-    }
-
-    .map-legend{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      margin-top: 10px;
-      color: var(--ink-soft);
-      font-size: .95rem;
-    }
-
-    .legend-item{
-      display:flex;
-      align-items:flex-start;
-      gap: 10px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.20);
-      border: 1px solid rgba(43,31,20,.12);
-    }
-
-    .badge{
-      flex: 0 0 auto;
-      width: 26px;
-      height: 26px;
-      border-radius: 9px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      background: linear-gradient(180deg,var(--gold-2),var(--gold));
-      border: 2px solid rgba(43,31,20,.45);
-      color: #2a2320;
-    }
-
-    .facts-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    @media (max-width: 680px){
-      .facts-grid{ grid-template-columns: 1fr; }
-    }
-
-    .icon-card{
-      border-radius: 16px;
-      border: 1px solid rgba(43,31,20,.16);
-      background: rgba(255,255,255,.22);
-      box-shadow: 0 12px 26px rgba(0,0,0,.10);
-      padding: 12px 12px 12px;
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-    }
-
-    .icon{
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, rgba(230,201,122,.55), rgba(176,138,58,.35));
-      border: 1px solid rgba(43,31,20,.18);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex: 0 0 auto;
-      box-shadow: 0 10px 22px rgba(0,0,0,.12);
-    }
-
-    .icon svg{
-      width: 22px;
-      height: 22px;
-      fill: none;
-      stroke: rgba(43,31,20,.88);
-      stroke-width: 1.7;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .icon-card h4{
-      margin: 0 0 4px;
-      font-size: 1rem;
-      line-height: 1.2;
-    }
-
-    .icon-card p{
-      margin:0;
-      color: var(--ink-soft);
-      font-size: .95rem;
-    }
-
-    .contact{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .contact .row{
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(43,31,20,.14);
-      background: rgba(255,255,255,.20);
-    }
-
-    .contact .row b{ white-space: nowrap; }
-
+    /* Footer */
     footer{
       margin-top: 18px;
       color: var(--ink-soft);
       font-size: .95rem;
       text-align: center;
       opacity: .9;
-    }
-
-    /* Buttons */
-    .btn{
-      appearance:none;
-      border: 1px solid rgba(43,31,20,.25);
-      background: rgba(255,255,255,.45);
-      padding: 8px 12px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-family: inherit;
-      color: var(--ink);
-      transition: transform .15s ease, background .15s ease;
-      user-select:none;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.6); }
-
-    .lang-switch{
-      display:flex;
-      align-items:center;
-      gap: 8px;
-      white-space: nowrap;
-    }
-    .lang-switch .btn{
-      padding: 8px 10px;
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-    .lang-switch .btn.active{
-      background: linear-gradient(180deg,var(--gold-2),var(--gold));
-      border-color: rgba(43,31,20,.35);
     }
 
     /* Lightbox */
@@ -529,14 +413,8 @@
       max-width: 70ch;
     }
 
-    .muted{ color: var(--ink-soft); }
-
-    /* RTL helpers (Hebrew) */
+    /* RTL helpers */
     html[dir="rtl"] body{ font-family: "Arial","Tahoma",sans-serif; }
-    html[dir="rtl"] .fact{ border-left:none; border-right:4px solid rgba(176,138,58,.75); }
-    html[dir="rtl"] .timeline::before{ left:auto; right:16px; }
-    html[dir="rtl"] .t-item{ padding: 0 44px 12px 0; }
-    html[dir="rtl"] .t-dot{ left:auto; right:8px; }
   </style>
 </head>
 
@@ -554,9 +432,38 @@
         </div>
 
         <div class="lang-switch" aria-label="Language switch">
-          <button class="btn active" id="btn-uk" type="button" onclick="setLang('uk')">UA</button>
-          <button class="btn" id="btn-en" type="button" onclick="setLang('en')">EN</button>
-          <button class="btn" id="btn-he" type="button" onclick="setLang('he')">HE</button>
+          <!-- <label class="lang-label" for="langSelect" data-i18n="lang.label">Мова</label> -->
+          <select id="langSelect" class="lang-select" onchange="setLang(this.value)">
+            <optgroup label="Popular">
+              <option value="uk">Українська (UA)</option>
+              <option value="en">English (EN)</option>
+              <option value="he">עברית (HE)</option>
+              <option value="es">Español (ES)</option>
+              <option value="fr">Français (FR)</option>
+              <option value="de">Deutsch (DE)</option>
+              <option value="it">Italiano (IT)</option>
+              <option value="pt">Português (PT)</option>
+              <option value="pl">Polski (PL)</option>
+              <option value="tr">Türkçe (TR)</option>
+              <option value="ar">العربية (AR)</option>
+              <option value="hi">हिन्दी (HI)</option>
+              <option value="zh">中文 (ZH)</option>
+              <option value="ja">日本語 (JA)</option>
+              <option value="ko">한국어 (KO)</option>
+            </optgroup>
+            <optgroup label="More">
+              <option value="ru">Русский (RU)</option>
+              <option value="nl">Nederlands (NL)</option>
+              <option value="sv">Svenska (SV)</option>
+              <option value="no">Norsk (NO)</option>
+              <option value="da">Dansk (DA)</option>
+              <option value="cs">Čeština (CS)</option>
+              <option value="sk">Slovenčina (SK)</option>
+              <option value="ro">Română (RO)</option>
+              <option value="hu">Magyar (HU)</option>
+              <option value="el">Ελληνικά (EL)</option>
+            </optgroup>
+          </select>
         </div>
       </div>
 
@@ -565,28 +472,89 @@
       <p style="margin:0; position:relative; z-index:1;" data-i18n="header.route">
         Маршрут експозиції: <b>Міснагдім → Філармонія → Будинок Рабина → Гоголя, 6</b>.
       </p>
+
+      <nav class="nav" aria-label="Main">
+        <div class="nav-inner">
+          <div class="nav-left">
+            <a href="#history" data-nav="history" data-i18n="menu.history">Історія</a>
+            <a href="#news" data-nav="news" data-i18n="menu.news">Новини та події</a>
+            <a href="#projects" data-nav="projects" data-i18n="menu.projects">Проєкти</a>
+            <a href="#cooperation" data-nav="cooperation" data-i18n="menu.cooperation">Співпраця</a>
+            <a href="#help" data-nav="help" data-i18n="menu.help">Допомога</a>
+            <a href="#contacts" data-nav="contacts" data-i18n="menu.contacts">Контакти</a>
+            <a href="#other" data-nav="other" data-i18n="menu.other">Інше</a>
+          </div>
+          <!-- <div class="nav-right">
+            <button class="btn" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-i18n="menu.top">↑ Вгору</button> -->
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main>
       <section class="panel">
-        <h2 data-i18n="main.about.h2">Експозиційна довідка</h2>
+        <div class="section" id="history">
+          <h2 data-i18n="sec.history.h2">3.1. Історія</h2>
 
-        <p data-i18n="main.about.p1">
-          <b>Будинок Рабина (Полтава, вул. Гоголя, 8)</b> — частина історичного кварталу, де у XIX — на початку XX століття
-          формувався комплекс єврейських культових і громадських споруд. Поруч розташовані будівлі колишніх синагог,
-          що сьогодні мають інші міські функції.
-        </p>
+          <p data-i18n="sec.history.p1">
+            <b>Будинок Рабина (Полтава, вул. Гоголя, 8)</b> — частина історичного кварталу, де у XIX — на початку XX століття
+            формувався комплекс єврейських культових і громадських споруд.
+          </p>
 
-        <div class="fact" data-i18n="main.about.fact1">
-          <b>Музейний акцент:</b> “Будинок Рабина” — це не лише архітектура, а центр оповіді про місто:
-          як змінювалися вулиці, громади, призначення будівель і культурне життя Полтави.
+          <div class="fact" data-i18n="sec.history.fact1">
+            <b>Ідея музею:</b> показати квартал як “кадри” історії Полтави — через будівлі, фото, мапи, голоси мешканців.
+          </div>
         </div>
 
-        <p data-i18n="main.about.p2">
-          У ХХ столітті квартал зазнавав трансформацій: частину приміщень націоналізували, перебудовували, пристосовували
-          під установи, навчальні та культурні потреби. Сьогодні ці об’єкти — “кам’яна пам’ять міста”, що дозволяє
-          створити <b>локальний будинок-музей</b> з мапами, фотографіями, документами та аудіогідом.
-        </p>
+        <div class="section" id="news">
+          <h2 data-i18n="sec.news.h2">3.2. Новини та події</h2>
+
+          <p class="muted" data-i18n="sec.news.p1">
+            Тут зручно публікувати анонси екскурсій, відкриття експозицій, лекцій і волонтерських днів.
+          </p>
+
+          <div class="fact" data-i18n="sec.news.fact1">
+            <b>Шаблон новини:</b> дата • назва • короткий опис • контакт/реєстрація.
+          </div>
+        </div>
+
+        <div class="section" id="projects">
+          <h2 data-i18n="sec.projects.h2">3.3. Проєкти</h2>
+          <p data-i18n="sec.projects.p1">
+            Ідеї для розвитку: аудіогід кварталом, QR-таблички на зупинках, оцифрування фотоархівів, інтерактивна мапа, виставкові “історії”.
+          </p>
+        </div>
+
+        <div class="section" id="cooperation">
+          <h2 data-i18n="sec.cooperation.h2">3.4. Співпраця</h2>
+          <p data-i18n="sec.cooperation.p1">
+            Запрошуємо істориків, краєзнавців, музейників, архіви, навчальні заклади та партнерів, які можуть допомогти з матеріалами й подіями.
+          </p>
+        </div>
+
+        <div class="section" id="help">
+          <h2 data-i18n="sec.help.h2">3.5. Допомога</h2>
+          <p data-i18n="sec.help.p1">
+            Можна підтримати проєкт: волонтерством, фото/документами, технікою для оцифрування, фінансовою допомогою або медіа-підтримкою.
+          </p>
+        </div>
+
+        <div class="section" id="contacts">
+          <h2 data-i18n="sec.contacts.h2">3.6. Контакти</h2>
+
+          <div class="fact" data-i18n="sec.contacts.fact1">
+            <b>Адреса:</b> Полтава, вул. Гоголя, 8<br/>
+            <b>Телефон:</b> +380977098469
+          </div>
+        </div>
+
+        <div class="section" id="other">
+          <h2 data-i18n="sec.other.h2">3.7. Інше</h2>
+
+          <p data-i18n="sec.other.p1">
+            Сюди можна додати: FAQ, матеріали для преси, галерею документів, посилання на партнерів, мапи в PDF та архіви.
+          </p>
+        </div>
 
         <h2 style="margin-top:14px;" data-i18n="main.gallery.h2">Фотоколекція кварталу</h2>
 
@@ -659,177 +627,6 @@
             </figcaption>
           </figure>
         </div>
-
-        <h2 style="margin-top:14px;" data-i18n="main.timeline.h2">Хронологія кварталу</h2>
-        <ul class="timeline">
-          <li class="t-item">
-            <span class="t-dot"></span>
-            <div class="t-card">
-              <p class="t-title" data-i18n="main.timeline.i1.title">XIX століття</p>
-              <p class="t-meta" data-i18n="main.timeline.i1.meta">Формування кварталу: поява громадських і культових споруд, кам’яна забудова вулиці.</p>
-            </div>
-          </li>
-          <li class="t-item">
-            <span class="t-dot"></span>
-            <div class="t-card">
-              <p class="t-title" data-i18n="main.timeline.i2.title">Початок XX століття</p>
-              <p class="t-meta" data-i18n="main.timeline.i2.meta">Розквіт міського життя та архітектури; ансамбль отримує “парадний” вигляд.</p>
-            </div>
-          </li>
-          <li class="t-item">
-            <span class="t-dot"></span>
-            <div class="t-card">
-              <p class="t-title" data-i18n="main.timeline.i3.title">XX століття</p>
-              <p class="t-meta" data-i18n="main.timeline.i3.meta">Зміна функцій будівель: пристосування під установи, навчальні та культурні потреби.</p>
-            </div>
-          </li>
-          <li class="t-item">
-            <span class="t-dot"></span>
-            <div class="t-card">
-              <p class="t-title" data-i18n="main.timeline.i4.title">Сьогодення</p>
-              <p class="t-meta" data-i18n="main.timeline.i4.meta">Квартал читається як “кам’яний архів” Полтави; потенціал для локального музею та екскурсій.</p>
-            </div>
-          </li>
-        </ul>
-
-        <h2 style="margin-top:14px;" data-i18n="main.map.h2">Схема кварталу</h2>
-        <p class="muted" style="margin-top:-2px;" data-i18n="main.map.note">
-          Умовна схема маршруту експозиції (для сайту-музею). За потреби можу замінити на реальну мапу/план кварталу.
-        </p>
-
-        <div class="map-wrap">
-          <div class="map-head">
-            <b data-i18n="main.map.headLeft">Маршрут: 1 → 2 → 3 → 4</b>
-            <small data-i18n="main.map.headRight">вул. Гоголя • Полтава</small>
-          </div>
-          <div class="map-body">
-            <svg class="map-svg" viewBox="0 0 900 360" role="img" aria-label="Схема кварталу на вулиці Гоголя">
-              <path d="M60 250 C 240 120, 420 120, 600 210 C 680 250, 760 270, 840 230"
-                    fill="none"
-                    stroke="rgba(43,31,20,.35)"
-                    stroke-width="10"
-                    stroke-linecap="round"
-                    opacity="0.35"/>
-              <path d="M60 250 C 240 120, 420 120, 600 210 C 680 250, 760 270, 840 230"
-                    fill="none"
-                    stroke="rgba(176,138,58,.65)"
-                    stroke-width="3"
-                    stroke-dasharray="8 10"
-                    stroke-linecap="round"/>
-
-              <g transform="translate(160 170)">
-                <rect x="-18" y="-18" width="36" height="36" rx="10"
-                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
-                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">1</text>
-                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)" data-i18n="main.map.p1">Міснагдім</text>
-              </g>
-
-              <g transform="translate(360 135)">
-                <rect x="-18" y="-18" width="36" height="36" rx="10"
-                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
-                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">2</text>
-                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)" data-i18n="main.map.p2">Філармонія</text>
-              </g>
-
-              <g transform="translate(560 200)">
-                <rect x="-18" y="-18" width="36" height="36" rx="10"
-                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
-                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">3</text>
-                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)" data-i18n="main.map.p3">Будинок Рабина</text>
-              </g>
-
-              <g transform="translate(760 245)">
-                <rect x="-18" y="-18" width="36" height="36" rx="10"
-                      fill="url(#goldGrad)" stroke="rgba(43,31,20,.55)" stroke-width="2"/>
-                <text x="0" y="6" text-anchor="middle" font-size="16" font-weight="700" fill="#2a2320">4</text>
-                <text x="0" y="42" text-anchor="middle" font-size="13" fill="rgba(42,35,32,.85)" data-i18n="main.map.p4">Гоголя, 6</text>
-              </g>
-
-              <g transform="translate(70 70)" opacity="0.85">
-                <circle cx="0" cy="0" r="36" fill="rgba(255,255,255,.18)" stroke="rgba(43,31,20,.25)"/>
-                <path d="M0 -26 L8 0 L0 26 L-8 0 Z" fill="rgba(176,138,58,.35)" stroke="rgba(43,31,20,.35)"/>
-                <text x="0" y="-44" text-anchor="middle" font-size="12" fill="rgba(42,35,32,.8)" data-i18n="main.map.north">Пн</text>
-              </g>
-
-              <defs>
-                <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#e6c97a"/>
-                  <stop offset="1" stop-color="#b08a3a"/>
-                </linearGradient>
-              </defs>
-            </svg>
-
-            <div class="map-legend">
-              <div class="legend-item"><span class="badge">1</span> <span data-i18n="main.map.leg1">Синагога Міснагдім</span></div>
-              <div class="legend-item"><span class="badge">2</span> <span data-i18n="main.map.leg2">Полтава, вул. Гоголя, 10А — обласна філармонія (колишня хоральна синагога)</span></div>
-              <div class="legend-item"><span class="badge">3</span> <span data-i18n="main.map.leg3">Полтава, вул. Гоголя, 8 — Будинок Рабина (музейний об’єкт / центр оповіді)</span></div>
-              <div class="legend-item"><span class="badge">4</span> <span data-i18n="main.map.leg4">Полтава, вул. Гоголя, 6 — історична будівля (нині медичне училище)</span></div>
-            </div>
-          </div>
-        </div>
-
-        <h2 style="margin-top:14px;" data-i18n="main.facts.h2">Цікаві факти</h2>
-        <div class="facts-grid">
-          <div class="icon-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M3 21h18"/>
-                <path d="M5 21V7l7-4 7 4v14"/>
-                <path d="M9 21v-6h6v6"/>
-                <path d="M9 11h.01M12 11h.01M15 11h.01"/>
-              </svg>
-            </div>
-            <div>
-              <h4 data-i18n="main.facts.c1.title">Ансамбль, що “читається” як історія</h4>
-              <p data-i18n="main.facts.c1.text">Квартал поєднує камерні та монументальні споруди, які відображають різні рівні міського життя.</p>
-            </div>
-          </div>
-
-          <div class="icon-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M9 18V6l12-2v12"/>
-                <path d="M9 6l12-2"/>
-                <path d="M7 21a3 3 0 1 0 0-6a3 3 0 0 0 0 6z"/>
-                <path d="M19 19a3 3 0 1 0 0-6a3 3 0 0 0 0 6z"/>
-              </svg>
-            </div>
-            <div>
-              <h4 data-i18n="main.facts.c2.title">Зміна функцій у ХХ столітті</h4>
-              <p data-i18n="main.facts.c2.text">Будівлі набували нових ролей: від молитовних домів до культурних та освітніх установ.</p>
-            </div>
-          </div>
-
-          <div class="icon-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M10 6l-7 3v12l7-3 7 3 7-3V6l-7 3-7-3z"/>
-                <path d="M10 6v12"/>
-                <path d="M17 9v12"/>
-              </svg>
-            </div>
-            <div>
-              <h4 data-i18n="main.facts.c3.title">Маршрут екскурсії — 4 зупинки</h4>
-              <p data-i18n="main.facts.c3.text">Експозиція зібрана як прогулянка: 1 → 2 → 3 → 4, з логікою “від кварталу — до центру оповіді”.</p>
-            </div>
-          </div>
-
-          <div class="icon-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 19a2 2 0 0 0 2 2h14"/>
-                <path d="M6 3h12a2 2 0 0 1 2 2v16H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
-                <path d="M8 7h8"/>
-                <path d="M8 11h8"/>
-                <path d="M8 15h6"/>
-              </svg>
-            </div>
-            <div>
-              <h4 data-i18n="main.facts.c4.title">Будинок-музей як “точка пам’яті”</h4>
-              <p data-i18n="main.facts.c4.text">Будинок Рабина може стати місцем карт, фото, документів, усних історій та локального аудіогіда.</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       <aside class="panel">
@@ -855,15 +652,9 @@
         </div>
 
         <h3 data-i18n="aside.contacts.h3">Контакти</h3>
-        <div class="contact">
-          <div class="row">
-            <b data-i18n="aside.contacts.addrLabel">Адреса:</b>
-            <span data-i18n="aside.contacts.addr">Полтава, вул. Гоголя, 8</span>
-          </div>
-          <div class="row">
-            <b data-i18n="aside.contacts.phoneLabel">Телефон:</b>
-            <span data-i18n="aside.contacts.phone">+380977098469</span>
-          </div>
+        <div class="fact" data-i18n="aside.contacts.fact">
+          <b>Адреса:</b> Полтава, вул. Гоголя, 8<br/>
+          <b>Телефон:</b> +380977098469
         </div>
       </aside>
     </main>
@@ -884,32 +675,43 @@
   </div>
 
   <script>
+    // ---------- i18n ----------
     (function(){
       const STORAGE_KEY = "site_lang";
-      const supported = ["uk","en","he"];
-
-      const dict = /* inline dict injected at build time */ {};
-      // We'll inject dict by replacing placeholder next line in python.
-    })();
-  </script>
-
-  <script>
-    // ---------- i18n (UA/EN/HE) ----------
-    (function(){
-      const STORAGE_KEY = "site_lang";
-      const supported = ["uk","en","he"];
+      const supported = ["uk","en","he","es","fr","de","it","pt","pl","tr","ar","hi","zh","ja","ko","ru","nl","sv","no","da","cs","sk","ro","hu","el"];
 
       const dict = {
         uk: {
           "meta.title": "Будинок Рабина — будинок-музей (Полтава)",
+          "lang.label": "Мова",
           "header.kicker": "Полтава • Історичний квартал вул. Гоголя",
           "header.h1": "Будинок Рабина — будинок-музей",
           "header.subtitle": "Камерний музейний об’єкт у середмісті Полтави, поруч із комплексом колишніх синагог. Сторінка оформлена як “експозиція”: світлини подані як експонати, а маршрут — як коротка екскурсія кварталом.",
           "header.route": "Маршрут експозиції: <b>Міснагдім → Філармонія → Будинок Рабина → Гоголя, 6</b>.",
-          "main.about.h2": "Експозиційна довідка",
-          "main.about.p1": "<b>Будинок Рабина (Полтава, вул. Гоголя, 8)</b> — частина історичного кварталу, де у XIX — на початку XX століття формувався комплекс єврейських культових і громадських споруд. Поруч розташовані будівлі колишніх синагог, що сьогодні мають інші міські функції.",
-          "main.about.fact1": "<b>Музейний акцент:</b> “Будинок Рабина” — це не лише архітектура, а центр оповіді про місто: як змінювалися вулиці, громади, призначення будівель і культурне життя Полтави.",
-          "main.about.p2": "У ХХ столітті квартал зазнавав трансформацій: частину приміщень націоналізували, перебудовували, пристосовували під установи, навчальні та культурні потреби. Сьогодні ці об’єкти — “кам’яна пам’ять міста”, що дозволяє створити <b>локальний будинок-музей</b> з мапами, фотографіями, документами та аудіогідом.",
+          "menu.history": "3.1. Історія",
+          "menu.news": "3.2. Новини та події",
+          "menu.projects": "3.3. Проєкти",
+          "menu.cooperation": "3.4. Співпраця",
+          "menu.help": "3.5. Допомога",
+          "menu.contacts": "3.6. Контакти",
+          "menu.other": "3.7. Інше",
+          "menu.top": "↑ Вгору",
+          "sec.history.h2": "3.1. Історія",
+          "sec.history.p1": "<b>Будинок Рабина (Полтава, вул. Гоголя, 8)</b> — частина історичного кварталу, де у XIX — на початку XX століття формувався комплекс єврейських культових і громадських споруд.",
+          "sec.history.fact1": "<b>Ідея музею:</b> показати квартал як “кадри” історії Полтави — через будівлі, фото, мапи, голоси мешканців.",
+          "sec.news.h2": "3.2. Новини та події",
+          "sec.news.p1": "Тут зручно публікувати анонси екскурсій, відкриття експозицій, лекцій і волонтерських днів.",
+          "sec.news.fact1": "<b>Шаблон новини:</b> дата • назва • короткий опис • контакт/реєстрація.",
+          "sec.projects.h2": "3.3. Проєкти",
+          "sec.projects.p1": "Ідеї для розвитку: аудіогід кварталом, QR-таблички на зупинках, оцифрування фотоархівів, інтерактивна мапа, виставкові “історії”.",
+          "sec.cooperation.h2": "3.4. Співпраця",
+          "sec.cooperation.p1": "Запрошуємо істориків, краєзнавців, музейників, архіви, навчальні заклади та партнерів, які можуть допомогти з матеріалами й подіями.",
+          "sec.help.h2": "3.5. Допомога",
+          "sec.help.p1": "Можна підтримати проєкт: волонтерством, фото/документами, технікою для оцифрування, фінансовою допомогою або медіа-підтримкою.",
+          "sec.contacts.h2": "3.6. Контакти",
+          "sec.contacts.fact1": "<b>Адреса:</b> Полтава, вул. Гоголя, 8<br/><b>Телефон:</b> +380977098469",
+          "sec.other.h2": "3.7. Інше",
+          "sec.other.p1": "Сюди можна додати: FAQ, матеріали для преси, галерею документів, посилання на партнерів, мапи в PDF та архіви.",
           "main.gallery.h2": "Фотоколекція кварталу",
           "main.gallery.cap1.title": "Синагога Міснагдім",
           "main.gallery.cap1.meta": "Одна з ключових споруд історичного кварталу на вул. Гоголя.",
@@ -919,61 +721,48 @@
           "main.gallery.cap3.meta": "Музейний об’єкт / центр історичної оповіді кварталу.",
           "main.gallery.cap4.title": "Гоголя, 6 — Медичне училище",
           "main.gallery.cap4.meta": "Історична будівля (нині — навчальний заклад).",
-          "main.timeline.h2": "Хронологія кварталу",
-          "main.timeline.i1.title": "XIX століття",
-          "main.timeline.i1.meta": "Формування кварталу: поява громадських і культових споруд, кам’яна забудова вулиці.",
-          "main.timeline.i2.title": "Початок XX століття",
-          "main.timeline.i2.meta": "Розквіт міського життя та архітектури; ансамбль отримує “парадний” вигляд.",
-          "main.timeline.i3.title": "XX століття",
-          "main.timeline.i3.meta": "Зміна функцій будівель: пристосування під установи, навчальні та культурні потреби.",
-          "main.timeline.i4.title": "Сьогодення",
-          "main.timeline.i4.meta": "Квартал читається як “кам’яний архів” Полтави; потенціал для локального музею та екскурсій.",
-          "main.map.h2": "Схема кварталу",
-          "main.map.note": "Умовна схема маршруту експозиції (для сайту-музею). За потреби можу замінити на реальну мапу/план кварталу.",
-          "main.map.headLeft": "Маршрут: 1 → 2 → 3 → 4",
-          "main.map.headRight": "вул. Гоголя • Полтава",
-          "main.map.p1": "Міснагдім",
-          "main.map.p2": "Філармонія",
-          "main.map.p3": "Будинок Рабина",
-          "main.map.p4": "Гоголя, 6",
-          "main.map.north": "Пн",
-          "main.map.leg1": "Синагога Міснагдім",
-          "main.map.leg2": "Полтава, вул. Гоголя, 10А — обласна філармонія (колишня хоральна синагога)",
-          "main.map.leg3": "Полтава, вул. Гоголя, 8 — Будинок Рабина (музейний об’єкт / центр оповіді)",
-          "main.map.leg4": "Полтава, вул. Гоголя, 6 — історична будівля (нині медичне училище)",
-          "main.facts.h2": "Цікаві факти",
-          "main.facts.c1.title": "Ансамбль, що “читається” як історія",
-          "main.facts.c1.text": "Квартал поєднує камерні та монументальні споруди, які відображають різні рівні міського життя.",
-          "main.facts.c2.title": "Зміна функцій у ХХ столітті",
-          "main.facts.c2.text": "Будівлі набували нових ролей: від молитовних домів до культурних та освітніх установ.",
-          "main.facts.c3.title": "Маршрут екскурсії — 4 зупинки",
-          "main.facts.c3.text": "Експозиція зібрана як прогулянка: 1 → 2 → 3 → 4, з логікою “від кварталу — до центру оповіді”.",
-          "main.facts.c4.title": "Будинок-музей як “точка пам’яті”",
-          "main.facts.c4.text": "Будинок Рабина може стати місцем карт, фото, документів, усних історій та локального аудіогіда.",
           "aside.passport.h2": "Паспорт музейного об’єкта",
           "aside.passport.fact": "<b>Об’єкт:</b> Будинок Рабина<br/><b>Адреса:</b> Полтава, вул. Гоголя, 8<br/><b>Контактний телефон:</b> +380977098469",
           "aside.passport.p1": "<b>Центр оповіді:</b> “Будинок Рабина” — логічне ядро експозиції, де можна зібрати історію кварталу: контекст синагог, трансформації будівель у ХХ столітті, міські сюжети та фотоархів.",
           "aside.route.h3": "Екскурсійний маршрут",
           "aside.route.fact": "<b>1)</b> Синагога Міснагдім<br/><b>2)</b> Гоголя, 10А — обласна філармонія (колишня хоральна синагога)<br/><b>3)</b> Гоголя, 8 — Будинок Рабина (музейний об’єкт)<br/><b>4)</b> Гоголя, 6 — історична будівля (нині медичне училище)",
           "aside.contacts.h3": "Контакти",
-          "aside.contacts.addrLabel": "Адреса:",
-          "aside.contacts.addr": "Полтава, вул. Гоголя, 8",
-          "aside.contacts.phoneLabel": "Телефон:",
-          "aside.contacts.phone": "+380977098469",
+          "aside.contacts.fact": "<b>Адреса:</b> Полтава, вул. Гоголя, 8<br/><b>Телефон:</b> +380977098469",
           "footer": "© Локальна історія Полтави • Музейна веб-сторінка (демо-оформлення)",
           "lightbox.close": "Закрити ✕"
         },
         en: {
           "meta.title": "Rabbi’s House — House Museum (Poltava)",
+          "lang.label": "Language",
           "header.kicker": "Poltava • Historic quarter of Hohol Street",
           "header.h1": "Rabbi’s House — House Museum",
           "header.subtitle": "A small museum site in central Poltava, next to the former synagogue complex. The page is designed as an “exhibition”: photos are presented as exhibits, and the route is a short walking tour of the quarter.",
           "header.route": "Exhibition route: <b>Misnagdim → Philharmonic → Rabbi’s House → Hohol St, 6</b>.",
-          "main.about.h2": "Exhibition overview",
-          "main.about.p1": "<b>Rabbi’s House (Poltava, 8 Hohol Street)</b> is part of a historic quarter where, in the 19th and early 20th centuries, a cluster of Jewish religious and community buildings developed. Nearby are former synagogue buildings that now serve different urban functions.",
-          "main.about.fact1": "<b>Museum focus:</b> “Rabbi’s House” is not only architecture — it is a storytelling hub about the city: how streets, communities, building uses, and Poltava’s cultural life have changed.",
-          "main.about.p2": "In the 20th century the quarter underwent major transformations: some premises were nationalized, rebuilt, and adapted for institutions, education, and culture. Today these sites are a “stone archive” of the city, enabling a <b>local house museum</b> with maps, photographs, documents, and an audio guide.",
-          "main.gallery.h2": "Photo collection of the quarter",
+          "menu.history": "History",
+          "menu.news": "News & events",
+          "menu.projects": "Projects",
+          "menu.cooperation": "Cooperation",
+          "menu.help": "Support",
+          "menu.contacts": "Contacts",
+          "menu.other": "Other",
+          "menu.top": "↑ Top",
+          "sec.history.h2": "History",
+          "sec.history.p1": "<b>Rabbi’s House (Poltava, 8 Hohol Street)</b> is part of a historic quarter where, in the 19th and early 20th centuries, a cluster of Jewish religious and community buildings developed.",
+          "sec.history.fact1": "<b>Museum idea:</b> present the quarter as “frames” of Poltava’s history — through buildings, photos, maps, and local voices.",
+          "sec.news.h2": "News & events",
+          "sec.news.p1": "A convenient place to publish tour announcements, exhibition openings, lectures, and volunteer days.",
+          "sec.news.fact1": "<b>News template:</b> date • title • short description • contact/registration.",
+          "sec.projects.h2": "Projects",
+          "sec.projects.p1": "Development ideas: walking audio guide, QR plaques, digitizing photo archives, interactive map, exhibition “stories”.",
+          "sec.cooperation.h2": "Cooperation",
+          "sec.cooperation.p1": "We welcome historians, local researchers, museum professionals, archives, schools, and partners who can help with materials and events.",
+          "sec.help.h2": "Support",
+          "sec.help.p1": "You can support the project by volunteering, sharing photos/documents, providing digitization equipment, donating funds, or helping with media outreach.",
+          "sec.contacts.h2": "Contacts",
+          "sec.contacts.fact1": "<b>Address:</b> Poltava, 8 Hohol Street<br/><b>Phone:</b> +380977098469",
+          "sec.other.h2": "Other",
+          "sec.other.p1": "You can add: FAQ, press kit, document gallery, partner links, PDF maps, and archives.",
+          "main.gallery.h2": "Photo collection",
           "main.gallery.cap1.title": "Misnagdim Synagogue",
           "main.gallery.cap1.meta": "One of the key buildings of the historic quarter on Hohol Street.",
           "main.gallery.cap2.title": "10A Hohol Street — Regional Philharmonic",
@@ -982,61 +771,48 @@
           "main.gallery.cap3.meta": "Museum site / narrative center of the quarter’s history.",
           "main.gallery.cap4.title": "6 Hohol Street — Medical College",
           "main.gallery.cap4.meta": "Historic building (now an educational institution).",
-          "main.timeline.h2": "Quarter timeline",
-          "main.timeline.i1.title": "19th century",
-          "main.timeline.i1.meta": "Formation of the quarter: emergence of community and religious buildings; stone development along the street.",
-          "main.timeline.i2.title": "Early 20th century",
-          "main.timeline.i2.meta": "Flourishing urban life and architecture; the ensemble gains a “ceremonial” appearance.",
-          "main.timeline.i3.title": "20th century",
-          "main.timeline.i3.meta": "Change of building functions: adaptation for institutions, education, and culture.",
-          "main.timeline.i4.title": "Today",
-          "main.timeline.i4.meta": "The quarter reads like Poltava’s “stone archive”; strong potential for a local museum and guided tours.",
-          "main.map.h2": "Quarter scheme",
-          "main.map.note": "A conceptual route scheme for a museum website. If needed, it can be replaced with a real map/plan of the quarter.",
-          "main.map.headLeft": "Route: 1 → 2 → 3 → 4",
-          "main.map.headRight": "Hohol Street • Poltava",
-          "main.map.p1": "Misnagdim",
-          "main.map.p2": "Philharmonic",
-          "main.map.p3": "Rabbi’s House",
-          "main.map.p4": "Hohol St, 6",
-          "main.map.north": "N",
-          "main.map.leg1": "Misnagdim Synagogue",
-          "main.map.leg2": "Poltava, 10A Hohol Street — Regional Philharmonic (formerly the choral synagogue)",
-          "main.map.leg3": "Poltava, 8 Hohol Street — Rabbi’s House (museum site / narrative center)",
-          "main.map.leg4": "Poltava, 6 Hohol Street — historic building (now a medical college)",
-          "main.facts.h2": "Interesting facts",
-          "main.facts.c1.title": "An ensemble that reads like history",
-          "main.facts.c1.text": "The quarter combines intimate and monumental buildings reflecting different layers of urban life.",
-          "main.facts.c2.title": "Functions changed in the 20th century",
-          "main.facts.c2.text": "Buildings took on new roles: from prayer houses to cultural and educational institutions.",
-          "main.facts.c3.title": "Tour route — 4 stops",
-          "main.facts.c3.text": "The exhibition is structured as a walk: 1 → 2 → 3 → 4, with a logic “from the quarter — to the narrative center”.",
-          "main.facts.c4.title": "A house museum as a point of memory",
-          "main.facts.c4.text": "Rabbi’s House can become a place for maps, photos, documents, oral histories, and a local audio guide.",
-          "aside.passport.h2": "Museum object profile",
-          "aside.passport.fact": "<b>Object:</b> Rabbi’s House<br/><b>Address:</b> Poltava, 8 Hohol Street<br/><b>Contact phone:</b> +380977098469",
-          "aside.passport.p1": "<b>Narrative center:</b> “Rabbi’s House” is the logical core of the exhibition, where the quarter’s story can be assembled: synagogue context, 20th-century transformations, city narratives, and a photo archive.",
-          "aside.route.h3": "Guided route",
-          "aside.route.fact": "<b>1)</b> Misnagdim Synagogue<br/><b>2)</b> 10A Hohol Street — Regional Philharmonic (formerly the choral synagogue)<br/><b>3)</b> 8 Hohol Street — Rabbi’s House (museum site)<br/><b>4)</b> 6 Hohol Street — historic building (now a medical college)",
+          "aside.passport.h2": "Museum profile",
+          "aside.passport.fact": "<b>Object:</b> Rabbi’s House<br/><b>Address:</b> Poltava, 8 Hohol Street<br/><b>Phone:</b> +380977098469",
+          "aside.passport.p1": "<b>Narrative center:</b> “Rabbi’s House” is the logical core of the exhibition, where the quarter’s story can be assembled: synagogue context, 20th‑century transformations, city narratives, and a photo archive.",
+          "aside.route.h3": "Route",
+          "aside.route.fact": "<b>1)</b> Misnagdim Synagogue<br/><b>2)</b> 10A Hohol Street — Regional Philharmonic (former choral synagogue)<br/><b>3)</b> 8 Hohol Street — Rabbi’s House (museum site)<br/><b>4)</b> 6 Hohol Street — historic building (medical college)",
           "aside.contacts.h3": "Contacts",
-          "aside.contacts.addrLabel": "Address:",
-          "aside.contacts.addr": "Poltava, 8 Hohol Street",
-          "aside.contacts.phoneLabel": "Phone:",
-          "aside.contacts.phone": "+380977098469",
+          "aside.contacts.fact": "<b>Address:</b> Poltava, 8 Hohol Street<br/><b>Phone:</b> +380977098469",
           "footer": "© Local history of Poltava • Museum web page (demo layout)",
           "lightbox.close": "Close ✕"
         },
         he: {
           "meta.title": "בית הרב — מוזיאון בית (פולטבה)",
+          "lang.label": "שפה",
           "header.kicker": "פולטבה • הרובע ההיסטורי של רחוב הוגול",
           "header.h1": "בית הרב — מוזיאון בית",
           "header.subtitle": "אתר מוזיאלי קטן במרכז פולטבה, סמוך למתחם בתי הכנסת ההיסטוריים. העמוד מעוצב כ״תערוכה״: התמונות מוצגות כמוצגים, והמסלול הוא סיור קצר ברובע.",
           "header.route": "מסלול התערוכה: <b>מיסנגדים → פילהרמונית → בית הרב → רח׳ הוגול 6</b>.",
-          "main.about.h2": "סקירה תערוכתית",
-          "main.about.p1": "<b>בית הרב (פולטבה, רח׳ הוגול 8)</b> הוא חלק מרובע היסטורי שבו במאה ה־19 ותחילת המאה ה־20 נבנה מכלול של מבני קהילה ודת יהודיים. בקרבת מקום נמצאים מבני בתי כנסת לשעבר המשמשים כיום פונקציות עירוניות שונות.",
-          "main.about.fact1": "<b>דגש מוזיאלי:</b> ״בית הרב״ אינו רק אדריכלות — זהו מרכז סיפור על העיר: כיצד השתנו רחובות, קהילות, ייעוד המבנים וחיי התרבות של פולטבה.",
-          "main.about.p2": "במאה ה־20 עבר הרובע שינויים: חלק מהחללים הולאמו, שופצו והותאמו למוסדות, חינוך ותרבות. כיום האתרים הללו הם ״ארכיון אבן״ של העיר, שמאפשר ליצור <b>מוזיאון בית מקומי</b> עם מפות, תמונות, מסמכים ומדריך קולי.",
-          "main.gallery.h2": "אוסף תמונות של הרובע",
+          "menu.history": "היסטוריה",
+          "menu.news": "חדשות ואירועים",
+          "menu.projects": "פרויקטים",
+          "menu.cooperation": "שיתופי פעולה",
+          "menu.help": "תמיכה",
+          "menu.contacts": "יצירת קשר",
+          "menu.other": "אחר",
+          "menu.top": "↑ למעלה",
+          "sec.history.h2": "היסטוריה",
+          "sec.history.p1": "<b>בית הרב (פולטבה, רח׳ הוגול 8)</b> הוא חלק מרובע היסטורי שבו במאה ה־19 ותחילת המאה ה־20 נבנה מכלול של מבני קהילה ודת יהודיים.",
+          "sec.history.fact1": "<b>רעיון מוזיאלי:</b> להציג את הרובע כ״פריימים״ של ההיסטוריה של פולטבה — דרך מבנים, תמונות, מפות וקולות מקומיים.",
+          "sec.news.h2": "חדשות ואירועים",
+          "sec.news.p1": "מקום נוח לפרסם הודעות על סיורים, פתיחת תערוכות, הרצאות וימי התנדבות.",
+          "sec.news.fact1": "<b>תבנית הודעה:</b> תאריך • כותרת • תיאור קצר • קשר/הרשמה.",
+          "sec.projects.h2": "פרויקטים",
+          "sec.projects.p1": "רעיונות לפיתוח: מדריך קולי, שלטי QR, דיגיטציה של ארכיוני צילום, מפה אינטראקטיבית, ״סיפורים״ תערוכתיים.",
+          "sec.cooperation.h2": "שיתופי פעולה",
+          "sec.cooperation.p1": "נשמח לשתף פעולה עם היסטוריונים, חוקרי עיר, אנשי מוזיאון, ארכיונים, מוסדות לימוד ושותפים שיכולים לעזור בחומרים ואירועים.",
+          "sec.help.h2": "תמיכה",
+          "sec.help.p1": "אפשר לתמוך בפרויקט: התנדבות, שיתוף תמונות/מסמכים, ציוד לדיגיטציה, תרומות או סיוע תקשורתי.",
+          "sec.contacts.h2": "יצירת קשר",
+          "sec.contacts.fact1": "<b>כתובת:</b> פולטבה, רח׳ הוגול 8<br/><b>טלפון:</b> +380977098469",
+          "sec.other.h2": "אחר",
+          "sec.other.p1": "אפשר להוסיף: שאלות נפוצות, חבילת עיתונות, גלריית מסמכים, קישורי שותפים, מפות PDF וארכיונים.",
+          "main.gallery.h2": "אוסף תמונות",
           "main.gallery.cap1.title": "בית הכנסת מיסנגדים",
           "main.gallery.cap1.meta": "אחד המבנים המרכזיים של הרובע ההיסטורי ברחוב הוגול.",
           "main.gallery.cap2.title": "רח׳ הוגול 10A — הפילהרמונית האזורית",
@@ -1045,47 +821,13 @@
           "main.gallery.cap3.meta": "אתר מוזיאלי / מרכז הסיפור ההיסטורי של הרובע.",
           "main.gallery.cap4.title": "רח׳ הוגול 6 — מכללה רפואית",
           "main.gallery.cap4.meta": "מבנה היסטורי (כיום מוסד לימודי).",
-          "main.timeline.h2": "ציר זמן של הרובע",
-          "main.timeline.i1.title": "המאה ה־19",
-          "main.timeline.i1.meta": "התגבשות הרובע: הופעת מבני קהילה ודת, בנייה מאבן לאורך הרחוב.",
-          "main.timeline.i2.title": "תחילת המאה ה־20",
-          "main.timeline.i2.meta": "שגשוג החיים העירוניים והאדריכלות; המכלול מקבל חזות ״טקסית״.",
-          "main.timeline.i3.title": "המאה ה־20",
-          "main.timeline.i3.meta": "שינוי ייעוד המבנים: התאמה למוסדות, חינוך ותרבות.",
-          "main.timeline.i4.title": "היום",
-          "main.timeline.i4.meta": "הרובע נקרא כ״ארכיון אבן״ של פולטבה; פוטנציאל למוזיאון מקומי ולסיורים מודרכים.",
-          "main.map.h2": "תרשים הרובע",
-          "main.map.note": "תרשים רעיוני של מסלול לאתר מוזיאון. ניתן להחליף במפה אמיתית לפי צורך.",
-          "main.map.headLeft": "מסלול: 1 → 2 → 3 → 4",
-          "main.map.headRight": "רח׳ הוגול • פולטבה",
-          "main.map.p1": "מיסנגדים",
-          "main.map.p2": "פילהרמונית",
-          "main.map.p3": "בית הרב",
-          "main.map.p4": "רח׳ הוגול 6",
-          "main.map.north": "צפון",
-          "main.map.leg1": "בית הכנסת מיסנגדים",
-          "main.map.leg2": "פולטבה, רח׳ הוגול 10A — הפילהרמונית האזורית (לשעבר בית הכנסת הכוראלי)",
-          "main.map.leg3": "פולטבה, רח׳ הוגול 8 — בית הרב (אתר מוזיאלי / מרכז הסיפור)",
-          "main.map.leg4": "פולטבה, רח׳ הוגול 6 — מבנה היסטורי (כיום מכללה רפואית)",
-          "main.facts.h2": "עובדות מעניינות",
-          "main.facts.c1.title": "מכלול שנקרא כמו היסטוריה",
-          "main.facts.c1.text": "הרובע משלב מבנים אינטימיים ומונומנטליים המשקפים שכבות שונות של החיים העירוניים.",
-          "main.facts.c2.title": "שינויי ייעוד במאה ה־20",
-          "main.facts.c2.text": "מבנים קיבלו תפקידים חדשים: מבתי תפילה למוסדות תרבות וחינוך.",
-          "main.facts.c3.title": "מסלול סיור — 4 תחנות",
-          "main.facts.c3.text": "התערוכה בנויה כהליכה: 1 → 2 → 3 → 4, עם היגיון ״מהרובע — אל מרכז הסיפור״.",
-          "main.facts.c4.title": "מוזיאון בית כנקודת זיכרון",
-          "main.facts.c4.text": "בית הרב יכול להפוך למקום של מפות, תמונות, מסמכים, סיפורים בעל פה ומדריך קולי מקומי.",
           "aside.passport.h2": "כרטיס אתר מוזיאלי",
           "aside.passport.fact": "<b>אתר:</b> בית הרב<br/><b>כתובת:</b> פולטבה, רח׳ הוגול 8<br/><b>טלפון:</b> +380977098469",
           "aside.passport.p1": "<b>מרכז הסיפור:</b> ״בית הרב״ הוא ליבת התערוכה, שבה ניתן לאסוף את סיפור הרובע: הקשר בתי הכנסת, השינויים במאה ה־20, עלילות עירוניות וארכיון תמונות.",
-          "aside.route.h3": "מסלול מודרך",
+          "aside.route.h3": "מסלול",
           "aside.route.fact": "<b>1)</b> בית הכנסת מיסנגדים<br/><b>2)</b> רח׳ הוגול 10A — הפילהרמונית האזורית (לשעבר בית הכנסת הכוראלי)<br/><b>3)</b> רח׳ הוגול 8 — בית הרב (אתר מוזיאלי)<br/><b>4)</b> רח׳ הוגול 6 — מבנה היסטורי (כיום מכללה רפואית)",
-          "aside.contacts.h3": "פרטי קשר",
-          "aside.contacts.addrLabel": "כתובת:",
-          "aside.contacts.addr": "פולטבה, רח׳ הוגול 8",
-          "aside.contacts.phoneLabel": "טלפון:",
-          "aside.contacts.phone": "+380977098469",
+          "aside.contacts.h3": "יצירת קשר",
+          "aside.contacts.fact": "<b>כתובת:</b> פולטבה, רח׳ הוגול 8<br/><b>טלפון:</b> +380977098469",
           "footer": "© היסטוריה מקומית של פולטבה • עמוד מוזיאון (דמו)",
           "lightbox.close": "סגור ✕"
         }
@@ -1094,25 +836,24 @@
       function getInitialLang(){
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored && supported.includes(stored)) return stored;
-        const nav = (navigator.language || "uk").toLowerCase();
-        if (nav.startsWith("he")) return "he";
-        if (nav.startsWith("en")) return "en";
-        return "uk";
-      }
 
-      function setActiveButton(lang){
-        supported.forEach(l => {
-          const btn = document.getElementById("btn-" + l);
-          if (!btn) return;
-          btn.classList.toggle("active", l === lang);
-        });
+        const nav = (navigator.language || "en").toLowerCase();
+        if (nav.startsWith("he")) return "he";
+        if (nav.startsWith("ar")) return "ar";
+        if (nav.startsWith("uk")) return "uk";
+        if (nav.startsWith("ru")) return "ru";
+        if (nav.startsWith("en")) return "en";
+        if (nav.startsWith("es")) return "es";
+        if (nav.startsWith("fr")) return "fr";
+        if (nav.startsWith("de")) return "de";
+        return "en";
       }
 
       function applyLang(lang){
-        const pack = dict[lang] || dict.uk;
+        const pack = dict[lang] || dict.en || dict.uk;
 
         document.documentElement.lang = lang;
-        document.documentElement.dir = (lang === "he") ? "rtl" : "ltr";
+        document.documentElement.dir = (lang === "he" || lang === "ar") ? "rtl" : "ltr";
 
         if (pack["meta.title"]) document.title = pack["meta.title"];
 
@@ -1133,12 +874,12 @@
             img.dataset.captionUk;
 
           img.dataset.caption = cap || "";
-          if (lang === "en" || lang === "he") {
-            if (cap) img.alt = cap;
-          }
+          if (cap) img.alt = cap;
         });
 
-        setActiveButton(lang);
+        const sel = document.getElementById("langSelect");
+        if (sel) sel.value = supported.includes(lang) ? lang : "en";
+
         localStorage.setItem(STORAGE_KEY, lang);
       }
 
@@ -1178,6 +919,26 @@
       lbClose.addEventListener("click", closeLightbox);
       lb.addEventListener("click", (e) => { if(e.target === lb) closeLightbox(); });
       document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeLightbox(); });
+    })();
+
+    // ---------- Active menu highlight ----------
+    (function(){
+      const links = Array.from(document.querySelectorAll(".nav a[data-nav]"));
+      const sections = links
+        .map(a => document.querySelector(a.getAttribute("href")))
+        .filter(Boolean);
+
+      if (!("IntersectionObserver" in window) || sections.length === 0) return;
+
+      const io = new IntersectionObserver((entries) => {
+        const visible = entries.filter(e => e.isIntersecting)
+          .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const id = visible.target.id;
+        links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+      }, { root: null, rootMargin: "-30% 0px -60% 0px", threshold: [0.1, 0.2, 0.3, 0.4] });
+
+      sections.forEach(s => io.observe(s));
     })();
   </script>
 </body>
