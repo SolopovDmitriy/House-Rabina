@@ -127,13 +127,6 @@
       z-index: 2;
     }
 
-    .lang-label{
-      font-size:.9rem;
-      color: var(--ink-soft);
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-
     .lang-select{
       appearance:none;
       border: 1px solid rgba(43,31,20,.25);
@@ -158,83 +151,80 @@
       font-weight: 900;
     }
 
-    html[dir="rtl"] .lang-switch::after{
-      right:auto;
-      left: 12px;
-    }
-    html[dir="rtl"] .lang-select{
-      padding: 10px 12px 10px 36px;
-    }
+    html[dir="rtl"] .lang-switch::after{ right:auto; left: 12px; }
+    html[dir="rtl"] .lang-select{ padding: 10px 12px 10px 36px; }
 
-    /* ---------- Menu (sticky) ---------- */
-    .nav{
-      margin-top: 12px;
-      position: sticky;
-      top: 10px;
-      z-index: 50;
-    }
-
-    .nav-inner{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items:center;
-      justify-content: space-between;
-      padding: 10px 10px;
-      border-radius: 16px;
-      border: 1px solid rgba(43,31,20,.14);
-      background: linear-gradient(180deg, rgba(246,240,227,.92), rgba(239,228,207,.90));
-      box-shadow: 0 14px 30px rgba(0,0,0,.12);
-      backdrop-filter: blur(3px);
-    }
-
-    .nav-left{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items:center;
-    }
-
-    .nav a{
-      text-decoration:none;
-      color: var(--ink);
-      border: 1px solid rgba(43,31,20,.20);
-      background: rgba(255,255,255,.40);
-      padding: 8px 10px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: .95rem;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .nav a:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.62);
-    }
-    .nav a.active{
-      background: linear-gradient(180deg,var(--gold-2),var(--gold));
-      border-color: rgba(43,31,20,.35);
-    }
-
-    .nav-right{
-      display:flex;
-      gap: 8px;
-      align-items:center;
-    }
-
+    /* ---------- Buttons base ---------- */
     .btn{
       appearance:none;
       border: 1px solid rgba(43,31,20,.25);
       background: rgba(255,255,255,.45);
-      padding: 8px 12px;
+      padding: 10px 12px;
       border-radius: 12px;
       cursor: pointer;
       font-family: inherit;
       color: var(--ink);
       transition: transform .15s ease, background .15s ease;
       user-select:none;
-      font-weight: 700;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.6); }
+
+    /* ---------- Header right controls (menu + lang) ---------- */
+    .header-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    /* ---------- Menu button + popover ---------- */
+    .menu-area{ position: relative; z-index: 9999; }
+    .menu-btn{ padding: 10px 12px; border-radius: 12px; }
+
+    .menu-popover{
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 260px;
+      max-width: min(320px, 90vw);
+      background: linear-gradient(180deg, rgba(246,240,227,.96), rgba(239,228,207,.96));
+      border: 1px solid rgba(43,31,20,.16);
+      box-shadow: 0 18px 45px rgba(0,0,0,.18);
+      border-radius: 16px;
+      padding: 10px;
+      display: none;
+      z-index: 9999;
+    }
+    .menu-popover.open{ display:block; }
+
+    .menu-popover a{
+      display:block;
+      text-decoration:none;
+      color: var(--ink);
+      border: 1px solid rgba(43,31,20,.18);
+      background: rgba(255,255,255,.42);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      margin: 6px 0;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .menu-popover a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.62); }
+    .menu-popover a.active{
+      background: linear-gradient(180deg,var(--gold-2),var(--gold));
+      border-color: rgba(43,31,20,.35);
+    }
+
+    .menu-divider{
+      height: 1px;
+      background: rgba(43,31,20,.14);
+      margin: 10px 4px;
+      border-radius: 999px;
+    }
+    .menu-top{ width:100%; justify-content:center; display:flex; }
+
+    html[dir="rtl"] .menu-popover{ right:auto; left:0; }
 
     /* ---------- Layout panels ---------- */
     main{
@@ -243,9 +233,7 @@
       grid-template-columns: 1.25fr .75fr;
       gap: 18px;
     }
-    @media (max-width: 920px){
-      main{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 920px){ main{ grid-template-columns: 1fr; } }
 
     .panel{
       background: linear-gradient(180deg, rgba(246,240,227,.92), rgba(239,228,207,.9));
@@ -262,17 +250,10 @@
       scroll-margin-top: 98px;
     }
 
-    .panel h3{
-      margin: 14px 0 10px;
-      font-size: 1.1rem;
-      letter-spacing: .02em;
-    }
-
+    .panel h3{ margin: 14px 0 10px; font-size: 1.1rem; letter-spacing: .02em; }
     .panel p{ margin: 0 0 12px; }
 
-    .section{
-      padding-top: 4px;
-    }
+    .section{ padding-top: 4px; }
 
     .fact{
       border-left: 4px solid rgba(176,138,58,.75);
@@ -290,9 +271,7 @@
       gap: 14px;
       margin: 14px 0 8px;
     }
-    @media (max-width: 680px){
-      .gallery{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 680px){ .gallery{ grid-template-columns: 1fr; } }
 
     figure{
       margin:0;
@@ -356,7 +335,6 @@
     }
     html[dir="rtl"] .exhibit-number{ left:auto; right:14px; }
 
-    /* Footer */
     footer{
       margin-top: 18px;
       color: var(--ink-soft);
@@ -413,7 +391,6 @@
       max-width: 70ch;
     }
 
-    /* RTL helpers */
     html[dir="rtl"] body{ font-family: "Arial","Tahoma",sans-serif; }
   </style>
 </head>
@@ -431,39 +408,61 @@
           </p>
         </div>
 
-        <div class="lang-switch" aria-label="Language switch">
-          <!-- <label class="lang-label" for="langSelect" data-i18n="lang.label">Мова</label> -->
-          <select id="langSelect" class="lang-select" onchange="setLang(this.value)">
-            <optgroup label="Popular">
-              <option value="uk">Українська (UA)</option>
-              <option value="en">English (EN)</option>
-              <option value="he">עברית (HE)</option>
-              <option value="es">Español (ES)</option>
-              <option value="fr">Français (FR)</option>
-              <option value="de">Deutsch (DE)</option>
-              <option value="it">Italiano (IT)</option>
-              <option value="pt">Português (PT)</option>
-              <option value="pl">Polski (PL)</option>
-              <option value="tr">Türkçe (TR)</option>
-              <option value="ar">العربية (AR)</option>
-              <option value="hi">हिन्दी (HI)</option>
-              <option value="zh">中文 (ZH)</option>
-              <option value="ja">日本語 (JA)</option>
-              <option value="ko">한국어 (KO)</option>
-            </optgroup>
-            <optgroup label="More">
-              <option value="ru">Русский (RU)</option>
-              <option value="nl">Nederlands (NL)</option>
-              <option value="sv">Svenska (SV)</option>
-              <option value="no">Norsk (NO)</option>
-              <option value="da">Dansk (DA)</option>
-              <option value="cs">Čeština (CS)</option>
-              <option value="sk">Slovenčina (SK)</option>
-              <option value="ro">Română (RO)</option>
-              <option value="hu">Magyar (HU)</option>
-              <option value="el">Ελληνικά (EL)</option>
-            </optgroup>
-          </select>
+        <!-- RIGHT: Menu first + Language second -->
+        <div class="header-controls">
+          <!-- MENU FIRST -->
+          <div class="menu-area" aria-label="Site menu">
+            <button class="btn menu-btn" type="button" id="menuBtn" aria-haspopup="true" aria-expanded="false" data-i18n="menu.menu">
+              ☰ Меню
+            </button>
+
+            <div class="menu-popover" id="menuPopover" role="menu" aria-label="Menu">
+              <a href="#history" role="menuitem" data-nav="history" data-i18n="menu.history">3.1. Історія</a>
+              <a href="#news" role="menuitem" data-nav="news" data-i18n="menu.news">3.2. Новини та події</a>
+              <a href="#projects" role="menuitem" data-nav="projects" data-i18n="menu.projects">3.3. Проєкти</a>
+              <a href="#cooperation" role="menuitem" data-nav="cooperation" data-i18n="menu.cooperation">3.4. Співпраця</a>
+              <a href="#help" role="menuitem" data-nav="help" data-i18n="menu.help">3.5. Допомога</a>
+              <a href="#contacts" role="menuitem" data-nav="contacts" data-i18n="menu.contacts">3.6. Контакти</a>
+              <a href="#other" role="menuitem" data-nav="other" data-i18n="menu.other">3.7. Інше</a>
+              <div class="menu-divider"></div>
+              <button class="btn menu-top" type="button" id="menuTopBtn" data-i18n="menu.top">↑ Вгору</button>
+            </div>
+          </div>
+
+          <!-- LANG SECOND -->
+          <div class="lang-switch" aria-label="Language switch">
+            <select id="langSelect" class="lang-select" onchange="setLang(this.value)">
+              <optgroup label="Popular">
+                <option value="uk">Українська (UA)</option>
+                <option value="en">English (EN)</option>
+                <option value="he">עברית (HE)</option>
+                <option value="es">Español (ES)</option>
+                <option value="fr">Français (FR)</option>
+                <option value="de">Deutsch (DE)</option>
+                <option value="it">Italiano (IT)</option>
+                <option value="pt">Português (PT)</option>
+                <option value="pl">Polski (PL)</option>
+                <option value="tr">Türkçe (TR)</option>
+                <option value="ar">العربية (AR)</option>
+                <option value="hi">हिन्दी (HI)</option>
+                <option value="zh">中文 (ZH)</option>
+                <option value="ja">日本語 (JA)</option>
+                <option value="ko">한국어 (KO)</option>
+              </optgroup>
+              <optgroup label="More">
+                <option value="ru">Русский (RU)</option>
+                <option value="nl">Nederlands (NL)</option>
+                <option value="sv">Svenska (SV)</option>
+                <option value="no">Norsk (NO)</option>
+                <option value="da">Dansk (DA)</option>
+                <option value="cs">Čeština (CS)</option>
+                <option value="sk">Slovenčina (SK)</option>
+                <option value="ro">Română (RO)</option>
+                <option value="hu">Magyar (HU)</option>
+                <option value="el">Ελληνικά (EL)</option>
+              </optgroup>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -472,23 +471,6 @@
       <p style="margin:0; position:relative; z-index:1;" data-i18n="header.route">
         Маршрут експозиції: <b>Міснагдім → Філармонія → Будинок Рабина → Гоголя, 6</b>.
       </p>
-
-      <nav class="nav" aria-label="Main">
-        <div class="nav-inner">
-          <div class="nav-left">
-            <a href="#history" data-nav="history" data-i18n="menu.history">Історія</a>
-            <a href="#news" data-nav="news" data-i18n="menu.news">Новини та події</a>
-            <a href="#projects" data-nav="projects" data-i18n="menu.projects">Проєкти</a>
-            <a href="#cooperation" data-nav="cooperation" data-i18n="menu.cooperation">Співпраця</a>
-            <a href="#help" data-nav="help" data-i18n="menu.help">Допомога</a>
-            <a href="#contacts" data-nav="contacts" data-i18n="menu.contacts">Контакти</a>
-            <a href="#other" data-nav="other" data-i18n="menu.other">Інше</a>
-          </div>
-          <!-- <div class="nav-right">
-            <button class="btn" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-i18n="menu.top">↑ Вгору</button> -->
-          </div>
-        </div>
-      </nav>
     </header>
 
     <main>
@@ -683,11 +665,11 @@
       const dict = {
         uk: {
           "meta.title": "Будинок Рабина — будинок-музей (Полтава)",
-          "lang.label": "Мова",
           "header.kicker": "Полтава • Історичний квартал вул. Гоголя",
           "header.h1": "Будинок Рабина — будинок-музей",
           "header.subtitle": "Камерний музейний об’єкт у середмісті Полтави, поруч із комплексом колишніх синагог. Сторінка оформлена як “експозиція”: світлини подані як експонати, а маршрут — як коротка екскурсія кварталом.",
           "header.route": "Маршрут експозиції: <b>Міснагдім → Філармонія → Будинок Рабина → Гоголя, 6</b>.",
+          "menu.menu": "☰ Меню",
           "menu.history": "3.1. Історія",
           "menu.news": "3.2. Новини та події",
           "menu.projects": "3.3. Проєкти",
@@ -731,13 +713,14 @@
           "footer": "© Локальна історія Полтави • Музейна веб-сторінка (демо-оформлення)",
           "lightbox.close": "Закрити ✕"
         },
+
         en: {
           "meta.title": "Rabbi’s House — House Museum (Poltava)",
-          "lang.label": "Language",
           "header.kicker": "Poltava • Historic quarter of Hohol Street",
           "header.h1": "Rabbi’s House — House Museum",
           "header.subtitle": "A small museum site in central Poltava, next to the former synagogue complex. The page is designed as an “exhibition”: photos are presented as exhibits, and the route is a short walking tour of the quarter.",
           "header.route": "Exhibition route: <b>Misnagdim → Philharmonic → Rabbi’s House → Hohol St, 6</b>.",
+          "menu.menu": "☰ Menu",
           "menu.history": "History",
           "menu.news": "News & events",
           "menu.projects": "Projects",
@@ -773,7 +756,7 @@
           "main.gallery.cap4.meta": "Historic building (now an educational institution).",
           "aside.passport.h2": "Museum profile",
           "aside.passport.fact": "<b>Object:</b> Rabbi’s House<br/><b>Address:</b> Poltava, 8 Hohol Street<br/><b>Phone:</b> +380977098469",
-          "aside.passport.p1": "<b>Narrative center:</b> “Rabbi’s House” is the logical core of the exhibition, where the quarter’s story can be assembled: synagogue context, 20th‑century transformations, city narratives, and a photo archive.",
+          "aside.passport.p1": "<b>Narrative center:</b> “Rabbi’s House” is the logical core of the exhibition, where the quarter’s story can be assembled: synagogue context, 20th-century transformations, city narratives, and a photo archive.",
           "aside.route.h3": "Route",
           "aside.route.fact": "<b>1)</b> Misnagdim Synagogue<br/><b>2)</b> 10A Hohol Street — Regional Philharmonic (former choral synagogue)<br/><b>3)</b> 8 Hohol Street — Rabbi’s House (museum site)<br/><b>4)</b> 6 Hohol Street — historic building (medical college)",
           "aside.contacts.h3": "Contacts",
@@ -781,13 +764,14 @@
           "footer": "© Local history of Poltava • Museum web page (demo layout)",
           "lightbox.close": "Close ✕"
         },
+
         he: {
           "meta.title": "בית הרב — מוזיאון בית (פולטבה)",
-          "lang.label": "שפה",
           "header.kicker": "פולטבה • הרובע ההיסטורי של רחוב הוגול",
           "header.h1": "בית הרב — מוזיאון בית",
           "header.subtitle": "אתר מוזיאלי קטן במרכז פולטבה, סמוך למתחם בתי הכנסת ההיסטוריים. העמוד מעוצב כ״תערוכה״: התמונות מוצגות כמוצגים, והמסלול הוא סיור קצר ברובע.",
           "header.route": "מסלול התערוכה: <b>מיסנגדים → פילהרמונית → בית הרב → רח׳ הוגול 6</b>.",
+          "menu.menu": "☰ תפריט",
           "menu.history": "היסטוריה",
           "menu.news": "חדשות ואירועים",
           "menu.projects": "פרויקטים",
@@ -921,17 +905,60 @@
       document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeLightbox(); });
     })();
 
-    // ---------- Active menu highlight ----------
+    // ---------- Menu toggle (WORKING, mobile-safe) ----------
+    (function () {
+      const btn = document.getElementById("menuBtn");
+      const pop = document.getElementById("menuPopover");
+      const topBtn = document.getElementById("menuTopBtn");
+      if (!btn || !pop) return;
+
+      function open() {
+        pop.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+      function close() {
+        pop.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+      function toggle() {
+        pop.classList.contains("open") ? close() : open();
+      }
+
+      btn.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle();
+      });
+
+      pop.addEventListener("pointerdown", (e) => {
+        e.stopPropagation();
+      });
+
+      pop.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => close());
+      });
+
+      document.addEventListener("pointerdown", () => close());
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+
+      if (topBtn) {
+        topBtn.addEventListener("click", () => {
+          close();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+    })();
+
+    // ---------- Active menu highlight (for menu popover links) ----------
     (function(){
-      const links = Array.from(document.querySelectorAll(".nav a[data-nav]"));
-      const sections = links
-        .map(a => document.querySelector(a.getAttribute("href")))
-        .filter(Boolean);
+      const links = Array.from(document.querySelectorAll("#menuPopover a[data-nav]"));
+      const sections = links.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
 
       if (!("IntersectionObserver" in window) || sections.length === 0) return;
 
       const io = new IntersectionObserver((entries) => {
-        const visible = entries.filter(e => e.isIntersecting)
+        const visible = entries
+          .filter(e => e.isIntersecting)
           .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (!visible) return;
         const id = visible.target.id;
