@@ -392,6 +392,64 @@
     }
 
     html[dir="rtl"] body{ font-family: "Arial","Tahoma",sans-serif; }
+
+    /* ===== Mobile fixes: header center + no clipped controls ===== */
+@media (max-width: 640px) {
+
+  header { padding: 18px 14px 12px; }
+
+  .header-top{
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header-top > div:first-child{
+    width: 100%;
+    text-align: center;
+  }
+
+  .kicker, h1, .subtitle{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .subtitle{ max-width: 42ch; }
+
+  .header-controls{
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .lang-switch{ width: min(360px, 100%); }
+
+  .lang-select{
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .menu-area{ width: min(360px, 100%); }
+
+  .menu-btn{
+    width: 100%;
+  }
+
+  .menu-popover{
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(360px, 92vw);
+  }
+
+  html[dir="rtl"] .menu-popover{
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
   </style>
 </head>
 
