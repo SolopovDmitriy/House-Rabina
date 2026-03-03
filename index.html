@@ -646,6 +646,19 @@ html[dir="rtl"] .scroll-top{
   right:auto;
   left:22px;
 }
+/* FIX: не обрізати випадаюче меню */
+header{
+  overflow: visible; /* було hidden */
+}
+
+/* FIX: але фон header::after все одно обрізаємо по радіусу */
+header::after{
+  clip-path: inset(0 round 18px); /* 18px = твій border-radius */
+}
+
+/* На всяк випадок: меню поверх інших блоків */
+.menu-area{ position: relative; z-index: 99999; }
+.menu-popover{ z-index: 100000; }
   </style>
 </head>
 
