@@ -1106,13 +1106,35 @@
     /* ========================================================================
        RESPONSIVE
     ======================================================================== */
-    @media (max-width: 900px) {
-      html { font-size: 16px; }
-      .container { padding: 0 20px; }
-      .hero { padding-top: calc(var(--nav-h) + 50px); padding-bottom: 60px; }
-      .logo-main { font-size: 1.1rem; }
-      .logo-sub { display: none; }
-    }
+  @media (max-width: 900px) {
+  html { font-size: 16px; }
+
+  .container { padding: 0 20px; }
+
+  .hero {
+    padding-top: calc(var(--nav-h) + 50px);
+    padding-bottom: 60px;
+  }
+
+  /* трохи менший заголовок */
+  .logo-main {
+    font-size: 1.1rem;
+  }
+
+  /* НЕ ховаємо підпис */
+  .logo-sub {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 1.3px;
+    margin-top: 3px;
+
+    /* щоб вміщалося */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 48vw;
+  }
+}
 
   </style>
 </head>
