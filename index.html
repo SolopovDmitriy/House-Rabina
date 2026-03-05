@@ -1183,6 +1183,39 @@
   }
   .menu-toggle span{ display: none; } /* лишаємо іконку */
 }
+/* ✅ hard fix for mobile header overflow */
+@media (max-width: 520px) {
+  :root { --nav-h: 128px; }                 /* більша висота хедера */
+
+  .site-header { height: var(--nav-h); }
+
+  .nav-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* логотип в 1-й рядок */
+  .logo-link {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  /* правий блок в 2-й рядок */
+  .nav-right {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  /* селект не має розпирати весь ряд */
+  .lang-switcher { min-width: 0; max-width: 75vw; }
+  .lang-select   { width: 100%; max-width: 75vw; }
+
+  /* кнопка меню компактна */
+  .menu-toggle { padding: 10px 14px; gap: 0; }
+  .menu-toggle span { display: none; }
+}
   </style>
 </head>
 <body>
