@@ -1,98 +1,246 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk" dir="ltr">
 <head>
-<style>
-  body {
-    background: #1a1a1a; /* Темний фон для контрасту */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Музей "Будинок Рабина" — Світло єврейської спадщини Полтави</title>
 
-  .logo-render {
-    background: linear-gradient(135deg, #f6f0e3 0%, #efe4cf 100%);
-    padding: 60px 80px;
-    border-radius: 20px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    border: 1px solid #b08a3a;
-    position: relative;
-    overflow: hidden;
-  }
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 
-  /* Ефект відблиску на логотипі */
-  .logo-render::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-    transform: rotate(45deg);
-    pointer-events: none;
-  }
+    <style>
+        /* ============================================================
+           1. ОСНОВНІ СТИЛІ (BRANDING)
+           ============================================================ */
+        :root {
+            --paper: #f6f0e3;
+            --paper-dark: #efe4cf;
+            --ink: #2a2320;
+            --gold: #b08a3a;
+            --gold-light: #e6c97a;
+            --gold-deep: #8e6d28;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow-lux: 0 20px 50px rgba(0,0,0,0.15);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-  .menora-icon {
-    filter: drop-shadow(0 5px 15px rgba(176, 138, 58, 0.4));
-  }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            background-image: linear-gradient(rgba(246,240,227,.95), rgba(246,240,227,.95)), url('https://www.transparenttextures.com/patterns/handmade-paper.png');
+        }
 
-  .text-block {
-    border-left: 3px solid #b08a3a;
-    padding-left: 30px;
-    display: flex;
-    flex-direction: column;
-  }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
 
-  .main-title {
-    font-family: "Georgia", serif;
-    font-size: 54px;
-    font-weight: 900;
-    color: #2a2320;
-    letter-spacing: 4px;
-    line-height: 1;
-    margin: 0;
-    text-transform: uppercase;
-  }
+        /* ============================================================
+           2. АНІМОВАНА ШАПКА ТА ЛОГОТИП
+           ============================================================ */
+        header {
+            position: fixed; top: 0; width: 100%; height: 100px;
+            background: var(--glass); backdrop-filter: blur(15px);
+            z-index: 1000; display: flex; align-items: center;
+            border-bottom: 1px solid rgba(176,138,58,0.2);
+            transition: var(--transition);
+        }
 
-  .sub-title {
-    font-family: "Arial", sans-serif;
-    font-size: 22px;
-    color: #b08a3a;
-    letter-spacing: 8px;
-    margin-top: 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-</style>
+        header.scrolled { height: 75px; box-shadow: var(--shadow-lux); }
+
+        .header-content { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+
+        .brand { display: flex; align-items: center; gap: 20px; text-decoration: none; color: inherit; }
+
+        /* Анімація Менори з ff.html */
+        .menora-svg { width: 60px; height: 60px; }
+        .flame { 
+            animation: flicker 1.8s infinite alternate ease-in-out; 
+            transform-origin: center bottom;
+            filter: drop-shadow(0 0 5px var(--gold-light));
+        }
+        @keyframes flicker { 
+            0% { opacity: 0.6; transform: scale(0.9) translateY(0); } 
+            100% { opacity: 1; transform: scale(1.15) translateY(-3px); } 
+        }
+
+        .brand-text { border-left: 2px solid var(--gold); padding-left: 20px; }
+        .brand-name { font-family: 'Cinzel', serif; font-weight: 900; font-size: 1.5rem; display: block; line-height: 1; }
+        .brand-sub { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Кнопка меню */
+        .menu-toggle {
+            background: var(--ink); color: var(--gold-light); border: none;
+            padding: 12px 25px; border-radius: 50px; cursor: pointer;
+            font-family: 'Montserrat'; font-weight: bold; transition: 0.3s;
+        }
+        .menu-toggle:hover { background: var(--gold); color: white; transform: translateY(-2px); }
+
+        /* ============================================================
+           3. ПОВНОЕКРАННЕ МЕНЮ (3.1 - 3.6)
+           ============================================================ */
+        .nav-overlay {
+            position: fixed; inset: 0; background: rgba(42,35,32,0.98);
+            z-index: 2000; display: none; flex-direction: column;
+            justify-content: center; align-items: center;
+        }
+        .nav-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
+        .nav-list { list-style: none; padding: 0; text-align: center; }
+        .nav-list a {
+            color: white; text-decoration: none; font-family: 'Cinzel';
+            font-size: 2.2rem; display: block; margin: 15px 0; transition: 0.3s;
+        }
+        .nav-list a:hover { color: var(--gold-light); transform: scale(1.1); }
+        .nav-list span { display: block; font-size: 0.8rem; font-family: 'Montserrat'; color: var(--gold); }
+
+        /* ============================================================
+           4. ГОЛОВНИЙ БЛОК (HERO)
+           ============================================================ */
+        .hero { padding: 220px 0 100px; text-align: center; }
+        .hero h1 { font-family: 'Cinzel'; font-size: 5rem; color: var(--gold-deep); margin: 0; }
+        
+        .main-grid { display: grid; grid-template-columns: 1fr 420px; gap: 60px; margin-top: 50px; }
+        @media (max-width: 1150px) { .main-grid { grid-template-columns: 1fr; } }
+
+        .content-card { background: white; padding: 60px; border-radius: 50px; box-shadow: var(--shadow-lux); }
+
+        section { margin-bottom: 100px; scroll-margin-top: 130px; }
+        h2 { font-family: 'Cinzel'; font-size: 2.5rem; color: var(--gold); border-bottom: 3px solid var(--gold-light); display: inline-block; margin-bottom: 30px; }
+
+        /* Блок підтримки */
+        .support-box {
+            background: var(--ink); color: white; padding: 50px; border-radius: 40px;
+            text-align: center; margin-top: 40px;
+        }
+        .donate-btn {
+            display: inline-block; background: var(--gold); color: white;
+            padding: 20px 50px; border-radius: 15px; text-decoration: none;
+            font-weight: 900; font-family: 'Montserrat'; margin: 25px 0; transition: 0.3s;
+        }
+        .donate-btn:hover { background: var(--gold-light); transform: translateY(-3px); }
+
+        /* ============================================================
+           5. САЙДБАР ТА QR-КОД
+           ============================================================ */
+        .passport { 
+            background: white; padding: 40px; border-radius: 40px; border: 1px solid var(--gold);
+            position: sticky; top: 130px; text-align: center;
+        }
+        .qr-card { 
+            margin-top: 30px; padding: 20px; background: #fafafa; 
+            border: 2px dashed var(--gold); border-radius: 20px;
+        }
+        .qr-card img { width: 160px; height: 160px; }
+
+        footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 80px 0; text-align: center; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
 </head>
 <body>
 
-<div class="logo-render">
-  <svg class="menora-icon" width="120" height="120" viewBox="0 0 100 100">
-    <path d="M50 20 V85 M35 30 V85 M65 30 V85 M20 40 V85 M80 40 V85 M5 50 V85 M95 50 V85" 
-          stroke="#b08a3a" stroke-width="4" fill="none" stroke-linecap="round"/>
-    <line x1="5" y1="85" x2="95" y2="85" stroke="#b08a3a" stroke-width="6" stroke-linecap="round"/>
-    <g fill="#e6c97a">
-      <circle cx="50" cy="15" r="5" />
-      <circle cx="35" cy="25" r="4.5" />
-      <circle cx="65" cy="25" r="4.5" />
-      <circle cx="20" cy="35" r="4" />
-      <circle cx="80" cy="35" r="4" />
-      <circle cx="5" cy="45" r="4" />
-      <circle cx="95" cy="45" r="4" />
-    </g>
-  </svg>
+    <div class="nav-overlay" id="navMenu">
+        <button style="position:absolute; top:40px; right:40px; background:none; border:none; color:white; font-size:3rem; cursor:pointer;" onclick="toggleMenu()">×</button>
+        <ul class="nav-list">
+            <li><a href="#history" onclick="toggleMenu()"><span>3.1</span> Історія</a></li>
+            <li><a href="#news" onclick="toggleMenu()"><span>3.2</span> Новини</a></li>
+            <li><a href="#projects" onclick="toggleMenu()"><span>3.3</span> Проєкти</a></li>
+            <li><a href="#coop" onclick="toggleMenu()"><span>3.4</span> Співпраця</a></li>
+            <li><a href="#support" onclick="toggleMenu()"><span>3.5</span> Підтримати</a></li>
+            <li><a href="#contacts" onclick="toggleMenu()"><span>3.6</span> Контакти</a></li>
+        </ul>
+    </div>
 
-  <div class="text-block">
-    <div class="main-title">Будинок Рабина</div>
-    <div class="sub-title">Музей • Полтава</div>
-  </div>
-</div>
+    <header id="mainHeader">
+        <div class="container header-content">
+            <a href="#" class="brand">
+                <svg class="menora-svg" viewBox="0 0 100 100">
+                    <path d="M50 20 V85 M35 30 V85 M65 30 V85 M20 40 V85 M80 40 V85 M5 50 V85 M95 50 V85" stroke="#b08a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <line x1="0" y1="85" x2="100" y2="85" stroke="#b08a3a" stroke-width="4" />
+                    <g fill="#e6c97a">
+                        <circle class="flame" cx="50" cy="15" r="5" />
+                        <circle class="flame" cx="35" cy="25" r="4.5" style="animation-delay: 0.2s;"/>
+                        <circle class="flame" cx="65" cy="25" r="4.5" style="animation-delay: 0.4s;"/>
+                        <circle class="flame" cx="20" cy="35" r="4" style="animation-delay: 0.6s;"/>
+                        <circle class="flame" cx="80" cy="35" r="4" style="animation-delay: 0.8s;"/>
+                        <circle class="flame" cx="5" cy="45" r="3.5" style="animation-delay: 1s;"/>
+                        <circle class="flame" cx="95" cy="45" r="3.5" style="animation-delay: 1.2s;"/>
+                    </g>
+                </svg>
+                <div class="brand-text">
+                    <span class="brand-name">Музей "Будинок Рабина"</span>
+                    <span class="brand-sub">Світло єврейської спадщини</span>
+                </div>
+            </a>
+            <button class="menu-toggle" onclick="toggleMenu()">МЕНЮ</button>
+        </div>
+    </header>
 
+    <main class="container">
+        <div class="hero">
+            <h1>Музей "Будинок Рабина"</h1>
+            <p style="font-size: 1.6rem; color: var(--ink-soft); max-width: 800px; margin: 20px auto;">
+                Осередок пам'яті та культури, що зберігає багатовікову історію полтавської єврейської громади.
+            </p>
+        </div>
+
+        <div class="main-grid">
+            <div class="content-card">
+                <section id="history">
+                    <h2>3.1. Історія музею</h2>
+                    <p>Будинок за адресою вул. Гоголя, 8 — це не просто архітектурна пам'ятка, а символ духовної єдності. Тут мешкали рабини, які формували культурне обличчя Полтави.</p>
+                </section>
+
+                <section id="support">
+                    <h2>3.5. Підтримати нас</h2>
+                    <div class="support-box">
+                        <h3 style="font-family:'Cinzel'; font-size: 1.8rem; margin: 0;">Ваша допомога важлива</h3>
+                        <p>Долучіться до реставрації Будинку та створення сучасних музейних експозицій.</p>
+                        <a href="#" class="donate-btn">ПІДТРИМАТИ ПРОЄКТ</a>
+                        <p style="font-size: 0.8rem; opacity: 0.6;">Благодійний фонд "Світло спадщини"</p>
+                    </div>
+                </section>
+            </div>
+
+            <aside>
+                <div class="passport">
+                    <h3 style="font-family:'Cinzel'; color: var(--gold);">Паспорт об'єкта</h3>
+                    <div style="text-align: left; margin: 25px 0;">
+                        <p><b>📍 Адреса:</b> вул. Гоголя, 8</p>
+                        <p><b>🏛 Статус:</b> Музей / Пам'ятка</p>
+                        <p><b>📜 Стиль:</b> Еклектика</p>
+                    </div>
+                    
+                    <div class="qr-card">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://heritage-poltava.com.ua&color=2a2320" alt="QR">
+                        <p style="font-size: 0.75rem; color: var(--gold); font-weight: bold; margin-top: 10px;">SCAN TO VISIT SITE</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Музей "Будинок Рабина" | Полтава</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>

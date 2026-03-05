@@ -1,857 +1,246 @@
 <!DOCTYPE html>
 <html lang="uk" dir="ltr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="Будинок Рабина у Полтаві — культурна спадщина та музейний простір." />
-  <meta name="google" content="notranslate" />
-  <title data-i18n="meta.title">LIGHT OF HERITAGE — Будинок Рабина (Полтава) | Офіційний сайт</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Музей "Музей "Будинок Рабина"" — Світло єврейської спадщини Полтави</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* ========================================================================
-       1. ГЛОБАЛЬНІ ЗМІННІ ТА ПРЕМІАЛЬНА КОЛІРНА ПАЛІТРА
-       ======================================================================== 
-    */
-    :root {
-      /* Основні кольори */
-      --color-paper: #f9f5eb;          /* Колір дорогого паперу */
-      --color-paper-dark: #f0e6d2;     /* Тінь паперу */
-      --color-ink: #1a1614;           /* Колір чорнила (майже чорний) */
-      --color-ink-soft: #3d3531;      /* М'який текст */
-      --color-gold-deep: #8e6d28;     /* Глибоке золото */
-      --color-gold-main: #b08a3a;     /* Основне золото */
-      --color-gold-light: #e6c97a;    /* Світле золото для акцентів */
-      --color-white: #ffffff;
-      
-      /* Ефекти */
-      --glass-bg: rgba(255, 255, 255, 0.82);
-      --glass-border: rgba(255, 255, 255, 0.4);
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
-      --shadow-lux: 0 25px 60px rgba(0, 0, 0, 0.18);
-      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-      
-      /* Розміри */
-      --nav-height: 90px;
-      --container-width: 1440px;
-    }
+    <style>
+        /* ============================================================
+           1. ОСНОВНІ СТИЛІ (BRANDING)
+           ============================================================ */
+        :root {
+            --paper: #f6f0e3;
+            --paper-dark: #efe4cf;
+            --ink: #2a2320;
+            --gold: #b08a3a;
+            --gold-light: #e6c97a;
+            --gold-deep: #8e6d28;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow-lux: 0 20px 50px rgba(0,0,0,0.15);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-    /* ========================================================================
-       2. БАЗОВІ НАЛАШТУВАННЯ ТА СКИДАННЯ
-       ======================================================================== 
-    */
-    * { 
-      box-sizing: border-box; 
-      -webkit-font-smoothing: antialiased; 
-      -moz-osx-font-smoothing: grayscale; 
-    }
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            background-image: linear-gradient(rgba(246,240,227,.95), rgba(246,240,227,.95)), url('https://www.transparenttextures.com/patterns/handmade-paper.png');
+        }
 
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: var(--color-paper); }
-    ::-webkit-scrollbar-thumb { background: var(--color-gold-main); border-radius: 5px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
 
-    html, body { 
-      height: 100%; 
-      margin: 0; 
-      padding: 0; 
-      scroll-behavior: smooth; 
-    }
+        /* ============================================================
+           2. АНІМОВАНА ШАПКА ТА ЛОГОТИП
+           ============================================================ */
+        header {
+            position: fixed; top: 0; width: 100%; height: 100px;
+            background: var(--glass); backdrop-filter: blur(15px);
+            z-index: 1000; display: flex; align-items: center;
+            border-bottom: 1px solid rgba(176,138,58,0.2);
+            transition: var(--transition);
+        }
 
-    body {
-      background-color: var(--color-paper);
-      /* Текстурований фон (імітація карти Полтави) */
-      background-image: 
-        linear-gradient(var(--glass-bg), var(--glass-bg)),
-        url('https://www.transparenttextures.com/patterns/handmade-paper.png'); 
-      color: var(--color-ink);
-      font-family: 'Lora', serif;
-      font-size: 18px;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
+        header.scrolled { height: 75px; box-shadow: var(--shadow-lux); }
 
-    .container {
-      max-width: var(--container-width);
-      margin: 0 auto;
-      padding: 0 40px;
-    }
+        .header-content { width: 100%; display: flex; justify-content: space-between; align-items: center; }
 
-    /* ========================================================================
-       3. АНІМОВАНА МЕНОРА (SVG ТЕХНОЛОГІЯ)
-       ======================================================================== 
-    */
-    .menorah-logo {
-      width: 70px;
-      height: 70px;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-    }
+        .brand { display: flex; align-items: center; gap: 20px; text-decoration: none; color: inherit; }
 
-    .flame {
-      transform-origin: center bottom;
-      animation: flicker 1.5s infinite ease-in-out alternate;
-    }
+        /* Анімація Менори з ff.html */
+        .menora-svg { width: 60px; height: 60px; }
+        .flame { 
+            animation: flicker 1.8s infinite alternate ease-in-out; 
+            transform-origin: center bottom;
+            filter: drop-shadow(0 0 5px var(--gold-light));
+        }
+        @keyframes flicker { 
+            0% { opacity: 0.6; transform: scale(0.9) translateY(0); } 
+            100% { opacity: 1; transform: scale(1.15) translateY(-3px); } 
+        }
 
-    @keyframes flicker {
-      0% { transform: scale(1) translateY(0); opacity: 0.8; }
-      100% { transform: scale(1.15) translateY(-2px); opacity: 1; filter: blur(1px); }
-    }
+        .brand-text { border-left: 2px solid var(--gold); padding-left: 20px; }
+        .brand-name { font-family: 'Cinzel', serif; font-weight: 900; font-size: 1.5rem; display: block; line-height: 1; }
+        .brand-sub { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 2px; text-transform: uppercase; }
 
-    /* ========================================================================
-       4. ШАПКА САЙТУ ТА ПАНЕЛЬ НАВІГАЦІЇ
-       ======================================================================== 
-    */
-    header.site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: var(--nav-height);
-      z-index: 10000;
-      background: var(--glass-bg);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border-bottom: 1px solid var(--glass-border);
-      transition: var(--transition);
-    }
+        /* Кнопка меню */
+        .menu-toggle {
+            background: var(--ink); color: var(--gold-light); border: none;
+            padding: 12px 25px; border-radius: 50px; cursor: pointer;
+            font-family: 'Montserrat'; font-weight: bold; transition: 0.3s;
+        }
+        .menu-toggle:hover { background: var(--gold); color: white; transform: translateY(-2px); }
 
-    header.scrolled {
-      height: 75px;
-      box-shadow: var(--shadow-soft);
-    }
+        /* ============================================================
+           3. ПОВНОЕКРАННЕ МЕНЮ (3.1 - 3.6)
+           ============================================================ */
+        .nav-overlay {
+            position: fixed; inset: 0; background: rgba(42,35,32,0.98);
+            z-index: 2000; display: none; flex-direction: column;
+            justify-content: center; align-items: center;
+        }
+        .nav-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
+        .nav-list { list-style: none; padding: 0; text-align: center; }
+        .nav-list a {
+            color: white; text-decoration: none; font-family: 'Cinzel';
+            font-size: 2.2rem; display: block; margin: 15px 0; transition: 0.3s;
+        }
+        .nav-list a:hover { color: var(--gold-light); transform: scale(1.1); }
+        .nav-list span { display: block; font-size: 0.8rem; font-family: 'Montserrat'; color: var(--gold); }
 
-    .nav-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 100%;
-    }
+        /* ============================================================
+           4. ГОЛОВНИЙ БЛОК (HERO)
+           ============================================================ */
+        .hero { padding: 220px 0 100px; text-align: center; }
+        .hero h1 { font-family: 'Cinzel'; font-size: 5rem; color: var(--gold-deep); margin: 0; }
+        
+        .main-grid { display: grid; grid-template-columns: 1fr 420px; gap: 60px; margin-top: 50px; }
+        @media (max-width: 1150px) { .main-grid { grid-template-columns: 1fr; } }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      text-decoration: none;
-      color: inherit;
-    }
+        .content-card { background: white; padding: 60px; border-radius: 50px; box-shadow: var(--shadow-lux); }
 
-    .logo-text-group {
-      display: flex;
-      flex-direction: column;
-      border-left: 2px solid var(--color-gold-main);
-      padding-left: 18px;
-    }
+        section { margin-bottom: 100px; scroll-margin-top: 130px; }
+        h2 { font-family: 'Cinzel'; font-size: 2.5rem; color: var(--gold); border-bottom: 3px solid var(--gold-light); display: inline-block; margin-bottom: 30px; }
 
-    .logo-text-main {
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: 1.6rem;
-      letter-spacing: 2px;
-      line-height: 1;
-    }
+        /* Блок підтримки */
+        .support-box {
+            background: var(--ink); color: white; padding: 50px; border-radius: 40px;
+            text-align: center; margin-top: 40px;
+        }
+        .donate-btn {
+            display: inline-block; background: var(--gold); color: white;
+            padding: 20px 50px; border-radius: 15px; text-decoration: none;
+            font-weight: 900; font-family: 'Montserrat'; margin: 25px 0; transition: 0.3s;
+        }
+        .donate-btn:hover { background: var(--gold-light); transform: translateY(-3px); }
 
-    .logo-text-sub {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      color: var(--color-gold-deep);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-top: 5px;
-    }
+        /* ============================================================
+           5. САЙДБАР ТА QR-КОД
+           ============================================================ */
+        .passport { 
+            background: white; padding: 40px; border-radius: 40px; border: 1px solid var(--gold);
+            position: sticky; top: 130px; text-align: center;
+        }
+        .qr-card { 
+            margin-top: 30px; padding: 20px; background: #fafafa; 
+            border: 2px dashed var(--gold); border-radius: 20px;
+        }
+        .qr-card img { width: 160px; height: 160px; }
 
-    /* МЕНЮ */
-    .nav-controls {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
+        footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 80px 0; text-align: center; }
 
-    .language-switcher select {
-      padding: 10px 15px;
-      border-radius: 12px;
-      border: 1.5px solid var(--color-gold-main);
-      background: var(--color-white);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: bold;
-      cursor: pointer;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .language-switcher select:hover {
-      background: var(--color-paper-dark);
-    }
-
-    .menu-button {
-      background: var(--color-ink);
-      color: var(--color-gold-light);
-      border: none;
-      padding: 12px 30px;
-      border-radius: 14px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: var(--transition);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .menu-button:hover {
-      background: var(--color-gold-main);
-      color: var(--color-white);
-      transform: translateY(-2px);
-    }
-
-    /* ========================================================================
-       5. ВИПАДАЮЧЕ ПАНЕЛЬ-МЕНЮ (FULL OVERLAY)
-       ======================================================================== 
-    */
-    .full-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(26, 22, 20, 0.98);
-      z-index: 11000;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      animation: menuFadeIn 0.5s ease forwards;
-    }
-
-    @keyframes menuFadeIn {
-      from { opacity: 0; transform: scale(1.05); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .close-menu {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      background: transparent;
-      color: var(--color-white);
-      border: 1.5px solid var(--color-gold-main);
-      padding: 10px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
-    }
-
-    .menu-links a {
-      color: var(--color-white);
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: 2.2rem;
-      transition: var(--transition);
-    }
-
-    .menu-links a:hover {
-      color: var(--color-gold-main);
-      letter-spacing: 5px;
-    }
-
-    .menu-links a span {
-      display: block;
-      font-size: 0.9rem;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--color-gold-light);
-      margin-top: 5px;
-    }
-
-    /* ========================================================================
-       6. ГОЛОВНИЙ ГЕРОЙ-БЛОК (HERO)
-       ======================================================================== 
-    */
-    .hero-section {
-      padding-top: calc(var(--nav-height) + 100px);
-      padding-bottom: 100px;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--color-gold-light);
-      color: var(--color-ink);
-      padding: 8px 25px;
-      border-radius: 50px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      margin-bottom: 30px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .hero-h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 5.5rem;
-      margin: 0;
-      line-height: 1;
-      color: var(--color-gold-deep);
-    }
-
-    .hero-p {
-      max-width: 800px;
-      margin: 30px auto;
-      font-size: 1.6rem;
-      color: var(--color-ink-soft);
-      font-style: italic;
-    }
-
-    /* ========================================================================
-       7. КОНТЕНТНА СІТКА (LAYOUT GRID)
-       ======================================================================== 
-    */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 60px;
-      margin-top: 50px;
-    }
-
-    @media (max-width: 1200px) {
-      .main-grid { grid-template-columns: 1fr; }
-    }
-
-    .content-body {
-      background: var(--color-white);
-      padding: 80px;
-      border-radius: 60px;
-      box-shadow: var(--shadow-lux);
-      border: 1px solid var(--color-paper-dark);
-    }
-
-    /* СТИЛІ РОЗДІЛІВ */
-    section {
-      margin-bottom: 140px;
-      scroll-margin-top: 150px;
-    }
-
-    .section-h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.8rem;
-      color: var(--color-gold-main);
-      margin-bottom: 40px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .section-h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: var(--color-gold-light);
-    }
-
-    .image-container {
-      margin: 50px 0;
-      position: relative;
-    }
-
-    .image-container img {
-      width: 100%;
-      border-radius: 30px;
-      display: block;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-      border: 15px solid var(--color-white);
-    }
-
-    /* СПЕЦІАЛЬНИЙ БЛОК: ФІЛАРМОНІЯ / ВЕЛИКЕ БУДІВНИЦТВО */
-    .promo-card {
-      background: linear-gradient(135deg, #fefefe 0%, #f0f7ff 100%);
-      border-left: 10px solid #4267B2;
-      padding: 50px;
-      border-radius: 0 40px 40px 0;
-      margin: 60px 0;
-      box-shadow: 0 20px 40px rgba(66, 103, 178, 0.1);
-    }
-
-    .fb-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
-      background: #4267B2;
-      color: #fff;
-      padding: 20px 40px;
-      border-radius: 15px;
-      text-decoration: none;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      transition: var(--transition);
-      margin-top: 25px;
-    }
-
-    .fb-button:hover {
-      background: #365899;
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(66, 103, 178, 0.4);
-    }
-
-    /* ========================================================================
-       8. САЙДБАР (SIDEBAR) ТА ПАСПОРТ ОБ'ЄКТА
-       ======================================================================== 
-    */
-    aside .sticky-sidebar {
-      position: sticky;
-      top: 130px;
-    }
-
-    .passport-card {
-      background: var(--color-white);
-      padding: 50px;
-      border-radius: 40px;
-      border: 1px solid var(--color-gold-light);
-      box-shadow: var(--shadow-lux);
-      text-align: center;
-    }
-
-    .passport-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      margin-bottom: 30px;
-      color: var(--color-gold-main);
-    }
-
-    .passport-table {
-      width: 100%;
-      text-align: left;
-      margin-bottom: 40px;
-    }
-
-    .passport-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 0;
-      border-bottom: 1px solid var(--color-paper-dark);
-    }
-
-    .passport-row span:first-child {
-      font-weight: bold;
-      color: var(--color-gold-deep);
-    }
-
-    /* КНОПКА ПІДТРИМКИ */
-    .donate-btn {
-      display: block;
-      width: 100%;
-      background: linear-gradient(to right, var(--color-gold-main), var(--color-gold-deep));
-      color: var(--color-white);
-      padding: 22px;
-      border-radius: 18px;
-      text-decoration: none;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 1.1rem;
-      transition: var(--transition);
-      box-shadow: 0 10px 20px rgba(176,138,58,0.3);
-    }
-
-    .donate-btn:hover {
-      transform: scale(1.03);
-      box-shadow: 0 15px 30px rgba(176,138,58,0.5);
-    }
-
-    /* QR-КОД ГЕНЕРАТОР */
-    .qr-container {
-      margin-top: 40px;
-      background: #fafafa;
-      padding: 30px;
-      border-radius: 25px;
-      border: 2px dashed var(--color-gold-main);
-    }
-
-    .qr-container p {
-      font-size: 0.8rem;
-      margin-top: 15px;
-      font-weight: bold;
-      color: var(--color-ink-soft);
-    }
-
-    /* ========================================================================
-       9. ФУТЕР (FOOTER)
-       ======================================================================== 
-    */
-    footer.site-footer {
-      background: var(--color-ink);
-      color: var(--color-white);
-      padding: 100px 0;
-      margin-top: 150px;
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      color: var(--color-gold-light);
-      margin-bottom: 20px;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin: 40px 0;
-    }
-
-    .footer-links a {
-      color: #aaa;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: var(--color-gold-light);
-    }
-
-    /* ========================================================================
-       10. ДОДАТКОВІ ЕЛЕМЕНТИ (BUTTON UP, LOADER)
-       ======================================================================== 
-    */
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 50px;
-      right: 50px;
-      width: 70px;
-      height: 70px;
-      background: var(--color-gold-main);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      z-index: 1000;
-      font-size: 24px;
-      box-shadow: var(--shadow-lux);
-      transition: var(--transition);
-    }
-
-    #scrollTopBtn:hover {
-      background: var(--color-ink);
-      transform: translateY(-5px);
-    }
-
-    /* АНІМАЦІЯ ПОЯВИ */
-    [data-aos] {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
-    }
-
-    [data-aos].aos-animate {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
 </head>
 <body>
 
-  <div class="full-menu-overlay" id="fullMenu">
-    <button class="close-menu" id="closeBtn">CLOSE ×</button>
-    <nav class="menu-links">
-      <a href="#history" class="menu-item">3.1. ІСТОРІЯ <span>Від заснування до сьогодення</span></a>
-      <a href="#news" class="menu-item">3.2. НОВИНИ <span>Події та заходи музею</span></a>
-      <a href="#projects" class="menu-item">3.3. ПРОЄКТИ <span>Оцифрування та виставки</span></a>
-      <a href="#cooperation" class="menu-item">3.4. СПІВПРАЦЯ <span>Для партнерів та меценатів</span></a>
-      <a href="#help" class="menu-item">3.5. ПІДТРИМКА <span>Допомогти проєкту</span></a>
-      <a href="#contacts" class="menu-item">3.6. КОНТАКТИ <span>Де ми знаходимось</span></a>
-    </nav>
-  </div>
-
-  <header class="site-header" id="header">
-    <div class="container nav-wrapper">
-      <a href="#" class="logo-container">
-        <svg class="menorah-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 20 V85 M35 30 V85 M65 30 V85 M20 40 V85 M80 40 V85 M5 50 V85 M95 50 V85" 
-                stroke="#b08a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <line x1="0" y1="85" x2="100" y2="85" stroke="#b08a3a" stroke-width="4" stroke-linecap="round"/>
-          <g class="flame-group">
-            <circle class="flame" cx="50" cy="15" r="5" fill="#e6c97a" />
-            <circle class="flame" cx="35" cy="25" r="4.5" fill="#e6c97a" style="animation-delay: 0.2s;"/>
-            <circle class="flame" cx="65" cy="25" r="4.5" fill="#e6c97a" style="animation-delay: 0.4s;"/>
-            <circle class="flame" cx="20" cy="35" r="4" fill="#e6c97a" style="animation-delay: 0.6s;"/>
-            <circle class="flame" cx="80" cy="35" r="4" fill="#e6c97a" style="animation-delay: 0.8s;"/>
-            <circle class="flame" cx="5" cy="45" r="4" fill="#e6c97a" style="animation-delay: 1s;"/>
-            <circle class="flame" cx="95" cy="45" r="4" fill="#e6c97a" style="animation-delay: 1.2s;"/>
-          </g>
-        </svg>
-        <div class="logo-text-group">
-          <span class="logo-text-main">LIGHT OF HERITAGE</span>
-          <span class="logo-text-sub">Будинок Рабина • Музей спадщини</span>
-        </div>
-      </a>
-
-      <div class="nav-controls">
-        <div class="language-switcher">
-          <select id="langSelect" onchange="switchLanguage(this.value)">
-            <option value="uk">UA</option>
-            <option value="en">EN</option>
-            <option value="he">HE</option>
-            <option value="de">DE</option>
-            <option value="pl">PL</option>
-            <option value="ru">RU</option>
-          </select>
-        </div>
-        <button class="menu-button" id="openMenu">
-          <span>☰</span> МЕНЮ
-        </button>
-      </div>
+    <div class="nav-overlay" id="navMenu">
+        <button style="position:absolute; top:40px; right:40px; background:none; border:none; color:white; font-size:3rem; cursor:pointer;" onclick="toggleMenu()">×</button>
+        <ul class="nav-list">
+            <li><a href="#history" onclick="toggleMenu()"><span>3.1</span> Історія</a></li>
+            <li><a href="#news" onclick="toggleMenu()"><span>3.2</span> Новини</a></li>
+            <li><a href="#projects" onclick="toggleMenu()"><span>3.3</span> Проєкти</a></li>
+            <li><a href="#coop" onclick="toggleMenu()"><span>3.4</span> Співпраця</a></li>
+            <li><a href="#support" onclick="toggleMenu()"><span>3.5</span> Підтримати</a></li>
+            <li><a href="#contacts" onclick="toggleMenu()"><span>3.6</span> Контакти</a></li>
+        </ul>
     </div>
-  </header>
 
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-badge" data-aos>Історична пам'ятка Полтави</div>
-      <h1 class="hero-h1" data-aos>Будинок Рабина</h1>
-      <p class="hero-p" data-aos>Місце, де оживає історія, а стіни бережуть пам'ять поколінь єврейської громади нашого міста.</p>
-    </div>
-  </section>
-
-  <div class="container">
-    <div class="main-grid">
-      <main class="content-body">
-        
-        <section id="history" data-aos>
-          <h2 class="section-h2">3.1. Історія кварталу</h2>
-          <p>Будинок Рабина (вул. Гоголя, 8) є частиною унікального єврейського кварталу Полтави. Наприкінці XIX століття тут сформувався духовний центр міста, що включав Хоральну синагогу, молитовні будинки та школу.</p>
-          
-          <div class="image-container">
-            <img src="synagogue-archive.jpg" alt="Хоральна синагога Полтава">
-            <p style="font-size: 0.9rem; color: #777; margin-top: 15px; text-align: center;">Архівне фото: Хоральна синагога та прилеглі будівлі, початок ХХ ст.</p>
-          </div>
-
-          <h3>Велике Будівництво та Філармонія</h3>
-          <p>Сьогодні будівля колишньої синагоги є Полтавською обласною філармонією. Завдяки програмі президента "Велике будівництво", споруду було капітально реконструйовано, що стало важливим кроком у збереженні всієї історичної вулиці Гоголя.</p>
-
-          <div class="promo-card">
-            <h4>🎥 Подивіться, як відбувалася реконструкція</h4>
-            <p>Унікальне відео від телеканалу "ДОМ" про відновлення архітектурної перлини, що стоїть поруч із Будинком Рабина.</p>
-            <a href="https://www.facebook.com/kanalDOM/videos/692129378429256/" target="_blank" class="fb-button">
-              Дивитися на Facebook
+    <header id="mainHeader">
+        <div class="container header-content">
+            <a href="#" class="brand">
+                <svg class="menora-svg" viewBox="0 0 100 100">
+                    <path d="M50 20 V85 M35 30 V85 M65 30 V85 M20 40 V85 M80 40 V85 M5 50 V85 M95 50 V85" stroke="#b08a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <line x1="0" y1="85" x2="100" y2="85" stroke="#b08a3a" stroke-width="4" />
+                    <g fill="#e6c97a">
+                        <circle class="flame" cx="50" cy="15" r="5" />
+                        <circle class="flame" cx="35" cy="25" r="4.5" style="animation-delay: 0.2s;"/>
+                        <circle class="flame" cx="65" cy="25" r="4.5" style="animation-delay: 0.4s;"/>
+                        <circle class="flame" cx="20" cy="35" r="4" style="animation-delay: 0.6s;"/>
+                        <circle class="flame" cx="80" cy="35" r="4" style="animation-delay: 0.8s;"/>
+                        <circle class="flame" cx="5" cy="45" r="3.5" style="animation-delay: 1s;"/>
+                        <circle class="flame" cx="95" cy="45" r="3.5" style="animation-delay: 1.2s;"/>
+                    </g>
+                </svg>
+                <div class="brand-text">
+                    <span class="brand-name">Музей "Будинок Рабина"</span>
+                    <span class="brand-sub">Світло єврейської спадщини</span>
+                </div>
             </a>
-          </div>
-        </section>
-
-        <section id="news" data-aos>
-          <h2 class="section-h2">3.2. Новини та події</h2>
-          <p>Ми постійно проводимо заходи, щоб зробити історію доступною кожному.</p>
-          
-          <div style="background: #fdfdfd; padding: 40px; border-radius: 30px; border: 1px solid var(--color-paper-dark); margin-top: 30px;">
-            <div style="color: var(--color-gold-main); font-weight: bold; margin-bottom: 10px;">15 БЕРЕЗНЯ, 2026</div>
-            <h3 style="margin: 0 0 15px 0;">Відкрита екскурсія: "Шлях від Синагоги до Рабина"</h3>
-            <p>Запрошуємо на великий маршрут історичним кварталом. Реєстрація відкрита.</p>
-            <a href="news-excursion.html" style="color: var(--color-gold-deep); font-weight: bold; text-decoration: none; border-bottom: 1px solid;">Читати детальніше →</a>
-          </div>
-        </section>
-
-        <section id="help" data-aos>
-          <h2 class="section-h2">3.5. Допомога проєкту</h2>
-          <p>Будинок Рабина потребує дбайливого ставлення та реставрації внутрішніх приміщень. Ваша підтримка — це внесок у збереження мультикультурної історії України.</p>
-          
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
-            <div style="padding: 30px; background: var(--color-paper); border-radius: 20px;">
-              <h4 style="margin-top:0;">Благодійний внесок</h4>
-              <p style="font-size: 1rem;">Усі кошти йдуть на створення експозиції та ремонт покрівлі.</p>
-              <a href="#" class="donate-btn" style="padding: 15px; text-align: center;">ПІДТРИМАТИ</a>
-            </div>
-            <div style="padding: 30px; background: var(--color-paper); border-radius: 20px;">
-              <h4 style="margin-top:0;">Стати волонтером</h4>
-              <p style="font-size: 1rem;">Долучайтеся до збору архівних даних та оцифрування документів.</p>
-              <a href="mailto:help@heritage.pl.ua" style="color: var(--color-gold-main); font-weight: bold;">Напишіть нам →</a>
-            </div>
-          </div>
-        </section>
-
-        <section id="contacts" data-aos>
-          <h2 class="section-h2">3.6. Контакти</h2>
-          <p>Ми завжди раді гостям, дослідникам та партнерам.</p>
-          <div style="margin-top: 40px;">
-            <p><strong>📍 Адреса:</strong> Полтава, вул. Гоголя, 8</p>
-            <p><strong>📞 Телефон:</strong> +38 (097) 709 84 69</p>
-            <p><strong>✉️ E-mail:</strong> info@heritage-poltava.com.ua</p>
-          </div>
-          
-          <div style="width: 100%; height: 350px; background: #eee; border-radius: 30px; margin-top: 40px; overflow: hidden; border: 2px solid var(--color-paper-dark);">
-             <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999;">
-               Карта з геолокацією: Гоголя, 8
-             </div>
-          </div>
-        </section>
-      </main>
-
-      <aside>
-        <div class="sticky-sidebar">
-          <div class="passport-card" data-aos>
-            <h3>Паспорт об'єкта</h3>
-            <div class="image-container" style="margin: 0 0 30px 0;">
-              <img src="rabin-house-now.jpg" style="border: 5px solid #eee;" alt="Будинок Рабина зараз">
-            </div>
-            <div class="passport-table">
-              <div class="passport-row"><span>Статус</span><span>Пам'ятка архітектури</span></div>
-              <div class="passport-row"><span>Рік побудови</span><span>кінець XIX ст.</span></div>
-              <div class="passport-row"><span>Вулиця</span><span>Гоголя, 8</span></div>
-              <div class="passport-row"><span>Місто</span><span>Полтава</span></div>
-            </div>
-            
-            <a href="#help" class="donate-btn">ПІДТРИМАТИ ПРОЄКТ</a>
-
-            <div class="qr-container">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://heritage-poltava.com.ua" alt="QR Code">
-              <p>Відскануйте, щоб відкрити сайт на смартфоні</p>
-            </div>
-          </div>
+            <button class="menu-toggle" onclick="toggleMenu()">МЕНЮ</button>
         </div>
-      </aside>
-    </div>
-  </div>
+    </header>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-logo">LIGHT OF HERITAGE</div>
-      <p>Офіційний інформаційний ресурс Будинку Рабина та єврейської спадщини Полтави.</p>
-      
-      <div class="footer-links">
-        <a href="#history">Історія</a>
-        <a href="#news">Новини</a>
-        <a href="#help">Підтримка</a>
-        <a href="#contacts">Контакти</a>
-      </div>
-      
-      <p style="margin-top: 60px; font-size: 0.8rem; color: #555;">
-        © 2026 THE LIGHT OF JEWISH HERITAGE. All rights reserved. <br>
-        Проєкт реалізовано з метою популяризації культурного розмаїття Полтавщини.
-      </p>
-    </div>
-  </footer>
+    <main class="container">
+        <div class="hero">
+            <h1>Музей "Будинок Рабина"</h1>
+            <p style="font-size: 1.6rem; color: var(--ink-soft); max-width: 800px; margin: 20px auto;">
+                Осередок пам'яті та культури, що зберігає багатовікову історію полтавської єврейської громади.
+            </p>
+        </div>
 
-  <button id="scrollTopBtn">↑</button>
+        <div class="main-grid">
+            <div class="content-card">
+                <section id="history">
+                    <h2>3.1. Історія музею</h2>
+                    <p>Будинок за адресою вул. Гоголя, 8 — це не просто архітектурна пам'ятка, а символ духовної єдності. Тут мешкали рабини, які формували культурне обличчя Полтави.</p>
+                </section>
 
-  <script>
-    /**
-     * 1. ЛОКАЛІЗАЦІЯ (8 МОВ)
-     */
-    const langData = {
-      uk: {
-        "meta.title": "LIGHT OF HERITAGE — Будинок Рабина (Полтава)",
-        "ui.logo-main": "LIGHT OF HERITAGE",
-        "ui.menu": "МЕНЮ"
-      },
-      en: {
-        "meta.title": "LIGHT OF HERITAGE — Rabbi's House (Poltava)",
-        "ui.logo-main": "LIGHT OF HERITAGE",
-        "ui.menu": "MENU"
-      },
-      he: {
-        "meta.title": "אור המורשת — בית הרב (פולטבה)",
-        "ui.logo-main": "אור המורשת",
-        "ui.menu": "תפריט"
-      }
-      // Можна додавати de, pl, ru і т.д.
-    };
+                <section id="support">
+                    <h2>3.5. Підтримати нас</h2>
+                    <div class="support-box">
+                        <h3 style="font-family:'Cinzel'; font-size: 1.8rem; margin: 0;">Ваша допомога важлива</h3>
+                        <p>Долучіться до реставрації Будинку та створення сучасних музейних експозицій.</p>
+                        <a href="#" class="donate-btn">ПІДТРИМАТИ ПРОЄКТ</a>
+                        <p style="font-size: 0.8rem; opacity: 0.6;">Благодійний фонд "Світло спадщини"</p>
+                    </div>
+                </section>
+            </div>
 
-    function switchLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.documentElement.dir = (lang === 'he') ? 'rtl' : 'ltr';
-      
-      // Оновлення тексту
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (langData[lang] && langData[lang][key]) {
-          el.textContent = langData[lang][key];
+            <aside>
+                <div class="passport">
+                    <h3 style="font-family:'Cinzel'; color: var(--gold);">Паспорт об'єкта</h3>
+                    <div style="text-align: left; margin: 25px 0;">
+                        <p><b>📍 Адреса:</b> вул. Гоголя, 8</p>
+                        <p><b>🏛 Статус:</b> Музей / Пам'ятка</p>
+                        <p><b>📜 Стиль:</b> Еклектика</p>
+                    </div>
+                    
+                    <div class="qr-card">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://heritage-poltava.com.ua&color=2a2320" alt="QR">
+                        <p style="font-size: 0.75rem; color: var(--gold); font-weight: bold; margin-top: 10px;">SCAN TO VISIT SITE</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Музей "Будинок Рабина" | Полтава</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
         }
-      });
 
-      localStorage.setItem('selectedLang', lang);
-    }
-
-    /**
-     * 2. УПРАВЛІННЯ МЕНЮ (OPEN/CLOSE)
-     */
-    const fullMenu = document.getElementById('fullMenu');
-    const openMenuBtn = document.getElementById('openMenu');
-    const closeMenuBtn = document.getElementById('closeBtn');
-    const menuItems = document.querySelectorAll('.menu-item');
-
-    openMenuBtn.addEventListener('click', () => {
-      fullMenu.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Stop scrolling
-    });
-
-    function closeMenu() {
-      fullMenu.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    closeMenuBtn.addEventListener('click', closeMenu);
-    menuItems.forEach(item => item.addEventListener('click', closeMenu));
-
-    /**
-     * 3. ЕФЕКТИ ПРИ ПРОКРУТЦІ
-     */
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      const upBtn = document.getElementById('scrollTopBtn');
-      
-      if (window.scrollY > 100) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-
-      if (window.scrollY > 600) {
-        upBtn.style.display = 'block';
-      } else {
-        upBtn.style.display = 'none';
-      }
-    });
-
-    document.getElementById('scrollTopBtn').addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    /**
-     * 4. АНІМАЦІЯ ПОЯВИ ЕЛЕМЕНТІВ (AOS LIGHT)
-     */
-    const observerOptions = {
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('aos-animate');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
-
-    /**
-     * 5. ІНІЦІАЛІЗАЦІЯ ПРИ ЗАВАНТАЖЕННІ
-     */
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('selectedLang') || 'uk';
-      document.getElementById('langSelect').value = savedLang;
-      switchLanguage(savedLang);
-    });
-  </script>
-
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
