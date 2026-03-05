@@ -1135,7 +1135,54 @@
     max-width: 48vw;
   }
 }
+/* ✅ MOBILE HEADER: 2 rows so menu never disappears */
+@media (max-width: 520px) {
+  :root { --nav-h: 128px; }          /* збільшуємо висоту хедера */
 
+  .site-header { height: var(--nav-h); }
+
+  .nav-inner{
+    flex-wrap: wrap;                 /* дозволяємо перенос */
+    align-content: center;
+    gap: 10px;
+  }
+
+  /* 1-й рядок: логотип на всю ширину */
+  .logo-link{
+    flex: 1 1 100%;
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .logo-titles{ padding-left: 10px; min-width: 0; }
+
+  .logo-main{ font-size: 1.05rem; }
+  .logo-sub{
+    display: block;                  /* НЕ ховаємо */
+    font-size: 0.60rem;
+    letter-spacing: 1.1px;
+    margin-top: 3px;
+  }
+
+  /* 2-й рядок: мова + меню */
+  .nav-right{
+    flex: 1 1 100%;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .lang-select{
+    padding: 7px 28px 7px 10px;
+    font-size: 0.78rem;
+    max-width: 72vw;                 /* щоб не з’їдала все */
+  }
+
+  .menu-toggle{
+    padding: 10px 14px;
+    gap: 0;
+  }
+  .menu-toggle span{ display: none; } /* лишаємо іконку */
+}
   </style>
 </head>
 <body>
