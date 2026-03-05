@@ -1,246 +1,2073 @@
 <!DOCTYPE html>
 <html lang="uk" dir="ltr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Музей "Музей "Будинок Рабина"" — Світло єврейської спадщини Полтави</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Будинок Рабина у Полтаві — культурна спадщина та музейний простір." />
+  <title>LIGHT OF HERITAGE — Будинок Рабина (Полтава)</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* ============================================================
-           1. ОСНОВНІ СТИЛІ (BRANDING)
-           ============================================================ */
-        :root {
-            --paper: #f6f0e3;
-            --paper-dark: #efe4cf;
-            --ink: #2a2320;
-            --gold: #b08a3a;
-            --gold-light: #e6c97a;
-            --gold-deep: #8e6d28;
-            --glass: rgba(255, 255, 255, 0.9);
-            --shadow-lux: 0 20px 50px rgba(0,0,0,0.15);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+  <style>
+    /* ========================================================================
+       GLOBAL CSS VARIABLES
+    ======================================================================== */
+    :root {
+      --paper:        #f9f5eb;
+      --paper-dark:   #ede3cc;
+      --paper-mid:    #f3ead8;
+      --ink:          #1a1614;
+      --ink-soft:     #3d3531;
+      --ink-muted:    #6b5e57;
+      --gold-deep:    #7a5c1e;
+      --gold-main:    #b08a3a;
+      --gold-light:   #e6c97a;
+      --gold-pale:    #f5e8c0;
+      --white:        #ffffff;
+      --shadow-soft:  0 8px 32px rgba(0,0,0,0.07);
+      --shadow-lux:   0 20px 60px rgba(0,0,0,0.14);
+      --shadow-card:  0 4px 24px rgba(0,0,0,0.09);
+      --radius-xl:    40px;
+      --radius-lg:    24px;
+      --radius-md:    14px;
+      --radius-sm:    8px;
+      --transition:   all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+      --nav-h:        88px;
+    }
 
-        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--paper);
-            color: var(--ink);
-            font-family: 'Lora', serif;
-            line-height: 1.8;
-            background-image: linear-gradient(rgba(246,240,227,.95), rgba(246,240,227,.95)), url('https://www.transparenttextures.com/patterns/handmade-paper.png');
-        }
+    /* ========================================================================
+       RESET & BASE
+    ======================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 17px;
+    }
 
-        /* ============================================================
-           2. АНІМОВАНА ШАПКА ТА ЛОГОТИП
-           ============================================================ */
-        header {
-            position: fixed; top: 0; width: 100%; height: 100px;
-            background: var(--glass); backdrop-filter: blur(15px);
-            z-index: 1000; display: flex; align-items: center;
-            border-bottom: 1px solid rgba(176,138,58,0.2);
-            transition: var(--transition);
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--paper);
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      color: var(--ink);
+      font-family: 'Lora', serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
 
-        header.scrolled { height: 75px; box-shadow: var(--shadow-lux); }
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-main); border-radius: 6px; }
 
-        .header-content { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
 
-        .brand { display: flex; align-items: center; gap: 20px; text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
-        /* Анімація Менори з ff.html */
-        .menora-svg { width: 60px; height: 60px; }
-        .flame { 
-            animation: flicker 1.8s infinite alternate ease-in-out; 
-            transform-origin: center bottom;
-            filter: drop-shadow(0 0 5px var(--gold-light));
-        }
-        @keyframes flicker { 
-            0% { opacity: 0.6; transform: scale(0.9) translateY(0); } 
-            100% { opacity: 1; transform: scale(1.15) translateY(-3px); } 
-        }
+    a { color: var(--gold-deep); }
+    a:hover { color: var(--gold-main); }
 
-        .brand-text { border-left: 2px solid var(--gold); padding-left: 20px; }
-        .brand-name { font-family: 'Cinzel', serif; font-weight: 900; font-size: 1.5rem; display: block; line-height: 1; }
-        .brand-sub { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--gold-deep); letter-spacing: 2px; text-transform: uppercase; }
+    /* ========================================================================
+       MENORAH SVG ANIMATION
+    ======================================================================== */
+    .menorah-svg .flame {
+      transform-origin: 50% 100%;
+      animation: flicker 1.6s ease-in-out infinite alternate;
+    }
+    .menorah-svg .flame:nth-child(1) { animation-delay: 0s; }
+    .menorah-svg .flame:nth-child(2) { animation-delay: 0.18s; }
+    .menorah-svg .flame:nth-child(3) { animation-delay: 0.34s; }
+    .menorah-svg .flame:nth-child(4) { animation-delay: 0.52s; }
+    .menorah-svg .flame:nth-child(5) { animation-delay: 0.68s; }
+    .menorah-svg .flame:nth-child(6) { animation-delay: 0.84s; }
+    .menorah-svg .flame:nth-child(7) { animation-delay: 1.0s; }
 
-        /* Кнопка меню */
-        .menu-toggle {
-            background: var(--ink); color: var(--gold-light); border: none;
-            padding: 12px 25px; border-radius: 50px; cursor: pointer;
-            font-family: 'Montserrat'; font-weight: bold; transition: 0.3s;
-        }
-        .menu-toggle:hover { background: var(--gold); color: white; transform: translateY(-2px); }
+    @keyframes flicker {
+      0%   { transform: scaleY(1) translateY(0);   opacity: 0.75; }
+      100% { transform: scaleY(1.22) translateY(-2px); opacity: 1; }
+    }
 
-        /* ============================================================
-           3. ПОВНОЕКРАННЕ МЕНЮ (3.1 - 3.6)
-           ============================================================ */
-        .nav-overlay {
-            position: fixed; inset: 0; background: rgba(42,35,32,0.98);
-            z-index: 2000; display: none; flex-direction: column;
-            justify-content: center; align-items: center;
-        }
-        .nav-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
-        .nav-list { list-style: none; padding: 0; text-align: center; }
-        .nav-list a {
-            color: white; text-decoration: none; font-family: 'Cinzel';
-            font-size: 2.2rem; display: block; margin: 15px 0; transition: 0.3s;
-        }
-        .nav-list a:hover { color: var(--gold-light); transform: scale(1.1); }
-        .nav-list span { display: block; font-size: 0.8rem; font-family: 'Montserrat'; color: var(--gold); }
+    /* ========================================================================
+       HEADER / NAVBAR
+    ======================================================================== */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: var(--nav-h);
+      z-index: 9999;
+      background: rgba(249,245,235,0.88);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(176,138,58,0.18);
+      transition: var(--transition);
+    }
 
-        /* ============================================================
-           4. ГОЛОВНИЙ БЛОК (HERO)
-           ============================================================ */
-        .hero { padding: 220px 0 100px; text-align: center; }
-        .hero h1 { font-family: 'Cinzel'; font-size: 5rem; color: var(--gold-deep); margin: 0; }
-        
-        .main-grid { display: grid; grid-template-columns: 1fr 420px; gap: 60px; margin-top: 50px; }
-        @media (max-width: 1150px) { .main-grid { grid-template-columns: 1fr; } }
+    .site-header.scrolled {
+      height: 68px;
+      box-shadow: var(--shadow-soft);
+    }
 
-        .content-card { background: white; padding: 60px; border-radius: 50px; box-shadow: var(--shadow-lux); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
 
-        section { margin-bottom: 100px; scroll-margin-top: 130px; }
-        h2 { font-family: 'Cinzel'; font-size: 2.5rem; color: var(--gold); border-bottom: 3px solid var(--gold-light); display: inline-block; margin-bottom: 30px; }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+    }
 
-        /* Блок підтримки */
-        .support-box {
-            background: var(--ink); color: white; padding: 50px; border-radius: 40px;
-            text-align: center; margin-top: 40px;
-        }
-        .donate-btn {
-            display: inline-block; background: var(--gold); color: white;
-            padding: 20px 50px; border-radius: 15px; text-decoration: none;
-            font-weight: 900; font-family: 'Montserrat'; margin: 25px 0; transition: 0.3s;
-        }
-        .donate-btn:hover { background: var(--gold-light); transform: translateY(-3px); }
+    .logo-titles {
+      border-left: 2.5px solid var(--gold-main);
+      padding-left: 16px;
+    }
 
-        /* ============================================================
-           5. САЙДБАР ТА QR-КОД
-           ============================================================ */
-        .passport { 
-            background: white; padding: 40px; border-radius: 40px; border: 1px solid var(--gold);
-            position: sticky; top: 130px; text-align: center;
-        }
-        .qr-card { 
-            margin-top: 30px; padding: 20px; background: #fafafa; 
-            border: 2px dashed var(--gold); border-radius: 20px;
-        }
-        .qr-card img { width: 160px; height: 160px; }
+    .logo-main {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: 1.45rem;
+      letter-spacing: 2px;
+      line-height: 1;
+      color: var(--ink);
+    }
 
-        footer { background: var(--ink); color: rgba(255,255,255,0.4); padding: 80px 0; text-align: center; }
+    .logo-sub {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--gold-deep);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-top: 5px;
+    }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    </style>
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    /* Language switcher – custom styled */
+    .lang-switcher {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-btn {
+      padding: 6px 13px;
+      border-radius: 20px;
+      border: 1.5px solid transparent;
+      background: transparent;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--ink-soft);
+      letter-spacing: 0.5px;
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active {
+      border-color: var(--gold-main);
+      background: var(--gold-pale);
+      color: var(--gold-deep);
+    }
+
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      color: var(--gold-light);
+      border: none;
+      padding: 11px 26px;
+      border-radius: var(--radius-md);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+
+    .menu-toggle:hover {
+      background: var(--gold-main);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ========================================================================
+       FULLSCREEN MENU OVERLAY
+    ======================================================================== */
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(18,14,12,0.97);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: overlayIn 0.38s ease forwards;
+    }
+
+    .menu-overlay.open { display: flex; }
+
+    @keyframes overlayIn {
+      from { opacity: 0; transform: scale(1.04); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 28px; right: 36px;
+      background: transparent;
+      border: 1.5px solid var(--gold-main);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 9px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .menu-close:hover { background: var(--gold-main); }
+
+    .menu-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: var(--white);
+      transition: var(--transition);
+      padding: 8px 0;
+    }
+
+    .menu-nav a em {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .menu-nav a:hover {
+      color: var(--gold-main);
+      letter-spacing: 4px;
+    }
+
+    /* ========================================================================
+       HERO SECTION
+    ======================================================================== */
+    .hero {
+      padding-top: calc(var(--nav-h) + 90px);
+      padding-bottom: 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(176,138,58,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold-pale);
+      color: var(--gold-deep);
+      border: 1px solid var(--gold-light);
+      padding: 7px 24px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      font-weight: 900;
+      color: var(--gold-deep);
+      margin: 0 auto 30px;
+      line-height: 1.05;
+      max-width: 900px;
+    }
+
+    .hero-p {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      font-size: 1.2rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--gold-main);
+      color: var(--white);
+      text-decoration: none;
+      padding: 16px 38px;
+      border-radius: var(--radius-lg);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: var(--transition);
+      box-shadow: 0 8px 28px rgba(176,138,58,0.3);
+    }
+
+    .hero-cta:hover {
+      background: var(--gold-deep);
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(176,138,58,0.4);
+    }
+
+    /* gold ornament divider */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 60px auto;
+      max-width: 500px;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-main), transparent);
+    }
+    .ornament-star {
+      color: var(--gold-main);
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    /* ========================================================================
+       MAIN LAYOUT GRID
+    ======================================================================== */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 50px;
+      margin-top: 30px;
+      align-items: start;
+    }
+
+    @media (max-width: 1150px) {
+      .layout-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================================================================
+       CONTENT BODY (main column)
+    ======================================================================== */
+    .content-body {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 70px 70px;
+      box-shadow: var(--shadow-lux);
+      border: 1px solid var(--paper-dark);
+    }
+
+    @media (max-width: 700px) {
+      .content-body { padding: 36px 24px; border-radius: var(--radius-lg); }
+    }
+
+    section[id] {
+      scroll-margin-top: 120px;
+      margin-bottom: 110px;
+    }
+
+    section[id]:last-child { margin-bottom: 0; }
+
+    .sec-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--gold-main);
+      margin: 0 0 36px 0;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 14px;
+    }
+
+    .sec-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 56px; height: 4px;
+      background: linear-gradient(to right, var(--gold-main), var(--gold-light));
+      border-radius: 2px;
+    }
+
+    /* ========================================================================
+       IMAGE CARDS WITH CAPTIONS
+    ======================================================================== */
+    .img-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      margin: 40px 0;
+      border: 1px solid var(--paper-dark);
+    }
+
+    .img-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .img-card:hover img { transform: scale(1.025); }
+
+    .img-caption {
+      padding: 16px 22px;
+      background: var(--paper-mid);
+      border-top: 1px solid var(--paper-dark);
+    }
+
+    .img-caption p {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .img-caption strong {
+      display: block;
+      color: var(--gold-deep);
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========================================================================
+       PHOTO GRID (2-col)
+    ======================================================================== */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .photo-grid .img-card { margin: 0; }
+
+    @media (max-width: 600px) {
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================================================================
+       HISTORY TEXT WITH DROPCAP
+    ======================================================================== */
+    .history-body p {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.9;
+      margin-bottom: 1.4em;
+    }
+
+    .dropcap::first-letter {
+      float: left;
+      font-family: 'Cinzel', serif;
+      font-size: 4.2rem;
+      line-height: 0.78;
+      color: var(--gold-main);
+      padding-right: 10px;
+      padding-top: 6px;
+    }
+
+    .quote-block {
+      border-left: 4px solid var(--gold-main);
+      margin: 36px 0;
+      padding: 20px 28px;
+      background: var(--gold-pale);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+    }
+
+    /* ========================================================================
+       FACT TAGS / TIMELINE CHIPS
+    ======================================================================== */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--paper-mid);
+      border: 1px solid var(--gold-light);
+      color: var(--gold-deep);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    /* ========================================================================
+       TIMELINE (vertical)
+    ======================================================================== */
+    .timeline {
+      position: relative;
+      padding-left: 36px;
+      margin: 40px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold-main), var(--gold-pale));
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--gold-main);
+      border: 3px solid var(--paper);
+      box-shadow: 0 0 0 2px var(--gold-light);
+    }
+
+    .tl-year {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold-deep);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .tl-text {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ========================================================================
+       NEWS CARD
+    ======================================================================== */
+    .news-card {
+      border: 1px solid var(--paper-dark);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      background: var(--paper);
+      transition: var(--transition);
+      margin: 28px 0;
+    }
+
+    .news-card:hover {
+      box-shadow: var(--shadow-card);
+      transform: translateY(-3px);
+    }
+
+    .news-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold-main);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .news-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+
+    .news-card p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      margin: 0 0 20px;
+    }
+
+    .read-more {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--gold-deep);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-light);
+      transition: var(--transition);
+      letter-spacing: 0.5px;
+    }
+
+    .read-more:hover {
+      color: var(--gold-main);
+      border-color: var(--gold-main);
+    }
+
+    /* ========================================================================
+       EXCURSION ROUTE CARD
+    ======================================================================== */
+    .route-card {
+      background: linear-gradient(135deg, var(--ink) 0%, #2a1f14 100%);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin: 36px 0;
+      color: var(--white);
+    }
+
+    .route-card h4 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-light);
+      margin: 0 0 20px;
+      font-size: 1.1rem;
+    }
+
+    .route-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .route-stop {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(230,201,122,0.3);
+      border-radius: var(--radius-sm);
+      padding: 8px 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    .route-arrow {
+      color: var(--gold-main);
+      font-size: 1.2rem;
+    }
+
+    /* ========================================================================
+       SUPPORT CARDS GRID
+    ======================================================================== */
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 36px 0;
+    }
+
+    @media (max-width: 600px) {
+      .support-grid { grid-template-columns: 1fr; }
+    }
+
+    .support-card {
+      background: var(--paper);
+      border: 1px solid var(--paper-dark);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .support-card h4 {
+      font-family: 'Cinzel', serif;
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+
+    .support-card p {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      margin: 0 0 20px;
+    }
+
+    .btn-donate {
+      display: inline-block;
+      background: var(--gold-main);
+      color: var(--white);
+      text-decoration: none;
+      padding: 12px 26px;
+      border-radius: var(--radius-md);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: var(--transition);
+    }
+
+    .btn-donate:hover {
+      background: var(--gold-deep);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ========================================================================
+       CONTACT INFO
+    ======================================================================== */
+    .contact-list {
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--paper-dark);
+      font-size: 1rem;
+    }
+
+    .contact-list li:last-child { border-bottom: none; }
+
+    .contact-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .contact-list a {
+      font-weight: 600;
+    }
+
+    /* map placeholder */
+    .map-box {
+      width: 100%;
+      height: 300px;
+      background: var(--paper-mid);
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--paper-dark);
+      overflow: hidden;
+      margin-top: 36px;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ========================================================================
+       SIDEBAR
+    ======================================================================== */
+    .sidebar-inner {
+      position: sticky;
+      top: calc(var(--nav-h) + 20px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .passport-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      box-shadow: var(--shadow-lux);
+      border: 1px solid var(--paper-dark);
+    }
+
+    .passport-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold-deep);
+      margin: 0 0 24px;
+    }
+
+    .passport-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 26px;
+      border: 4px solid var(--paper-dark);
+    }
+
+    .passport-img img { width: 100%; }
+
+    .passport-table { border-collapse: collapse; width: 100%; }
+
+    .passport-table tr:not(:last-child) td { border-bottom: 1px solid var(--paper-dark); }
+
+    .passport-table td {
+      padding: 11px 0;
+      font-size: 0.9rem;
+      vertical-align: top;
+    }
+
+    .passport-table td:first-child {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--ink-muted);
+      width: 48%;
+      padding-right: 10px;
+    }
+
+    .passport-table td:last-child {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .sidebar-donate {
+      display: block;
+      text-align: center;
+      background: var(--gold-main);
+      color: var(--white);
+      text-decoration: none;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 24px;
+      transition: var(--transition);
+      box-shadow: 0 6px 20px rgba(176,138,58,0.25);
+    }
+
+    .sidebar-donate:hover {
+      background: var(--gold-deep);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .qr-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--paper-dark);
+    }
+
+    .qr-card img {
+      margin: 0 auto 14px;
+      border-radius: var(--radius-sm);
+      width: 160px; height: 160px;
+    }
+
+    .qr-card p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ========================================================================
+       FACEBOOK PROMO
+    ======================================================================== */
+    .fb-card {
+      background: linear-gradient(135deg, #1877f2 0%, #0d5bbf 100%);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      color: var(--white);
+      margin: 36px 0;
+    }
+
+    .fb-card h4 {
+      margin: 0 0 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+    }
+
+    .fb-card p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin: 0 0 20px;
+      line-height: 1.6;
+    }
+
+    .fb-btn {
+      display: inline-block;
+      background: var(--white);
+      color: #1877f2;
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: var(--radius-md);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .fb-btn:hover {
+      background: var(--gold-pale);
+      color: #1877f2;
+    }
+
+    /* ========================================================================
+       AOS (fade in on scroll)
+    ======================================================================== */
+    [data-aos] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    [data-aos].in-view {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ========================================================================
+       FOOTER
+    ======================================================================== */
+    .site-footer {
+      background: var(--ink);
+      color: #ccc;
+      padding: 80px 0 50px;
+      margin-top: 100px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    @media (max-width: 900px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 30px; }
+    }
+
+    .footer-brand .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #8a7e75;
+    }
+
+    .footer-col h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-main);
+      margin: 0 0 18px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #8a7e75;
+      text-decoration: none;
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 60px;
+      padding-top: 28px;
+      font-size: 0.8rem;
+      color: #5a5550;
+      text-align: center;
+    }
+
+    /* ========================================================================
+       SCROLL-TO-TOP BUTTON
+    ======================================================================== */
+    #scrollTop {
+      display: none;
+      position: fixed;
+      bottom: 36px; right: 36px;
+      z-index: 888;
+      background: var(--gold-main);
+      color: var(--white);
+      border: none;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: var(--transition);
+    }
+
+    #scrollTop:hover {
+      background: var(--gold-deep);
+      transform: translateY(-3px);
+    }
+
+    /* ========================================================================
+       RTL SUPPORT (Hebrew)
+    ======================================================================== */
+    [dir="rtl"] .logo-titles {
+      border-left: none;
+      border-right: 2.5px solid var(--gold-main);
+      padding-left: 0;
+      padding-right: 16px;
+    }
+
+    [dir="rtl"] .sec-title::after { left: auto; right: 0; }
+
+    [dir="rtl"] .timeline { padding-left: 0; padding-right: 36px; }
+
+    [dir="rtl"] .timeline::before { left: auto; right: 10px; }
+
+    [dir="rtl"] .tl-item::before { left: auto; right: -30px; }
+
+    [dir="rtl"] .quote-block {
+      border-left: none;
+      border-right: 4px solid var(--gold-main);
+      border-radius: var(--radius-md) 0 0 var(--radius-md);
+    }
+
+    /* ========================================================================
+       RESPONSIVE
+    ======================================================================== */
+    @media (max-width: 900px) {
+      html { font-size: 16px; }
+      .container { padding: 0 20px; }
+      .hero { padding-top: calc(var(--nav-h) + 50px); padding-bottom: 60px; }
+      .logo-main { font-size: 1.1rem; }
+      .logo-sub { display: none; }
+    }
+
+  </style>
 </head>
 <body>
 
-    <div class="nav-overlay" id="navMenu">
-        <button style="position:absolute; top:40px; right:40px; background:none; border:none; color:white; font-size:3rem; cursor:pointer;" onclick="toggleMenu()">×</button>
-        <ul class="nav-list">
-            <li><a href="#history" onclick="toggleMenu()"><span>3.1</span> Історія</a></li>
-            <li><a href="#news" onclick="toggleMenu()"><span>3.2</span> Новини</a></li>
-            <li><a href="#projects" onclick="toggleMenu()"><span>3.3</span> Проєкти</a></li>
-            <li><a href="#coop" onclick="toggleMenu()"><span>3.4</span> Співпраця</a></li>
-            <li><a href="#support" onclick="toggleMenu()"><span>3.5</span> Підтримати</a></li>
-            <li><a href="#contacts" onclick="toggleMenu()"><span>3.6</span> Контакти</a></li>
+<!-- ============================= HEADER ============================= -->
+<header class="site-header" id="header">
+  <div class="container">
+    <div class="nav-inner">
+
+      <a href="#" class="logo-link">
+        <!-- Menorah SVG -->
+        <svg class="menorah-svg" width="54" height="60" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- flames -->
+          <ellipse class="flame" cx="50" cy="10" rx="5" ry="8" fill="#e6c97a"/>
+          <ellipse class="flame" cx="35" cy="20" rx="4.5" ry="7" fill="#e6c97a"/>
+          <ellipse class="flame" cx="65" cy="20" rx="4.5" ry="7" fill="#e6c97a"/>
+          <ellipse class="flame" cx="20" cy="29" rx="4" ry="6.5" fill="#e6c97a"/>
+          <ellipse class="flame" cx="80" cy="29" rx="4" ry="6.5" fill="#e6c97a"/>
+          <ellipse class="flame" cx="7"  cy="38" rx="3.8" ry="6" fill="#e6c97a"/>
+          <ellipse class="flame" cx="93" cy="38" rx="3.8" ry="6" fill="#e6c97a"/>
+          <!-- arms -->
+          <path d="M50 88 C50 75, 50 60, 50 18" stroke="#b08a3a" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <path d="M50 55 Q42 44 35 28" stroke="#b08a3a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <path d="M50 55 Q58 44 65 28" stroke="#b08a3a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <path d="M50 65 Q34 52 20 37" stroke="#b08a3a" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M50 65 Q66 52 80 37" stroke="#b08a3a" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M50 75 Q26 60  7 45" stroke="#b08a3a" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+          <path d="M50 75 Q74 60 93 45" stroke="#b08a3a" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+          <!-- base -->
+          <rect x="38" y="88" width="24" height="6" rx="3" fill="#b08a3a"/>
+          <rect x="25" y="94" width="50" height="5" rx="2.5" fill="#b08a3a"/>
+          <rect x="30" y="99" width="40" height="4" rx="2" fill="#8e6d28"/>
+        </svg>
+
+        <div class="logo-titles">
+          <span class="logo-main" data-i18n="logo.main">LIGHT OF HERITAGE</span>
+          <span class="logo-sub" data-i18n="logo.sub">Світло єврейської спадщини</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" onclick="switchLang('uk')">UA</button>
+          <button class="lang-btn" onclick="switchLang('en')">EN</button>
+          <button class="lang-btn" onclick="switchLang('he')">HE</button>
+          <button class="lang-btn" onclick="switchLang('de')">DE</button>
+          <button class="lang-btn" onclick="switchLang('pl')">PL</button>
+        </div>
+        <button class="menu-toggle" id="menuOpen">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+            <rect y="0" width="18" height="2.5" rx="1.25" fill="currentColor"/>
+            <rect y="5.5" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+            <rect y="11" width="18" height="2.5" rx="1.25" fill="currentColor"/>
+          </svg>
+          <span data-i18n="nav.menu">МЕНЮ</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ============================= FULL MENU ============================= -->
+<div class="menu-overlay" id="menuOverlay">
+  <button class="menu-close" id="menuClose" data-i18n="nav.close">✕ ЗАКРИТИ</button>
+  <nav class="menu-nav">
+    <a href="#history" class="menu-item"><span data-i18n="nav.history">Історія кварталу</span><em data-i18n="nav.history-sub">History</em></a>
+    <a href="#synagogue" class="menu-item"><span data-i18n="nav.synagogue">Синагоги</span><em data-i18n="nav.synagogue-sub">Synagogues</em></a>
+    <a href="#rabin" class="menu-item"><span data-i18n="nav.rabin">Будинок Рабина</span><em data-i18n="nav.rabin-sub">Rabbi's House</em></a>
+    <a href="#news" class="menu-item"><span data-i18n="nav.news">Новини</span><em data-i18n="nav.news-sub">News & Events</em></a>
+    <a href="#help" class="menu-item"><span data-i18n="nav.help">Підтримати</span><em data-i18n="nav.help-sub">Support</em></a>
+    <a href="#contacts" class="menu-item"><span data-i18n="nav.contacts">Контакти</span><em data-i18n="nav.contacts-sub">Contacts</em></a>
+  </nav>
+</div>
+
+<!-- ============================= HERO ============================= -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge" data-aos data-i18n="hero.badge">Культурна спадщина Полтави</div>
+    <h1 class="hero-h1" data-aos data-i18n="hero.title">Музей «Будинок Рабина»</h1>
+    <p class="hero-p" data-aos data-i18n="hero.subtitle">
+      Місце, де оживає історія, а стіни бережуть пам'ять поколінь єврейської громади нашого міста.
+    </p>
+    <a href="#history" class="hero-cta" data-aos>
+      <span data-i18n="hero.cta">Дослідити історію</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============================= MAIN GRID ============================= -->
+<div class="container">
+  <div class="layout-grid">
+
+    <!-- =================== MAIN CONTENT =================== -->
+    <main class="content-body">
+
+      <!-- SECTION 1: HISTORY OF THE QUARTER -->
+      <section id="history">
+        <h2 class="sec-title" data-i18n="s1.title">Квартал духовності</h2>
+        <div class="tag-row">
+          <span class="tag">XIX ст.</span>
+          <span class="tag">вул. Гоголя</span>
+          <span class="tag" data-i18n="tag.heritage">Спадщина</span>
+        </div>
+
+        <div class="history-body">
+          <p class="dropcap" data-i18n="s1.p1">По вулиці Гоголя (первісна назва – Іванівська), яка у XIX – на початку XX ст. була забудована в основному двоповерховими будинками, розташовувався ряд культових споруд — перша синагога (нині приміщення належить Полтавському базовому медичному фаховому коледжу), Велика хоральна синагога (нині – Полтавська обласна філармонія), синагога Миснагдим.</p>
+
+          <p data-i18n="s1.p2">Сама вулиця прокладена на початку XIX ст. при будівництві нового центру міста за загальним проєктом 1803–1805 рр. Сучасну назву вулиця отримала у 1907 р. на честь Миколи Васильовича Гоголя.</p>
+        </div>
+
+        <!-- OLD PHOTO: Gogol street -->
+        <div class="img-card" data-aos>
+          <img src="gogol_19_c.jpg" alt="Вулиця Гоголя, Полтава, початок XX ст.">
+          <div class="img-caption">
+            <strong data-i18n="img.gogol.label">Архівне фото</strong>
+            <p data-i18n="img.gogol.text">Вулиця Гоголя (колишня Іванівська) у Полтаві, початок XX ст. Добре видно характерну забудову та торговельні будинки, що сусідують із культовими спорудами єврейської громади.</p>
+          </div>
+        </div>
+
+        <!-- GUBERNIA MAP -->
+        <div class="img-card" data-aos>
+          <img src="poltava-gubernia-map.jpg" alt="Карта Полтавської губернії">
+          <div class="img-caption">
+            <strong data-i18n="img.map.label">Карта Полтавської губернії</strong>
+            <p data-i18n="img.map.text">Полтавська губернія на картографічних матеріалах XIX–XX ст. Карта ілюструє адміністративне розташування міста та його значення як регіонального центру.</p>
+          </div>
+        </div>
+
+        <div class="timeline" data-aos>
+          <div class="tl-item">
+            <div class="tl-year">1803–1805</div>
+            <p class="tl-text" data-i18n="tl.1803">Прокладення вулиці Іванівської (майбутньої Гоголя) відповідно до генерального плану Полтави.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1856</div>
+            <p class="tl-text" data-i18n="tl.1856">Збудована Велика Хоральна синагога — двоповерхова мурована будівля у неокласичному стилі.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1881</div>
+            <p class="tl-text" data-i18n="tl.1881">Перебудова Будинку Рабина з дерев'яного на цегляний. Схил вулиці дозволив виконати будинок півтораповерховим.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1907</div>
+            <p class="tl-text" data-i18n="tl.1907">Вулиця Іванівська перейменована на честь М.В.Гоголя.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1911</div>
+            <p class="tl-text" data-i18n="tl.1911">Пожежа знищила Велику хоральну синагогу. Згоріло 46 сувоїв Тори. Синагогу відбудували незабаром.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">1930-і</div>
+            <p class="tl-text" data-i18n="tl.1930">Радянська влада закриває всі культові споруди, будівлі націоналізовано. Синагоги перетворено на клуби і підприємства.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2020-і</div>
+            <p class="tl-text" data-i18n="tl.2020">Реконструкція Великої хоральної синагоги (філармонії) за програмою «Велике будівництво». Будинок Рабина — на шляху до музеєфікації.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: SYNAGOGUES -->
+      <section id="synagogue">
+        <h2 class="sec-title" data-i18n="s2.title">Синагоги кварталу</h2>
+
+        <h3 style="font-family:'Cinzel',serif; color:var(--gold-deep); margin-bottom:16px;" data-i18n="s2.choral.h">Велика Хоральна синагога</h3>
+
+        <div class="history-body">
+          <p class="dropcap" data-i18n="s2.choral.p1">Велика хоральна синагога — двоповерхова мурована будівля, вирішена з використанням архітектурних форм класицизму, в неокласичному, модерністському характері. Збудована у 1856 році. Центральний молитовний зал перекривав великий купол сферичної форми. Внутрішнє убранство було величне й багате.</p>
+          <p data-i18n="s2.choral.p2">Полтавська хоральна синагога історично містилася на вул. Гоголя, 10. Спалена зловмисниками в 1911 році. Попіл згорілих 46 свитків Тори поховали в 25 ящиках на єврейському кладовищі.</p>
+        </div>
+
+        <div class="quote-block" data-i18n="s2.quote">
+          «У третій день місяця Іор 5674 року від створення світу — сонце потемніло, коли зійшов вогонь з неба і спалив наш святий дім, нашу красу — Велику синагогу в нашому місті з усіма коштовностями, що були в нас здавна...»
+          <br><em style="font-size:0.82rem; color:var(--ink-muted);">— Напис на гранітній плиті єврейського кладовища (1911)</em>
+        </div>
+
+        <!-- OLD SYNAGOGUE PHOTO -->
+        <div class="img-card" data-aos>
+          <img src="synagogue-old.jpg" alt="Хоральна синагога Полтава, архівне фото">
+          <div class="img-caption">
+            <strong data-i18n="img.syn-old.label">Архівне фото, початок XX ст.</strong>
+            <p data-i18n="img.syn-old.text">Вид на Велику хоральну синагогу та прилеглі будівлі. Праворуч видно Будинок Рабина. Ліворуч — синагога Міснагдим. Фотографія зроблена до 1911 р.</p>
+          </div>
+        </div>
+
+        <!-- PHILARMONIA NOW -->
+        <div class="img-card" data-aos>
+          <img src="philarmonia-now.jpg" alt="Полтавська філармонія — колишня синагога">
+          <div class="img-caption">
+            <strong data-i18n="img.pharm.label">Полтавська обласна філармонія (сьогодні)</strong>
+            <p data-i18n="img.pharm.text">Будівля колишньої Великої хоральної синагоги після капітальної реконструкції за програмою «Велике будівництво». Нині тут розміщується Полтавська обласна філармонія.</p>
+          </div>
+        </div>
+
+        <div class="fb-card" data-aos>
+          <h4 data-i18n="fb.title">🎥 Відео реконструкції</h4>
+          <p data-i18n="fb.text">Унікальне відео від телеканалу «ДОМ» про відновлення архітектурної перлини — Великої хоральної синагоги (Полтавської філармонії).</p>
+          <a href="https://www.facebook.com/kanalDOM/videos/692129378429256/" target="_blank" class="fb-btn" data-i18n="fb.btn">Дивитися на Facebook →</a>
+        </div>
+
+        <h3 style="font-family:'Cinzel',serif; color:var(--gold-deep); margin: 48px 0 16px;" data-i18n="s2.misn.h">Синагога Міснагдим</h3>
+
+        <div class="history-body">
+          <p data-i18n="s2.misn.p1">З лівого боку Великої хоральної синагоги, в будинку під №12, з середини XIX ст. знаходилася синагога Міснагдим. Спочатку вона була дерев'яною, але до початку XX ст. її перебудували в цегляній. Архітектурне рішення головного фасаду складене ритмом шести пілястр, що розділяють п'ять арочних вікон.</p>
+          <p data-i18n="s2.misn.p2">У 1970-х роках трест Громадського харчування реконструював будівлю під молодіжне кафе «Трьошка» (за вхід стягувалась плата 3 рублі). Зараз тут як і раніше знаходиться кафе.</p>
+        </div>
+
+        <div class="photo-grid" data-aos>
+          <div class="img-card">
+            <img src="misnahdim.jpg" alt="Синагога Міснагдим, Полтава">
+            <div class="img-caption">
+              <strong data-i18n="img.misn.label">Синагога Міснагдим (сьогодні)</strong>
+              <p data-i18n="img.misn.text">Будівля колишньої синагоги Міснагдим на вул. Гоголя, 12. Нині — кафе.</p>
+            </div>
+          </div>
+          <div class="img-card">
+            <img src="medical-school.jpg" alt="Медичний коледж — колишня синагога, вул. Орлика 18/2">
+            <div class="img-caption">
+              <strong data-i18n="img.med.label">Перша синагога (Медичний коледж)</strong>
+              <p data-i18n="img.med.text">Будівля першої кам'яної синагоги XIX ст. на вул. Пилипа Орлика, 18/2. Нині тут відділення Полтавського базового медичного фахового коледжу.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: RABBI'S HOUSE -->
+      <section id="rabin">
+        <h2 class="sec-title" data-i18n="s3.title">Будинок Рабина</h2>
+
+        <div class="history-body">
+          <p class="dropcap" data-i18n="s3.p1">Поблизу Великої хоральної синагоги, праворуч, на ділянці площею 1100 кв.м, розміщується Будинок Рабина (вул. Гоголя, 8). Це був приватний дерев'яний будинок, який викупила юдейська громада для релігійних потреб. У 1881 р. його перебудували з цегли.</p>
+          <p data-i18n="s3.p2">Схил Іванівської вулиці в бік Дворянської дозволив перебудувати будинок з одно- на півтораповерховий. Автор проєкту невідомий. Будинок споруджений у стилі пізнього ампіру й еклектики. Площини стін фільончастими пілястрами, ритмічно прорізані вікнами з циркульними перемичками й обрамлені профілем.</p>
+          <p data-i18n="s3.p3">Громада використовувала його як молитовний будинок та як квартиру для рабина. Згідно «Адрес-календарів» Полтавської губернії, на початку XX ст. по вул. Іванівській у власних будинках проживали завідувач єврейського училища Талмуд-Тора — почесний громадянин Рафаїл Ісаакович Рубінов та вчитель Мендель Нохимович Краснер.</p>
+          <p data-i18n="s3.p4">У 1930-х рр. будинок було націоналізовано. Після Другої світової війни тут розміщувалась поліклініка. Нині будинок використовується як житловий, однак ведуться роботи з перетворення його на музейний простір.</p>
+        </div>
+
+        <!-- RABIN HOUSE PHOTO -->
+        <div class="img-card" data-aos>
+          <img src="rabin-house.jpg" alt="Будинок Рабина, вул. Гоголя 8, Полтава">
+          <div class="img-caption">
+            <strong data-i18n="img.rabin.label">Будинок Рабина (вул. Гоголя, 8) — сьогодні</strong>
+            <p data-i18n="img.rabin.text">Будівля кінця XIX ст. (1881 р.) — колишній молитовний будинок і резиденція рабина єврейської громади Полтави. Зразок пізнього ампіру та еклектики. Площа — 315 кв.м. Пам'ятка архітектури місцевого значення.</p>
+          </div>
+        </div>
+
+        <div class="tag-row">
+          <span class="tag">1881</span>
+          <span class="tag" data-i18n="tag.style">Пізній ампір / еклектика</span>
+          <span class="tag">315 м²</span>
+          <span class="tag" data-i18n="tag.monument">Пам'ятка архітектури</span>
+        </div>
+      </section>
+
+      <!-- SECTION 4: NEWS & EVENTS -->
+      <section id="news">
+        <h2 class="sec-title" data-i18n="s4.title">Новини та події</h2>
+        <p data-i18n="s4.intro">Ми постійно проводимо заходи, щоб зробити історію доступною кожному.</p>
+
+        <!-- NEWS CARD: Excursion -->
+        <div class="news-card" data-aos>
+          <div class="news-date" data-i18n="news1.date">15 БЕРЕЗНЯ 2026</div>
+          <h3 data-i18n="news1.title">Відкрита екскурсія: «Шлях від Синагоги до Рабина»</h3>
+          <p data-i18n="news1.text">Запрошуємо на відкриту екскурсію історичним кварталом вулиці Гоголя, де наприкінці XIX – на початку XX ст. сформувався комплекс єврейських культових і громадських споруд.</p>
+
+          <div class="route-card">
+            <h4 data-i18n="route.title">🗺 Маршрут екскурсії</h4>
+            <div class="route-steps">
+              <span class="route-stop" data-i18n="route.stop1">Міснагдим</span>
+              <span class="route-arrow">→</span>
+              <span class="route-stop" data-i18n="route.stop2">Філармонія</span>
+              <span class="route-arrow">→</span>
+              <span class="route-stop" data-i18n="route.stop3">Будинок Рабина</span>
+              <span class="route-arrow">→</span>
+              <span class="route-stop" data-i18n="route.stop4">Гоголя, 6</span>
+            </div>
+          </div>
+
+          <br>
+          <a href="news-excursion.html" class="read-more" data-i18n="news1.more">Читати детальніше →</a>
+        </div>
+      </section>
+
+      <!-- SECTION 5: SUPPORT -->
+      <section id="help">
+        <h2 class="sec-title" data-i18n="s5.title">Підтримати проєкт</h2>
+        <p data-i18n="s5.intro">Будинок Рабина потребує реставрації. Ваша підтримка — це внесок у збереження мультикультурної спадщини України.</p>
+
+        <div class="support-grid" data-aos>
+          <div class="support-card">
+            <h4 data-i18n="supp1.h">Благодійний внесок</h4>
+            <p data-i18n="supp1.p">Усі кошти йдуть на створення постійної музейної експозиції та ремонт покрівлі.</p>
+            <a href="#" class="btn-donate" data-i18n="supp1.btn">ПІДТРИМАТИ</a>
+          </div>
+          <div class="support-card">
+            <h4 data-i18n="supp2.h">Стати волонтером</h4>
+            <p data-i18n="supp2.p">Долучайтеся до збору архівних матеріалів та оцифрування документів і фотографій.</p>
+            <a href="mailto:lightofheritage@ukr.net" class="btn-donate" style="background:var(--ink);" data-i18n="supp2.btn">НАПИСАТИ НАМ</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: CONTACTS -->
+      <section id="contacts">
+        <h2 class="sec-title" data-i18n="s6.title">Контакти</h2>
+        <p data-i18n="s6.intro">Ми завжди раді гостям, дослідникам та партнерам.</p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="contact-icon">📍</span>
+            <div>
+              <strong data-i18n="c.address">Адреса</strong>
+              <span data-i18n="c.address-val">Полтава, вул. Гоголя, 8</span>
+            </div>
+          </li>
+          <li>
+            <span class="contact-icon">📞</span>
+            <div>
+              <strong data-i18n="c.phone">Телефон</strong>
+              <a href="tel:+380977098469">+38 (097) 709 84 69</a>
+            </div>
+          </li>
+          <li>
+            <span class="contact-icon">✉️</span>
+            <div>
+              <strong data-i18n="c.email">Email</strong>
+              <a href="mailto:lightofheritage@ukr.net">lightofheritage@ukr.net</a>
+            </div>
+          </li>
         </ul>
+
+        <div class="map-box">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=34.5360%2C49.5870%2C34.5440%2C49.5910&layer=mapnik&marker=49.5890%2C34.5400"
+            loading="lazy"
+            title="Карта: вул. Гоголя, 8, Полтава">
+          </iframe>
+        </div>
+      </section>
+
+    </main><!-- /content-body -->
+
+    <!-- =================== SIDEBAR =================== -->
+    <aside>
+      <div class="sidebar-inner">
+
+        <!-- PASSPORT CARD -->
+        <div class="passport-card" data-aos>
+          <h3 data-i18n="pass.title">Паспорт об'єкта</h3>
+          <div class="passport-img">
+            <img src="rabin-house.jpg" alt="Будинок Рабина, Полтава">
+          </div>
+          <table class="passport-table">
+            <tr>
+              <td data-i18n="pass.status">Статус</td>
+              <td data-i18n="pass.status-val">Пам'ятка архітектури</td>
+            </tr>
+            <tr>
+              <td data-i18n="pass.built">Рік побудови</td>
+              <td>1881</td>
+            </tr>
+            <tr>
+              <td data-i18n="pass.area">Площа</td>
+              <td>315 м²</td>
+            </tr>
+            <tr>
+              <td data-i18n="pass.street">Адреса</td>
+              <td data-i18n="pass.street-val">вул. Гоголя, 8, Полтава</td>
+            </tr>
+            <tr>
+              <td data-i18n="pass.style">Стиль</td>
+              <td data-i18n="pass.style-val">Пізній ампір, еклектика</td>
+            </tr>
+            <tr>
+              <td data-i18n="pass.today">Використання</td>
+              <td data-i18n="pass.today-val">Житловий / музеєфікація</td>
+            </tr>
+          </table>
+          <a href="#help" class="sidebar-donate" data-i18n="pass.cta">ПІДТРИМАТИ ПРОЄКТ</a>
+        </div>
+
+        <!-- QR CODE CARD -->
+        <div class="qr-card" data-aos>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://heritage-poltava.com.ua&color=1a1614&bgcolor=f9f5eb" alt="QR Code">
+          <p data-i18n="qr.text">Відскануйте QR-код, щоб відкрити сайт на смартфоні або поділитися з друзями.</p>
+        </div>
+
+      </div>
+    </aside>
+
+  </div><!-- /layout-grid -->
+</div><!-- /container -->
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="footer-logo">LIGHT OF HERITAGE</div>
+        <p data-i18n="footer.about">Офіційний інформаційний ресурс Будинку Рабина та єврейської спадщини Полтави. Проєкт реалізовано з метою популяризації культурного розмаїття Полтавщини.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5 data-i18n="footer.nav">Навігація</h5>
+        <a href="#history" data-i18n="nav.history">Історія кварталу</a>
+        <a href="#synagogue" data-i18n="nav.synagogue">Синагоги</a>
+        <a href="#rabin" data-i18n="nav.rabin">Будинок Рабина</a>
+        <a href="#news" data-i18n="nav.news">Новини</a>
+        <a href="#help" data-i18n="nav.help">Підтримати</a>
+        <a href="#contacts" data-i18n="nav.contacts">Контакти</a>
+      </div>
+
+      <div class="footer-col">
+        <h5 data-i18n="footer.contact">Контакти</h5>
+        <a href="tel:+380977098469">+38 (097) 709 84 69</a>
+        <a href="mailto:lightofheritage@ukr.net">lightofheritage@ukr.net</a>
+        <a>Полтава, вул. Гоголя, 8</a>
+      </div>
+
     </div>
 
-    <header id="mainHeader">
-        <div class="container header-content">
-            <a href="#" class="brand">
-                <svg class="menora-svg" viewBox="0 0 100 100">
-                    <path d="M50 20 V85 M35 30 V85 M65 30 V85 M20 40 V85 M80 40 V85 M5 50 V85 M95 50 V85" stroke="#b08a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
-                    <line x1="0" y1="85" x2="100" y2="85" stroke="#b08a3a" stroke-width="4" />
-                    <g fill="#e6c97a">
-                        <circle class="flame" cx="50" cy="15" r="5" />
-                        <circle class="flame" cx="35" cy="25" r="4.5" style="animation-delay: 0.2s;"/>
-                        <circle class="flame" cx="65" cy="25" r="4.5" style="animation-delay: 0.4s;"/>
-                        <circle class="flame" cx="20" cy="35" r="4" style="animation-delay: 0.6s;"/>
-                        <circle class="flame" cx="80" cy="35" r="4" style="animation-delay: 0.8s;"/>
-                        <circle class="flame" cx="5" cy="45" r="3.5" style="animation-delay: 1s;"/>
-                        <circle class="flame" cx="95" cy="45" r="3.5" style="animation-delay: 1.2s;"/>
-                    </g>
-                </svg>
-                <div class="brand-text">
-                    <span class="brand-name">Музей "Будинок Рабина"</span>
-                    <span class="brand-sub">Світло єврейської спадщини</span>
-                </div>
-            </a>
-            <button class="menu-toggle" onclick="toggleMenu()">МЕНЮ</button>
-        </div>
-    </header>
+    <div class="footer-bottom">
+      © 2026 THE LIGHT OF JEWISH HERITAGE. All rights reserved.
+    </div>
+  </div>
+</footer>
 
-    <main class="container">
-        <div class="hero">
-            <h1>Музей "Будинок Рабина"</h1>
-            <p style="font-size: 1.6rem; color: var(--ink-soft); max-width: 800px; margin: 20px auto;">
-                Осередок пам'яті та культури, що зберігає багатовікову історію полтавської єврейської громади.
-            </p>
-        </div>
+<button id="scrollTop" title="Вгору">↑</button>
 
-        <div class="main-grid">
-            <div class="content-card">
-                <section id="history">
-                    <h2>3.1. Історія музею</h2>
-                    <p>Будинок за адресою вул. Гоголя, 8 — це не просто архітектурна пам'ятка, а символ духовної єдності. Тут мешкали рабини, які формували культурне обличчя Полтави.</p>
-                </section>
+<!-- ============================= SCRIPTS ============================= -->
+<script>
+/* =====================================================================
+   TRANSLATIONS DATABASE
+===================================================================== */
+const i18n = {
+  uk: {
+    "logo.main": "LIGHT OF HERITAGE",
+    "logo.sub": "Світло єврейської спадщини",
+    "nav.menu": "МЕНЮ",
+    "nav.close": "✕ ЗАКРИТИ",
+    "nav.history": "Історія кварталу",
+    "nav.history-sub": "History of the Quarter",
+    "nav.synagogue": "Синагоги",
+    "nav.synagogue-sub": "Synagogues",
+    "nav.rabin": "Будинок Рабина",
+    "nav.rabin-sub": "Rabbi's House",
+    "nav.news": "Новини",
+    "nav.news-sub": "News & Events",
+    "nav.help": "Підтримати",
+    "nav.help-sub": "Support",
+    "nav.contacts": "Контакти",
+    "nav.contacts-sub": "Contacts",
+    "hero.badge": "Культурна спадщина Полтави",
+    "hero.title": "Музей «Будинок Рабина»",
+    "hero.subtitle": "Місце, де оживає історія, а стіни бережуть пам'ять поколінь єврейської громади нашого міста.",
+    "hero.cta": "Дослідити історію",
+    "s1.title": "Квартал духовності",
+    "tag.heritage": "Спадщина",
+    "s1.p1": "По вулиці Гоголя (первісна назва – Іванівська), яка у XIX – на початку XX ст. була забудована в основному двоповерховими будинками, розташовувався ряд культових споруд — перша синагога (нині приміщення належить Полтавському базовому медичному фаховому коледжу), Велика хоральна синагога (нині – Полтавська обласна філармонія), синагога Миснагдим.",
+    "s1.p2": "Сама вулиця прокладена на початку XIX ст. при будівництві нового центру міста за загальним проєктом 1803–1805 рр. Сучасну назву вулиця отримала у 1907 р. на честь Миколи Васильовича Гоголя.",
+    "img.gogol.label": "Архівне фото",
+    "img.gogol.text": "Вулиця Гоголя (колишня Іванівська) у Полтаві, початок XX ст. Добре видно характерну забудову та торговельні будинки, що сусідують із культовими спорудами єврейської громади.",
+    "img.map.label": "Карта Полтавської губернії",
+    "img.map.text": "Полтавська губернія на картографічних матеріалах XIX–XX ст. Карта ілюструє адміністративне розташування міста та його значення як регіонального центру.",
+    "tl.1803": "Прокладення вулиці Іванівської (майбутньої Гоголя) відповідно до генерального плану Полтави.",
+    "tl.1856": "Збудована Велика Хоральна синагога — двоповерхова мурована будівля у неокласичному стилі.",
+    "tl.1881": "Перебудова Будинку Рабина з дерев'яного на цегляний. Схил вулиці дозволив виконати будинок півтораповерховим.",
+    "tl.1907": "Вулиця Іванівська перейменована на честь М.В.Гоголя.",
+    "tl.1911": "Пожежа знищила Велику хоральну синагогу. Згоріло 46 сувоїв Тори. Синагогу відбудували незабаром.",
+    "tl.1930": "Радянська влада закриває всі культові споруди, будівлі націоналізовано. Синагоги перетворено на клуби і підприємства.",
+    "tl.2020": "Реконструкція Великої хоральної синагоги (філармонії) за програмою «Велике будівництво». Будинок Рабина — на шляху до музеєфікації.",
+    "s2.title": "Синагоги кварталу",
+    "s2.choral.h": "Велика Хоральна синагога",
+    "s2.choral.p1": "Велика хоральна синагога — двоповерхова мурована будівля, вирішена з використанням архітектурних форм класицизму, в неокласичному, модерністському характері. Збудована у 1856 році. Центральний молитовний зал перекривав великий купол сферичної форми.",
+    "s2.choral.p2": "Полтавська хоральна синагога містилася на вул. Гоголя, 10. Спалена зловмисниками в 1911 році. Попіл згорілих 46 свитків Тори поховали в 25 ящиках на єврейському кладовищі.",
+    "s2.quote": "«У третій день місяця Іор 5674 року від створення світу — сонце потемніло, коли зійшов вогонь з неба і спалив наш святий дім, нашу красу — Велику синагогу в нашому місті…»",
+    "img.syn-old.label": "Архівне фото, початок XX ст.",
+    "img.syn-old.text": "Вид на Велику хоральну синагогу та прилеглі будівлі. Праворуч — Будинок Рабина. Ліворуч — синагога Міснагдим. Фотографія зроблена до 1911 р.",
+    "img.pharm.label": "Полтавська обласна філармонія (сьогодні)",
+    "img.pharm.text": "Будівля колишньої Великої хоральної синагоги після капітальної реконструкції. Нині тут розміщується Полтавська обласна філармонія.",
+    "fb.title": "🎥 Відео реконструкції",
+    "fb.text": "Унікальне відео від телеканалу «ДОМ» про відновлення архітектурної перлини — Великої хоральної синагоги (Полтавської філармонії).",
+    "fb.btn": "Дивитися на Facebook →",
+    "s2.misn.h": "Синагога Міснагдим",
+    "s2.misn.p1": "З лівого боку Великої хоральної синагоги, в будинку під №12, знаходилася синагога Міснагдим. Архітектурне рішення фасаду — ритм шести пілястр, що розділяють п'ять арочних вікон.",
+    "s2.misn.p2": "У 1970-х рр. будівлю пристосовано під молодіжне кафе «Трьошка». Зараз тут як і раніше кафе.",
+    "img.misn.label": "Синагога Міснагдим (сьогодні)",
+    "img.misn.text": "Будівля колишньої синагоги Міснагдим на вул. Гоголя, 12. Нині — кафе.",
+    "img.med.label": "Перша синагога (Медичний коледж)",
+    "img.med.text": "Будівля першої кам'яної синагоги XIX ст. на вул. Пилипа Орлика, 18/2. Нині — відділення Полтавського медичного фахового коледжу.",
+    "s3.title": "Будинок Рабина",
+    "s3.p1": "Поблизу Великої хоральної синагоги, на ділянці площею 1100 кв.м, розміщується Будинок Рабина (вул. Гоголя, 8). Це був приватний дерев'яний будинок, який викупила юдейська громада для релігійних потреб. У 1881 р. його перебудували з цегли.",
+    "s3.p2": "Схил Іванівської вулиці дозволив перебудувати будинок з одно- на півтораповерховий. Автор проєкту невідомий. Будинок споруджений у стилі пізнього ампіру й еклектики.",
+    "s3.p3": "Громада використовувала його як молитовний будинок та як квартиру для рабина. Згідно «Адрес-календарів» Полтавської губернії, тут мешкали завідувач єврейського училища Рафаїл Ісаакович Рубінов та вчитель Мендель Нохимович Краснер.",
+    "s3.p4": "У 1930-х рр. будинок було націоналізовано. Після Другої світової війни тут розміщувалась поліклініка. Нині будинок використовується як житловий.",
+    "img.rabin.label": "Будинок Рабина (вул. Гоголя, 8) — сьогодні",
+    "img.rabin.text": "Будівля 1881 р. — колишній молитовний будинок і резиденція рабина єврейської громади Полтави. Стиль: пізній ампір та еклектика. Площа — 315 кв.м. Пам'ятка архітектури.",
+    "tag.style": "Пізній ампір / еклектика",
+    "tag.monument": "Пам'ятка архітектури",
+    "s4.title": "Новини та події",
+    "s4.intro": "Ми постійно проводимо заходи, щоб зробити історію доступною кожному.",
+    "news1.date": "15 БЕРЕЗНЯ 2026",
+    "news1.title": "Відкрита екскурсія: «Шлях від Синагоги до Рабина»",
+    "news1.text": "Запрошуємо на відкриту екскурсію історичним кварталом вулиці Гоголя, де наприкінці XIX – на початку XX ст. сформувався комплекс єврейських культових і громадських споруд.",
+    "route.title": "🗺 Маршрут екскурсії",
+    "route.stop1": "Міснагдим", "route.stop2": "Філармонія", "route.stop3": "Будинок Рабина", "route.stop4": "Гоголя, 6",
+    "news1.more": "Читати детальніше →",
+    "s5.title": "Підтримати проєкт",
+    "s5.intro": "Будинок Рабина потребує реставрації. Ваша підтримка — це внесок у збереження мультикультурної спадщини України.",
+    "supp1.h": "Благодійний внесок", "supp1.p": "Усі кошти йдуть на створення постійної музейної експозиції та ремонт покрівлі.", "supp1.btn": "ПІДТРИМАТИ",
+    "supp2.h": "Стати волонтером", "supp2.p": "Долучайтеся до збору архівних матеріалів та оцифрування документів.", "supp2.btn": "НАПИСАТИ НАМ",
+    "s6.title": "Контакти",
+    "s6.intro": "Ми завжди раді гостям, дослідникам та партнерам.",
+    "c.address": "Адреса", "c.address-val": "Полтава, вул. Гоголя, 8",
+    "c.phone": "Телефон", "c.email": "Email",
+    "pass.title": "Паспорт об'єкта",
+    "pass.status": "Статус", "pass.status-val": "Пам'ятка архітектури",
+    "pass.built": "Рік побудови", "pass.area": "Площа",
+    "pass.street": "Адреса", "pass.street-val": "вул. Гоголя, 8",
+    "pass.style": "Стиль", "pass.style-val": "Пізній ампір, еклектика",
+    "pass.today": "Використання", "pass.today-val": "Житловий / музеєфікація",
+    "pass.cta": "ПІДТРИМАТИ ПРОЄКТ",
+    "qr.text": "Відскануйте QR-код, щоб відкрити сайт на смартфоні або поділитися з друзями.",
+    "footer.about": "Офіційний інформаційний ресурс Будинку Рабина та єврейської спадщини Полтави.",
+    "footer.nav": "Навігація", "footer.contact": "Контакти"
+  },
 
-                <section id="support">
-                    <h2>3.5. Підтримати нас</h2>
-                    <div class="support-box">
-                        <h3 style="font-family:'Cinzel'; font-size: 1.8rem; margin: 0;">Ваша допомога важлива</h3>
-                        <p>Долучіться до реставрації Будинку та створення сучасних музейних експозицій.</p>
-                        <a href="#" class="donate-btn">ПІДТРИМАТИ ПРОЄКТ</a>
-                        <p style="font-size: 0.8rem; opacity: 0.6;">Благодійний фонд "Світло спадщини"</p>
-                    </div>
-                </section>
-            </div>
+  en: {
+    "logo.main": "LIGHT OF HERITAGE",
+    "logo.sub": "Jewish Heritage of Poltava",
+    "nav.menu": "MENU", "nav.close": "✕ CLOSE",
+    "nav.history": "Quarter History", "nav.history-sub": "History",
+    "nav.synagogue": "Synagogues", "nav.synagogue-sub": "Synagogues",
+    "nav.rabin": "Rabbi's House", "nav.rabin-sub": "Rabbi's House",
+    "nav.news": "News", "nav.news-sub": "News & Events",
+    "nav.help": "Support", "nav.help-sub": "Support",
+    "nav.contacts": "Contacts", "nav.contacts-sub": "Contacts",
+    "hero.badge": "Cultural Heritage of Poltava",
+    "hero.title": "Museum «Rabbi's House»",
+    "hero.subtitle": "A place where history comes alive, and walls preserve the memory of generations of the Jewish community of our city.",
+    "hero.cta": "Explore history",
+    "s1.title": "A Quarter of Spirituality",
+    "tag.heritage": "Heritage",
+    "s1.p1": "Along Gogol Street (formerly Ivanivska), which in the 19th–early 20th century was lined mainly with two-storey buildings, stood a row of religious structures — the first synagogue (now part of the Poltava Medical College), the Grand Choral Synagogue (now the Poltava Regional Philharmonic), and the Misnagdim Synagogue.",
+    "s1.p2": "The street itself was laid out in the early 19th century during construction of the city's new centre, per the 1803–1805 general plan. It was renamed in 1907 in honour of Mykola Gogol.",
+    "img.gogol.label": "Archival photograph",
+    "img.gogol.text": "Gogol Street (formerly Ivanivska) in Poltava, early 20th century. The characteristic two-storey buildings and merchant premises can be seen alongside Jewish religious buildings.",
+    "img.map.label": "Map of Poltava Governorate",
+    "img.map.text": "Poltava Governorate on cartographic materials of the 19th–20th centuries, illustrating the city's position as a regional centre.",
+    "tl.1803": "Ivanivska Street (future Gogol Street) laid out according to the general plan of Poltava.",
+    "tl.1856": "The Grand Choral Synagogue built — a two-storey neoclassical structure with a spherical dome.",
+    "tl.1881": "Rabbi's House rebuilt in brick. The slope of the street allowed for a one-and-a-half-storey structure.",
+    "tl.1907": "Ivanivska Street renamed in honour of N.V. Gogol.",
+    "tl.1911": "Fire destroyed the Grand Choral Synagogue; 46 Torah scrolls were burned. The synagogue was soon rebuilt.",
+    "tl.1930": "Soviet authorities closed all religious buildings; they were nationalised and repurposed.",
+    "tl.2020": "Major reconstruction of the synagogue building (Philharmonic) under the 'Great Construction' programme. Rabbi's House moving toward museumification.",
+    "s2.title": "Synagogues of the Quarter",
+    "s2.choral.h": "Grand Choral Synagogue",
+    "s2.choral.p1": "The Grand Choral Synagogue was a two-storey masonry building in a neoclassical, modernist style. Built in 1856. The central prayer hall was covered by a large spherical dome. Its interior was magnificent and richly decorated.",
+    "s2.choral.p2": "Located at 10 Gogol Street, it was arson-destroyed in 1911. The ashes of the 46 burnt Torah scrolls were buried in 25 boxes at the Jewish cemetery.",
+    "s2.quote": '"On the third day of the month of Iyar 5674 from the creation of the world — the sun darkened when fire came from the sky and burned our holy home, our beauty — the Great Synagogue of our city…"',
+    "img.syn-old.label": "Archival photo, early 20th century",
+    "img.syn-old.text": "View of the Grand Choral Synagogue and adjacent buildings. To the right — Rabbi's House. To the left — the Misnagdim Synagogue. Photo taken before 1911.",
+    "img.pharm.label": "Poltava Regional Philharmonic (today)",
+    "img.pharm.text": "The former Grand Choral Synagogue after major reconstruction. Now home to the Poltava Regional Philharmonic.",
+    "fb.title": "🎥 Reconstruction Video",
+    "fb.text": "Unique video by the 'DOM' TV channel documenting the restoration of the architectural gem — the former Grand Choral Synagogue.",
+    "fb.btn": "Watch on Facebook →",
+    "s2.misn.h": "Misnagdim Synagogue",
+    "s2.misn.p1": "To the left of the Grand Synagogue, at No. 12, stood the Misnagdim Synagogue from the mid-19th century. Its façade features six pilasters dividing five arched windows.",
+    "s2.misn.p2": "In the 1970s the building was converted into a youth café 'Tryoshka'. It still operates as a café today.",
+    "img.misn.label": "Misnagdim Synagogue (today)",
+    "img.misn.text": "The former Misnagdim Synagogue building at 12 Gogol Street. Now a café.",
+    "img.med.label": "First Synagogue (Medical College)",
+    "img.med.text": "19th-century masonry synagogue at 18/2 Pylypa Orlyka Street. Now part of the Poltava Basic Medical Professional College.",
+    "s3.title": "Rabbi's House",
+    "s3.p1": "Near the Grand Choral Synagogue, on a 1,100 m² plot, stands the Rabbi's House (8 Gogol Street). It was a private wooden building purchased by the Jewish community for religious needs, rebuilt in brick in 1881.",
+    "s3.p2": "The slope of Ivanivska Street permitted a one-and-a-half storey structure. The architect is unknown. The building was erected in a late Empire and eclectic style.",
+    "s3.p3": "The community used it as a prayer house and rabbi's residence. According to Poltava Governorate address books, the head of the Talmud-Torah school, honorary citizen Rafail Rubinov, and teacher Mendel Krasner resided here.",
+    "s3.p4": "In the 1930s the building was nationalised. After WWII it housed a clinic. Today it is used as residential, with plans for museumification.",
+    "img.rabin.label": "Rabbi's House (8 Gogol Street) — today",
+    "img.rabin.text": "Building from 1881 — former prayer house and rabbi's residence of Poltava's Jewish community. Late Empire and eclectic style. Area: 315 m². Architectural monument.",
+    "tag.style": "Late Empire / Eclecticism",
+    "tag.monument": "Architectural monument",
+    "s4.title": "News & Events",
+    "s4.intro": "We regularly hold events to make history accessible to everyone.",
+    "news1.date": "15 MARCH 2026",
+    "news1.title": "Open Excursion: 'From Synagogue to Rabbi'",
+    "news1.text": "You are invited to an open excursion through the historic quarter of Gogol Street, where in the late 19th–early 20th century a complex of Jewish religious and civic buildings was formed.",
+    "route.title": "🗺 Excursion Route",
+    "route.stop1": "Misnagdim", "route.stop2": "Philharmonic", "route.stop3": "Rabbi's House", "route.stop4": "Gogol St, 6",
+    "news1.more": "Read more →",
+    "s5.title": "Support the Project",
+    "s5.intro": "Rabbi's House needs restoration. Your support is a contribution to preserving Ukraine's multicultural heritage.",
+    "supp1.h": "Charitable Donation", "supp1.p": "All funds go toward the permanent museum exhibition and roof repairs.", "supp1.btn": "DONATE",
+    "supp2.h": "Become a Volunteer", "supp2.p": "Join us in collecting archival materials and digitising documents.", "supp2.btn": "CONTACT US",
+    "s6.title": "Contacts",
+    "s6.intro": "We always welcome guests, researchers, and partners.",
+    "c.address": "Address", "c.address-val": "8 Gogol Street, Poltava",
+    "c.phone": "Phone", "c.email": "Email",
+    "pass.title": "Object Passport",
+    "pass.status": "Status", "pass.status-val": "Architectural monument",
+    "pass.built": "Year built", "pass.area": "Area",
+    "pass.street": "Address", "pass.street-val": "8 Gogol St, Poltava",
+    "pass.style": "Style", "pass.style-val": "Late Empire, Eclecticism",
+    "pass.today": "Current use", "pass.today-val": "Residential / museumification",
+    "pass.cta": "SUPPORT PROJECT",
+    "qr.text": "Scan the QR code to open the site on your smartphone or share with friends.",
+    "footer.about": "Official information resource of Rabbi's House and Jewish heritage of Poltava.",
+    "footer.nav": "Navigation", "footer.contact": "Contact"
+  },
 
-            <aside>
-                <div class="passport">
-                    <h3 style="font-family:'Cinzel'; color: var(--gold);">Паспорт об'єкта</h3>
-                    <div style="text-align: left; margin: 25px 0;">
-                        <p><b>📍 Адреса:</b> вул. Гоголя, 8</p>
-                        <p><b>🏛 Статус:</b> Музей / Пам'ятка</p>
-                        <p><b>📜 Стиль:</b> Еклектика</p>
-                    </div>
-                    
-                    <div class="qr-card">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://heritage-poltava.com.ua&color=2a2320" alt="QR">
-                        <p style="font-size: 0.75rem; color: var(--gold); font-weight: bold; margin-top: 10px;">SCAN TO VISIT SITE</p>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </main>
+  he: {
+    "logo.main": "אור המורשת",
+    "logo.sub": "המורשת היהודית של פולטבה",
+    "nav.menu": "תפריט", "nav.close": "✕ סגור",
+    "nav.history": "היסטוריית הרובע", "nav.history-sub": "History",
+    "nav.synagogue": "בתי כנסת", "nav.synagogue-sub": "Synagogues",
+    "nav.rabin": "בית הרב", "nav.rabin-sub": "Rabbi's House",
+    "nav.news": "חדשות", "nav.news-sub": "News",
+    "nav.help": "תמוך", "nav.help-sub": "Support",
+    "nav.contacts": "צור קשר", "nav.contacts-sub": "Contacts",
+    "hero.badge": "מורשת תרבותית של פולטבה",
+    "hero.title": "מוזיאון «בית הרב»",
+    "hero.subtitle": "מקום שבו ההיסטוריה מתעוררת לחיים, והקירות שומרים על זיכרון דורות הקהילה היהודית של עירנו.",
+    "hero.cta": "גלה את ההיסטוריה",
+    "s1.title": "רובע הרוחניות",
+    "tag.heritage": "מורשת",
+    "s1.p1": "לאורך רחוב גוגול (לשעבר איבנובסקה), שבמאות ה-19–20 המוקדם היה בנוי בעיקר בבנייני שתי קומות, עמד שורת מבני פולחן — בית הכנסת הראשון (כיום — מכללת הרפואה של פולטבה), בית הכנסת הכורלי הגדול (כיום — הפילהרמוניה של פולטבה), ובית הכנסת מתנגדים.",
+    "s1.p2": "הרחוב עצמו הונח בתחילת המאה ה-19 בעת בניית מרכז העיר החדש לפי התוכנית הכללית של 1803–1805. השם הנוכחי ניתן בשנת 1907 לכבוד נ.ו. גוגול.",
+    "img.gogol.label": "תצלום ארכיוני",
+    "img.gogol.text": "רחוב גוגול (לשעבר איבנובסקה) בפולטבה, תחילת המאה ה-20. ניתן לראות בבירור את הבנייה האופיינית ואת בתי המסחר שלצד מבני הפולחן היהודיים.",
+    "img.map.label": "מפת גוברניית פולטבה",
+    "img.map.text": "גוברניית פולטבה על חומרי מפות מהמאות ה-19–20, המדגימה את מיקום העיר כמרכז אזורי.",
+    "tl.1803": "הנחת רחוב איבנובסקה (עתיד גוגול) בהתאם לתוכנית הכללית של פולטבה.",
+    "tl.1856": "נבנה בית הכנסת הכורלי הגדול — מבנה בן שתי קומות בסגנון ניאוקלאסי עם כיפה כדורית.",
+    "tl.1881": "בית הרב נבנה מחדש מלבנים. שיפוע הרחוב אפשר קומה וחצי.",
+    "tl.1907": "רחוב איבנובסקה שונה שמו לכבוד נ.ו. גוגול.",
+    "tl.1911": "שריפה הרסה את בית הכנסת הכורלי הגדול; 46 ספרי תורה נשרפו. בית הכנסת נבנה מחדש.",
+    "tl.1930": "השלטון הסובייטי סגר את כל מבני הפולחן; הם הולאמו ושונו לשימושים אחרים.",
+    "tl.2020": "שיפוץ מקיף של מבנה בית הכנסת (הפילהרמוניה). בית הרב בדרך להפוך למוזיאון.",
+    "s2.title": "בתי הכנסת של הרובע",
+    "s2.choral.h": "בית הכנסת הכורלי הגדול",
+    "s2.choral.p1": "בית הכנסת הכורלי הגדול היה מבנה לבנים דו-קומתי בסגנון ניאוקלאסי. נבנה ב-1856. אולם התפילה המרכזי כוסה בכיפה כדורית גדולה.",
+    "s2.choral.p2": "בית הכנסת שכן ברחוב גוגול 10. הוצת בזדון ב-1911. אפר 46 ספרי התורה נקבר ב-25 ארגזים בבית הקברות היהודי.",
+    "s2.quote": '"ביום השלישי לחודש אייר שנת תרע"ד לבריאת העולם — השמש חשכה כאשר אש ירדה מהשמים ושרפה את בית קודשנו, תפארתנו — את הקהל הגדול בעירנו..."',
+    "img.syn-old.label": "תצלום ארכיוני, תחילת המאה ה-20",
+    "img.syn-old.text": "מבט על בית הכנסת הכורלי הגדול ומבנים סמוכים. מימין — בית הרב. משמאל — בית הכנסת מתנגדים. צולם לפני 1911.",
+    "img.pharm.label": "הפילהרמוניה האזורית של פולטבה (כיום)",
+    "img.pharm.text": "מבנה בית הכנסת הכורלי הגדול לשעבר לאחר שיפוץ מקיף. כיום — הפילהרמוניה האזורית של פולטבה.",
+    "fb.title": "🎥 סרטון השיפוץ",
+    "fb.text": "סרטון ייחודי של ערוץ הטלוויזיה 'DOM' על שחזור פנינת האדריכלות — בית הכנסת הכורלי הגדול לשעבר.",
+    "fb.btn": "צפה בפייסבוק →",
+    "s2.misn.h": "בית הכנסת מתנגדים",
+    "s2.misn.p1": "משמאל לבית הכנסת הגדול, במספר 12, שכן בית הכנסת מתנגדים מאמצע המאה ה-19. חזית המבנה מאורגנת בשישה עמודים המפרידים חמישה חלונות קשתיים.",
+    "s2.misn.p2": "בשנות ה-70 הוסב המבנה לבית קפה לנוער 'טריושקה'. עד היום משמש כבית קפה.",
+    "img.misn.label": "בית הכנסת מתנגדים (כיום)",
+    "img.misn.text": "מבנה בית הכנסת מתנגדים לשעבר, רחוב גוגול 12. כיום — בית קפה.",
+    "img.med.label": "בית הכנסת הראשון (מכללת רפואה)",
+    "img.med.text": "מבנה בית הכנסת האבן הראשון מהמאה ה-19, רחוב פיליפה אורליקה 18/2. כיום — מכללת הרפואה של פולטבה.",
+    "s3.title": "בית הרב",
+    "s3.p1": "ליד בית הכנסת הכורלי הגדול, על חלקה של 1,100 מ\"ר, שוכן בית הרב (רחוב גוגול 8). זה היה בית עץ פרטי שנרכש על ידי הקהילה היהודית לצרכים דתיים, ונבנה מחדש מלבנים ב-1881.",
+    "s3.p2": "שיפוע רחוב איבנובסקה אפשר מבנה של קומה וחצי. האדריכל אינו ידוע. הבית נבנה בסגנון אמפייר מאוחר ואקלקטיקה.",
+    "s3.p3": "הקהילה השתמשה בו כבית תפילה ומגורי הרב. לפי ספרי הכתובות של גוברניית פולטבה, כאן גרו מנהל בית הספר תלמוד-תורה רפאל רובינוב ומורה מנדל קרסנר.",
+    "s3.p4": "בשנות ה-30 הולאם הבניין. לאחר מלחמת העולם השנייה שכנה כאן קליניקה. כיום הבניין משמש למגורים.",
+    "img.rabin.label": "בית הרב (רחוב גוגול 8) — כיום",
+    "img.rabin.text": "מבנה מ-1881 — בית תפילה ומגורי הרב לשעבר של הקהילה היהודית בפולטבה. סגנון: אמפייר מאוחר ואקלקטיקה. שטח: 315 מ\"ר. אנדרטת אדריכלות.",
+    "tag.style": "אמפייר מאוחר / אקלקטיקה",
+    "tag.monument": "אנדרטת אדריכלות",
+    "s4.title": "חדשות ואירועים",
+    "s4.intro": "אנו מקיימים אירועים כדי להנגיש את ההיסטוריה לכולם.",
+    "news1.date": "15 במרץ 2026",
+    "news1.title": "סיור פתוח: 'מבית הכנסת לבית הרב'",
+    "news1.text": "הנכם מוזמנים לסיור פתוח ברובע ההיסטורי של רחוב גוגול, שם בסוף המאה ה-19 ובתחילת המאה ה-20 נוצר מתחם של מבנים יהודיים.",
+    "route.title": "🗺 מסלול הסיור",
+    "route.stop1": "מתנגדים", "route.stop2": "פילהרמוניה", "route.stop3": "בית הרב", "route.stop4": "גוגול 6",
+    "news1.more": "קרא עוד →",
+    "s5.title": "תמיכה בפרויקט",
+    "s5.intro": "בית הרב זקוק לשיחזור. תמיכתכם היא תרומה לשמירת המורשת התרבותית הרב-תרבותית של אוקראינה.",
+    "supp1.h": "תרומה צדקה", "supp1.p": "כל הכספים מיועדים לתערוכה הקבועה ולתיקון הגג.", "supp1.btn": "תרום",
+    "supp2.h": "היה מתנדב", "supp2.p": "הצטרף לאיסוף חומרים ארכיוניים ולדיגיטציה של מסמכים.", "supp2.btn": "צור קשר",
+    "s6.title": "צור קשר",
+    "s6.intro": "אנו תמיד שמחים לארח אורחים, חוקרים ושותפים.",
+    "c.address": "כתובת", "c.address-val": "פולטבה, רחוב גוגול 8",
+    "c.phone": "טלפון", "c.email": "אימייל",
+    "pass.title": "פספורט האובייקט",
+    "pass.status": "סטטוס", "pass.status-val": "אנדרטת אדריכלות",
+    "pass.built": "שנת בנייה", "pass.area": "שטח",
+    "pass.street": "כתובת", "pass.street-val": "רחוב גוגול 8",
+    "pass.style": "סגנון", "pass.style-val": "אמפייר מאוחר, אקלקטיקה",
+    "pass.today": "שימוש נוכחי", "pass.today-val": "מגורים / מוזיאון",
+    "pass.cta": "תמוך בפרויקט",
+    "qr.text": "סרוק את קוד ה-QR כדי לפתוח את האתר בסמארטפון שלך.",
+    "footer.about": "משאב מידע רשמי של בית הרב והמורשת היהודית של פולטבה.",
+    "footer.nav": "ניווט", "footer.contact": "צור קשר"
+  },
 
-    <footer>
-        <div class="container">
-            <p>© 2026 Музей "Будинок Рабина" | Полтава</p>
-        </div>
-    </footer>
+  de: {
+    "logo.main": "LIGHT OF HERITAGE",
+    "logo.sub": "Jüdisches Erbe in Poltawa",
+    "nav.menu": "MENÜ", "nav.close": "✕ SCHLIESSEN",
+    "nav.history": "Quartiergeschichte", "nav.history-sub": "History",
+    "nav.synagogue": "Synagogen", "nav.synagogue-sub": "Synagogues",
+    "nav.rabin": "Rabbinerhaus", "nav.rabin-sub": "Rabbi's House",
+    "nav.news": "Neuigkeiten", "nav.news-sub": "News",
+    "nav.help": "Unterstützen", "nav.help-sub": "Support",
+    "nav.contacts": "Kontakt", "nav.contacts-sub": "Contacts",
+    "hero.badge": "Kulturerbe von Poltawa",
+    "hero.title": "Museum «Rabbinerhaus»",
+    "hero.subtitle": "Ein Ort, an dem Geschichte lebendig wird und die Wände die Erinnerung an Generationen der jüdischen Gemeinschaft bewahren.",
+    "hero.cta": "Geschichte entdecken",
+    "s1.title": "Ein Viertel der Spiritualität",
+    "tag.heritage": "Erbe",
+    "s1.p1": "An der Gogolstraße (ehemals Iwaniwska), die im 19. und frühen 20. Jahrhundert hauptsächlich mit zweistöckigen Gebäuden bebaut war, stand eine Reihe religiöser Bauten — die erste Synagoge (heute Medizinschule), die Große Choralsynagoge (heute Philharmonie) und die Misnagdim-Synagoge.",
+    "s1.p2": "Die Straße selbst wurde Anfang des 19. Jahrhunderts nach dem Generalplan von 1803–1805 angelegt. Den heutigen Namen erhielt sie 1907 zu Ehren von N.W. Gogol.",
+    "img.gogol.label": "Archivfoto",
+    "img.gogol.text": "Gogolstraße (ehemals Iwaniwska) in Poltawa, Anfang des 20. Jahrhunderts. Die charakteristische Bebauung neben jüdischen Kultstätten ist gut zu erkennen.",
+    "img.map.label": "Karte des Gouvernements Poltawa",
+    "img.map.text": "Das Gouvernement Poltawa auf Kartenmaterial des 19.–20. Jahrhunderts.",
+    "tl.1803": "Anlage der Iwaniwska-Straße (künftige Gogolstraße) nach dem Generalplan Poltawas.",
+    "tl.1856": "Bau der Großen Choralsynagoge — ein zweistöckiger neoklassischer Bau mit sphärischer Kuppel.",
+    "tl.1881": "Das Rabbinerhaus wird in Backstein umgebaut. Das Straßengefälle ermöglichte eineinhalb Stockwerke.",
+    "tl.1907": "Umbenennung der Iwaniwska-Straße zu Ehren von N.W. Gogol.",
+    "tl.1911": "Brand zerstört die Große Choralsynagoge; 46 Torarollen verbrannt. Bald danach wieder aufgebaut.",
+    "tl.1930": "Sowjetische Behörden schließen alle Kultstätten; Gebäude werden verstaatlicht.",
+    "tl.2020": "Umfassende Renovierung der Synagoge (Philharmonie). Rabbinerhaus auf dem Weg zum Museum.",
+    "s2.title": "Synagogen des Viertels",
+    "s2.choral.h": "Große Choralsynagoge",
+    "s2.choral.p1": "Die Große Choralsynagoge war ein zweistöckiger Backsteinbau im neoklassischen Stil, erbaut 1856. Der zentrale Gebetsraum war von einer großen sphärischen Kuppel überdacht.",
+    "s2.choral.p2": "Sie befand sich in der Gogolstraße 10 und wurde 1911 durch Brandstiftung zerstört. Die Asche der 46 verbrannten Torarollen wurde auf dem jüdischen Friedhof beigesetzt.",
+    "s2.quote": '"Am dritten Tag des Monats Ijar im Jahr 5674 der Schöpfung — verdunkelte sich die Sonne, als Feuer vom Himmel fiel und unser Haus zerstörte..."',
+    "img.syn-old.label": "Archivfoto, Anfang 20. Jh.",
+    "img.syn-old.text": "Blick auf die Große Choralsynagoge und die benachbarten Gebäude. Rechts — Rabbinerhaus. Links — Misnagdim-Synagoge. Vor 1911 aufgenommen.",
+    "img.pharm.label": "Poltawaer Regionalphilharmonie (heute)",
+    "img.pharm.text": "Das ehemalige Synagogengebäude nach umfassender Renovierung. Heute Sitz der Poltawaer Regionalphilharmonie.",
+    "fb.title": "🎥 Video der Renovierung",
+    "fb.text": "Einzigartiges Video des Fernsehsenders 'DOM' über die Restaurierung der einstigen Großen Choralsynagoge.",
+    "fb.btn": "Auf Facebook ansehen →",
+    "s2.misn.h": "Misnagdim-Synagoge",
+    "s2.misn.p1": "Links von der Großen Synagoge, im Haus Nr. 12, befand sich seit Mitte des 19. Jh. die Misnagdim-Synagoge. Die Fassade gliedert sich in sechs Pilaster mit fünf Bogenfenstern.",
+    "s2.misn.p2": "In den 1970er Jahren wurde das Gebäude in ein Jugendcafé umgebaut. Heute befindet sich hier noch immer ein Café.",
+    "img.misn.label": "Misnagdim-Synagoge (heute)",
+    "img.misn.text": "Das ehemalige Synagogengebäude in der Gogolstraße 12. Heute ein Café.",
+    "img.med.label": "Erste Synagoge (Medizinschule)",
+    "img.med.text": "19. Jh. Synagoge in der Pylypa-Orlyka-Straße 18/2. Heute medizinische Fachschule.",
+    "s3.title": "Das Rabbinerhaus",
+    "s3.p1": "Neben der Großen Choralsynagoge, auf einem 1.100 m² großen Grundstück, steht das Rabbinerhaus (Gogolstraße 8). Es war ein privates Holzhaus, das die jüdische Gemeinde für religiöse Zwecke kaufte und 1881 in Backstein umbaute.",
+    "s3.p2": "Das Straßengefälle erlaubte eineinhalb Stockwerke. Der Architekt ist unbekannt. Das Haus wurde im Stil des späten Empire und Eklektizismus erbaut.",
+    "s3.p3": "Die Gemeinde nutzte es als Bethaus und Rabbinerwohnung. Laut den Poltawaer Adressbüchern lebten hier der Schulleiter der Talmud-Tora, Rafael Rubinow, sowie Lehrer Mendel Krasner.",
+    "s3.p4": "In den 1930er Jahren wurde das Gebäude verstaatlicht. Nach dem Zweiten Weltkrieg befand sich hier eine Klinik. Heute wird es als Wohnhaus genutzt.",
+    "img.rabin.label": "Rabbinerhaus (Gogolstraße 8) — heute",
+    "img.rabin.text": "Gebäude von 1881 — ehemaliges Bethaus und Rabbinerresidenz. Spätes Empire und Eklektizismus. Fläche: 315 m². Architekturdenkmal.",
+    "tag.style": "Spätes Empire / Eklektizismus",
+    "tag.monument": "Architekturdenkmal",
+    "s4.title": "Neuigkeiten & Veranstaltungen",
+    "s4.intro": "Wir veranstalten regelmäßig Events, um Geschichte für alle zugänglich zu machen.",
+    "news1.date": "15. MÄRZ 2026",
+    "news1.title": "Offene Führung: 'Von der Synagoge zum Rabbiner'",
+    "news1.text": "Wir laden zu einer offenen Führung durch das historische Viertel der Gogolstraße ein, wo im späten 19. und frühen 20. Jahrhundert ein Komplex jüdischer religiöser und gesellschaftlicher Bauten entstand.",
+    "route.title": "🗺 Führungsroute",
+    "route.stop1": "Misnagdim", "route.stop2": "Philharmonie", "route.stop3": "Rabbinerhaus", "route.stop4": "Gogolstr. 6",
+    "news1.more": "Mehr lesen →",
+    "s5.title": "Projekt unterstützen",
+    "s5.intro": "Das Rabbinerhaus benötigt Restaurierung. Ihre Unterstützung trägt zur Bewahrung des multikulturellen Erbes der Ukraine bei.",
+    "supp1.h": "Spende", "supp1.p": "Alle Mittel fließen in die Dauerausstellung und Dachreparatur.", "supp1.btn": "SPENDEN",
+    "supp2.h": "Freiwillige werden", "supp2.p": "Helfen Sie beim Sammeln von Archivmaterial und der Digitalisierung.", "supp2.btn": "KONTAKT",
+    "s6.title": "Kontakt",
+    "s6.intro": "Wir freuen uns immer über Gäste, Forscher und Partner.",
+    "c.address": "Adresse", "c.address-val": "Gogolstraße 8, Poltawa",
+    "c.phone": "Telefon", "c.email": "E-Mail",
+    "pass.title": "Objektpass",
+    "pass.status": "Status", "pass.status-val": "Architekturdenkmal",
+    "pass.built": "Baujahr", "pass.area": "Fläche",
+    "pass.street": "Adresse", "pass.street-val": "Gogolstr. 8, Poltawa",
+    "pass.style": "Stil", "pass.style-val": "Spätes Empire, Eklektizismus",
+    "pass.today": "Aktuell", "pass.today-val": "Wohnhaus / Museumisierung",
+    "pass.cta": "PROJEKT UNTERSTÜTZEN",
+    "qr.text": "Scannen Sie den QR-Code, um die Website auf Ihrem Smartphone zu öffnen.",
+    "footer.about": "Offizielle Informationsressource des Rabbinerhauses und des jüdischen Erbes in Poltawa.",
+    "footer.nav": "Navigation", "footer.contact": "Kontakt"
+  },
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('navMenu').classList.toggle('active');
-        }
+  pl: {
+    "logo.main": "LIGHT OF HERITAGE",
+    "logo.sub": "Żydowskie dziedzictwo Połtawy",
+    "nav.menu": "MENU", "nav.close": "✕ ZAMKNIJ",
+    "nav.history": "Historia kwartału", "nav.history-sub": "Historia",
+    "nav.synagogue": "Synagogi", "nav.synagogue-sub": "Synagogues",
+    "nav.rabin": "Dom Rabina", "nav.rabin-sub": "Rabbi's House",
+    "nav.news": "Aktualności", "nav.news-sub": "News",
+    "nav.help": "Wsparcie", "nav.help-sub": "Support",
+    "nav.contacts": "Kontakt", "nav.contacts-sub": "Contacts",
+    "hero.badge": "Dziedzictwo kulturowe Połtawy",
+    "hero.title": "Muzeum «Dom Rabina»",
+    "hero.subtitle": "Miejsce, gdzie historia ożywa, a mury przechowują pamięć pokoleń żydowskiej wspólnoty naszego miasta.",
+    "hero.cta": "Odkryj historię",
+    "s1.title": "Kwartał duchowości",
+    "tag.heritage": "Dziedzictwo",
+    "s1.p1": "Wzdłuż ulicy Gogola (dawniej Iwaniwska), zabudowanej w XIX i na początku XX w. głównie dwupiętrowymi budynkami, znajdował się szereg obiektów sakralnych — pierwsza synagoga (dziś szkoła medyczna), Wielka Synagoga Choralna (dziś Filharmonia), synagoga Misnagdim.",
+    "s1.p2": "Ulica została wytyczona na początku XIX w. według planu generalnego z lat 1803–1805. Obecną nazwę otrzymała w 1907 r. ku czci M.W. Gogola.",
+    "img.gogol.label": "Zdjęcie archiwalne",
+    "img.gogol.text": "Ulica Gogola (dawniej Iwaniwska) w Połtawie, pocz. XX w. Dobrze widoczna zabudowa sąsiadująca z żydowskimi obiektami sakralnymi.",
+    "img.map.label": "Mapa guberni połtawskiej",
+    "img.map.text": "Gubernia połtawska na materiałach kartograficznych XIX–XX w.",
+    "tl.1803": "Wytyczenie ulicy Iwaniwskiej (przyszłej Gogola) według planu generalnego Połtawy.",
+    "tl.1856": "Budowa Wielkiej Synagogi Choralnej — dwupiętrowy budynek neoklasycystyczny z kopułą sferyczną.",
+    "tl.1881": "Przebudowa Domu Rabina z drewnianego na ceglany. Nachylenie ulicy umożliwiło półpiętrową budowlę.",
+    "tl.1907": "Przemianowanie ulicy Iwaniwskiej na cześć M.W. Gogola.",
+    "tl.1911": "Pożar zniszczył Wielką Synagogę Choralną; spalono 46 zwojów Tory. Wkrótce odbudowana.",
+    "tl.1930": "Władze sowieckie zamknęły wszystkie obiekty sakralne; upaństwowione i przeznaczone na inne cele.",
+    "tl.2020": "Generalny remont synagogi (filharmonii) w ramach programu 'Wielka Budowa'. Dom Rabina na drodze do umuzealizowania.",
+    "s2.title": "Synagogi kwartału",
+    "s2.choral.h": "Wielka Synagoga Choralna",
+    "s2.choral.p1": "Wielka Synagoga Choralna to dwupiętrowy murowany budynek w stylu neoklasycystycznym, wzniesiony w 1856 r. Centralną salę modlitewną nakrywała duża sferyczna kopuła.",
+    "s2.choral.p2": "Mieściła się przy ul. Gogola 10 i została podpalona w 1911 r. Prochy 46 spalonych zwojów Tory pochowano w 25 skrzyniach na żydowskim cmentarzu.",
+    "s2.quote": '"W trzecim dniu miesiąca Ijar roku 5674 od stworzenia świata — słońce zaciemniło się, gdy ogień spadł z nieba i spalił nasz święty dom, naszą piękność — Wielką Synagogę w naszym mieście..."',
+    "img.syn-old.label": "Zdjęcie archiwalne, pocz. XX w.",
+    "img.syn-old.text": "Widok na Wielką Synagogę Choralną i sąsiednie budynki. Po prawej — Dom Rabina. Po lewej — synagoga Misnagdim. Fotografia sprzed 1911 r.",
+    "img.pharm.label": "Filharmonia Obwodowa Połtawy (dziś)",
+    "img.pharm.text": "Dawny budynek Wielkiej Synagogi Choralnej po kapitalnym remoncie. Dziś siedziba Filharmonii Obwodowej Połtawy.",
+    "fb.title": "🎥 Wideo z remontu",
+    "fb.text": "Wyjątkowe wideo kanału 'DOM' dokumentujące renowację perły architektonicznej — dawnej Wielkiej Synagogi Choralnej.",
+    "fb.btn": "Obejrzyj na Facebooku →",
+    "s2.misn.h": "Synagoga Misnagdim",
+    "s2.misn.p1": "Po lewej stronie Wielkiej Synagogi, w domu pod nr 12, od połowy XIX w. znajdowała się synagoga Misnagdim. Fasada zdobiona sześcioma pilastrami dzielącymi pięć łukowych okien.",
+    "s2.misn.p2": "W latach 70. przekształcona w kawiarnię młodzieżową 'Troszkę'. Do dziś funkcjonuje jako kawiarnia.",
+    "img.misn.label": "Synagoga Misnagdim (dziś)",
+    "img.misn.text": "Dawny budynek synagogi Misnagdim przy ul. Gogola 12. Dziś kawiarnia.",
+    "img.med.label": "Pierwsza synagoga (szkoła medyczna)",
+    "img.med.text": "XIX-wieczna synagoga przy ul. Pylypa Orlika 18/2. Dziś kolegium medyczne.",
+    "s3.title": "Dom Rabina",
+    "s3.p1": "W pobliżu Wielkiej Synagogi Choralnej, na działce 1100 m², stoi Dom Rabina (ul. Gogola 8). Pierwotnie prywatny drewniany dom wykupiony przez gminę żydowską, przebudowany w cegle w 1881 r.",
+    "s3.p2": "Nachylenie ulicy Iwaniwskiej umożliwiło budowę na półtorej kondygnacji. Architekt nieznany. Styl późnego Empire i eklektyzmu.",
+    "s3.p3": "Gmina wykorzystywała go jako dom modlitwy i mieszkanie rabina. Wg ksiąg adresowych guberni połtawskiej mieszkali tu kierownik szkoły Talmud-Tory Rafał Rubinow i nauczyciel Mendel Krasner.",
+    "s3.p4": "W latach 30. upaństwowiony. Po II wojnie światowej mieściła się tu przychodnia. Dziś pełni funkcję mieszkalną.",
+    "img.rabin.label": "Dom Rabina (ul. Gogola 8) — dziś",
+    "img.rabin.text": "Budynek z 1881 r. — dawny dom modlitwy i rezydencja rabina. Styl późnego Empire i eklektyzmu. Powierzchnia: 315 m². Zabytek architektury.",
+    "tag.style": "Późny Empire / Eklektyzm",
+    "tag.monument": "Zabytek architektury",
+    "s4.title": "Aktualności i wydarzenia",
+    "s4.intro": "Regularnie organizujemy wydarzenia, aby uczynić historię dostępną dla każdego.",
+    "news1.date": "15 MARCA 2026",
+    "news1.title": "Otwarta wycieczka: 'Od synagogi do rabina'",
+    "news1.text": "Zapraszamy na otwartą wycieczkę przez historyczny kwartał ulicy Gogola, gdzie pod koniec XIX i na początku XX w. powstał kompleks żydowskich obiektów sakralnych i społecznych.",
+    "route.title": "🗺 Trasa wycieczki",
+    "route.stop1": "Misnagdim", "route.stop2": "Filharmonia", "route.stop3": "Dom Rabina", "route.stop4": "Gogola 6",
+    "news1.more": "Czytaj więcej →",
+    "s5.title": "Wesprzyj projekt",
+    "s5.intro": "Dom Rabina wymaga restauracji. Twoje wsparcie to wkład w zachowanie wielokulturowego dziedzictwa Ukrainy.",
+    "supp1.h": "Darowizna", "supp1.p": "Środki przeznaczone są na stałą ekspozycję muzealną i naprawę dachu.", "supp1.btn": "WESPRZYJ",
+    "supp2.h": "Zostań wolontariuszem", "supp2.p": "Dołącz do zbierania materiałów archiwalnych i digitalizacji dokumentów.", "supp2.btn": "NAPISZ DO NAS",
+    "s6.title": "Kontakt",
+    "s6.intro": "Zawsze witamy gości, badaczy i partnerów.",
+    "c.address": "Adres", "c.address-val": "ul. Gogola 8, Połtawa",
+    "c.phone": "Telefon", "c.email": "E-mail",
+    "pass.title": "Paszport obiektu",
+    "pass.status": "Status", "pass.status-val": "Zabytek architektury",
+    "pass.built": "Rok budowy", "pass.area": "Powierzchnia",
+    "pass.street": "Adres", "pass.street-val": "ul. Gogola 8, Połtawa",
+    "pass.style": "Styl", "pass.style-val": "Późny Empire, Eklektyzm",
+    "pass.today": "Aktualne użycie", "pass.today-val": "Mieszkalne / muzeum",
+    "pass.cta": "WESPRZYJ PROJEKT",
+    "qr.text": "Zeskanuj kod QR, aby otworzyć stronę na smartfonie lub udostępnić znajomym.",
+    "footer.about": "Oficjalny zasób informacyjny Domu Rabina i żydowskiego dziedzictwa Połtawy.",
+    "footer.nav": "Nawigacja", "footer.contact": "Kontakt"
+  }
+};
 
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('mainHeader');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    </script>
+/* =====================================================================
+   LANGUAGE SWITCHER
+===================================================================== */
+let currentLang = localStorage.getItem('lang') || 'uk';
+
+function switchLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+
+  // direction
+  const dir = (lang === 'he') ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = dir;
+
+  // apply translations
+  const data = i18n[lang] || i18n['uk'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (data[key] !== undefined) el.textContent = data[key];
+  });
+
+  // update document title
+  document.title = data['hero.title'] ? `LIGHT OF HERITAGE — ${data['hero.title']}` : document.title;
+
+  // update active button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  const codes = { uk: 'UA', en: 'EN', he: 'HE', de: 'DE', pl: 'PL' };
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const map = { 'UA': 'uk', 'EN': 'en', 'HE': 'he', 'DE': 'de', 'PL': 'pl' };
+    if (map[btn.textContent.trim()] === lang) btn.classList.add('active');
+  });
+}
+
+/* =====================================================================
+   MENU OVERLAY
+===================================================================== */
+const menuOverlay = document.getElementById('menuOverlay');
+const menuOpen    = document.getElementById('menuOpen');
+const menuClose   = document.getElementById('menuClose');
+
+menuOpen.addEventListener('click', () => {
+  menuOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeMenu() {
+  menuOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+menuClose.addEventListener('click', closeMenu);
+
+document.querySelectorAll('.menu-item').forEach(a => {
+  a.addEventListener('click', closeMenu);
+});
+
+/* =====================================================================
+   HEADER SCROLL BEHAVIOUR
+===================================================================== */
+const header     = document.getElementById('header');
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    header.classList.add('scrolled');
+    scrollTopBtn.style.display = 'flex';
+    scrollTopBtn.style.alignItems = 'center';
+    scrollTopBtn.style.justifyContent = 'center';
+  } else {
+    header.classList.remove('scrolled');
+    scrollTopBtn.style.display = 'none';
+  }
+}, { passive: true });
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* =====================================================================
+   INTERSECTION OBSERVER — fade-in animations
+===================================================================== */
+const aosObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      aosObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('[data-aos]').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4 * 80) + 'ms';
+  aosObserver.observe(el);
+});
+
+/* =====================================================================
+   INIT
+===================================================================== */
+(function init() {
+  switchLang(currentLang);
+})();
+</script>
+
 </body>
 </html>
