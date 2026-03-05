@@ -1229,6 +1229,36 @@
     max-width: none !important;
   }
 }
+.qr-section{
+  text-align:center;
+  padding:40px 20px;
+}
+
+.qr-title{
+  font-family:'Cinzel', serif;
+  font-size:28px;
+  color:#c79a2b;
+  letter-spacing:4px;
+  margin-bottom:20px;
+}
+
+.qr-center{
+  display:flex;
+  justify-content:center;
+}
+
+.qr-center img{
+  width:200px;
+  height:200px;
+}
+
+.qr-link{
+  font-family:'Cinzel', serif;
+  font-size:22px;
+  color:#c79a2b;
+  margin-top:20px;
+  letter-spacing:2px;
+}
   </style>
 </head>
 <body>
@@ -1616,10 +1646,25 @@
         </div>
 
         <!-- QR CODE CARD -->
-        <div class="qr-card" data-aos>
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://heritage-poltava.com.ua&color=1a1614&bgcolor=f9f5eb" alt="QR Code">
-          <p data-i18n="qr.text">Відскануйте QR-код, щоб відкрити сайт на смартфоні або поділитися з друзями.</p>
-        </div>
+        <div class="qr-block">
+
+ <div class="qr-section">
+
+  <div class="qr-title">
+    LIGHT OF HERITAGE
+  </div>
+
+  <div class="qr-center">
+    <img src="qr-code.svg" alt="QR Code">
+  </div>
+
+  <div class="qr-link">
+    MUSEUM-RABBIS-HOUSE.PP.UA
+  </div>
+
+</div>
+
+</div>
 
       </div>
     </aside>
