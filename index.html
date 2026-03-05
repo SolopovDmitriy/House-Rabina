@@ -1219,6 +1219,16 @@
 @media (max-width: 520px) {
   .site-header.scrolled { height: var(--nav-h) !important; }
 }
+@media (max-width: 900px){
+  .logo-titles{ min-width:0; }
+  .logo-sub{
+    display:block !important;
+    white-space: normal !important;   /* дозволяє перенос */
+    overflow: visible !important;     /* не обрізає */
+    text-overflow: clip !important;   /* прибирає ... */
+    max-width: none !important;
+  }
+}
   </style>
 </head>
 <body>
