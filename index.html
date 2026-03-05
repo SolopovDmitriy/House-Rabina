@@ -659,6 +659,23 @@ header::after{
 /* На всяк випадок: меню поверх інших блоків */
 .menu-area{ position: relative; z-index: 99999; }
 .menu-popover{ z-index: 100000; }
+.news-item{
+  border: 1px solid rgba(43,31,20,.18);
+  background: rgba(255,255,255,.35);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.news-date{
+  font-size: .9rem;
+  color: rgba(42,35,32,.65);
+  margin: 0 0 6px;
+}
+
+.news-item h3{
+  margin: 4px 0 8px;
+}
   </style>
 </head>
 
@@ -775,7 +792,19 @@ header::after{
             <b>Шаблон новини:</b> дата • назва • короткий опис • контакт/реєстрація.
           </div>
         </div>
+        <div class="news-item">
+          <p class="news-date">15 березня 2026</p>
 
+          <h3>Відкрита екскурсія історичним кварталом</h3>
+
+          <p>
+            Запрошуємо на пішохідну екскурсію історичним кварталом вулиці Гоголя,
+            де наприкінці XIX — на початку XX століття сформувався комплекс
+            єврейських культових і громадських споруд.
+          </p>
+
+  <a href="news-excursion.html" class="btn">Читати</a>
+</div>
         <div class="section" id="projects">
           <h2 data-i18n="sec.projects.h2">3.3. Проєкти</h2>
           <p data-i18n="sec.projects.p1">
