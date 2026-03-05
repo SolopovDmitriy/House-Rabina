@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    background: #1a1a1a; /* Темний фон для контрасту */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .logo-render {
+    background: linear-gradient(135deg, #f6f0e3 0%, #efe4cf 100%);
+    padding: 60px 80px;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    border: 1px solid #b08a3a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ефект відблиску на логотипі */
+  .logo-render::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+
+  .menora-icon {
+    filter: drop-shadow(0 5px 15px rgba(176, 138, 58, 0.4));
+  }
+
+  .text-block {
+    border-left: 3px solid #b08a3a;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-title {
+    font-family: "Georgia", serif;
+    font-size: 54px;
+    font-weight: 900;
+    color: #2a2320;
+    letter-spacing: 4px;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .sub-title {
+    font-family: "Arial", sans-serif;
+    font-size: 22px;
+    color: #b08a3a;
+    letter-spacing: 8px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-render">
+  <svg class="menora-icon" width="120" height="120" viewBox="0 0 100 100">
+    <path d="M50 20 V85 M35 30 V85 M65 30 V85 M20 40 V85 M80 40 V85 M5 50 V85 M95 50 V85" 
+          stroke="#b08a3a" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <line x1="5" y1="85" x2="95" y2="85" stroke="#b08a3a" stroke-width="6" stroke-linecap="round"/>
+    <g fill="#e6c97a">
+      <circle cx="50" cy="15" r="5" />
+      <circle cx="35" cy="25" r="4.5" />
+      <circle cx="65" cy="25" r="4.5" />
+      <circle cx="20" cy="35" r="4" />
+      <circle cx="80" cy="35" r="4" />
+      <circle cx="5" cy="45" r="4" />
+      <circle cx="95" cy="45" r="4" />
+    </g>
+  </svg>
+
+  <div class="text-block">
+    <div class="main-title">Будинок Рабина</div>
+    <div class="sub-title">Музей • Полтава</div>
+  </div>
+</div>
+
+</body>
+</html>
